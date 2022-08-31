@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pandas
+aiohttp
+pymongo
+python-dotenv
+dnspython
+pymongo[aws]
+camelot-py
