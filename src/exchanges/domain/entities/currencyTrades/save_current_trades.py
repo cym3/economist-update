@@ -1,8 +1,7 @@
-import re
 from src.core.connet_db import db
 
 
-def currentTratesDB ():
+def saveCurrentTratesDB ():
   database = db()
   collection = database['exchange-rates-test']
 

@@ -1,14 +1,36 @@
-from posixpath import splitext
-import camelot
+from src.exchanges.services.currencyTrades.utils.find_currency_trades import findCurrencyTrades
+from src.exchanges.services.currencyTrades.fetch.fetch_trades import fetchTrades
+from src.exchanges.domain.requiredFields.currencyTrades.currencies import Currency
 
-url = 'https://www.bancomoc.mz/Files/REFR/ZMMIREFR.pdf'
 
-def currenctTradesService():
-    table1 = camelot.read_pdf(url, flavor='stream', table_regions=['170,530,560,270'])[0] 
 
-    table2 = camelot.read_pdf(url, flavor='stream', table_regions=['170,210,600,130'])[0] 
+async def currenctTradesService(currecies: list[Currency]):
+    trades = await fetchTrades()
+    trades_by_1 = trades['trades_by_1']
+    trades_by_1000 = trades['trades_by_1000']
 
-    df = table2.df
-    data = df.values.tolist()
+    newCurrenciesTrades = []
     
-    return df
+    for currency in currecies:
+        currencyTrades = findCurrencyTrades(trades_by_1, currency['country'])
+
+        if currencyTrades is not None:
+            currency['currentTrades'] = {
+                'buy': 0.1673,
+                'sale': 0.17063,
+                'date': '2022-08-20 17:00'
+            }
+        if currencyTrades is None:
+            currencyTrades = findCurrencyTrades(trades_by_1000, currency['country'])
+
+            currency['currentTrades'] = {
+                'buy': 0.1673,
+                'sale': 0.17063,
+                'date': '2022-08-20 17:00'
+            }
+            if currencyTrades is None :
+                print(currency['country'])
+        
+        newCurrenciesTrades.append(currency)
+
+    return 'Done'

@@ -1,9 +1,12 @@
 from src.exchanges.services.currencyTrades.current_trades import currenctTradesService
-from src.exchanges.domain.entities.currencyTrades.current_trades import currentTratesDB
+from src.exchanges.domain.entities.currencyTrades.save_current_trades import saveCurrentTratesDB
+from src.exchanges.domain.entities.currencyTrades.get_all_currencies import getAllCurrenciesDB
 
 async def currentTradesUseCase():
-    currencies = currenctTradesService()
+    currencies = getAllCurrenciesDB()
+    
+    currenciesTrades = await currenctTradesService(currencies)
 
-    # exchangeRate = currentTratesDB()
+    # exchangeRate = saveCurrentTratesDB()
 
-    return currencies
+    return currenciesTrades
