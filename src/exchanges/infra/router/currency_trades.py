@@ -1,5 +1,5 @@
-from fastapi import APIRouter, HTTPException, status
-from src.exchanges.useCases.currencyTrades.current_trates import currentTradesUseCase
+from fastapi import APIRouter
+from src.exchanges.useCases.currencyTrades.current_trades import currentTradesUseCase
 
 currencyTradesRouter = APIRouter(
     prefix='/currency-trades',

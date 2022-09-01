@@ -1,5 +1,5 @@
-from locale import currency
 from src.core.domain.errors.domain_error import DatabaseFailError
+from src.core.domain.mail.sand_mail import sandMail
 from src.core.connect_db import db
 from pydantic import BaseModel
 
@@ -23,6 +23,11 @@ async def saveCurrentTradesDB (currencyTrades: list[CurrencyTrade]):
     )
 
   except Exception:
-    raise DatabaseFailError(f'Database has failed to save exchange rates, { currencyTrades[0].date }')
+    errorTitle = f'Database has failed'
+    errorMessage = f'Was not able to save exchange rates, { currencyTrades[0].date }'
+
+    await sandMail(title=errorTitle, message=errorMessage)
+
+    raise DatabaseFailError(f'{errorTitle} f{errorMessage}')
 
   return 'Done'

@@ -1,5 +1,6 @@
 import camelot
 from src.core.domain.errors.domain_error import DataFetchError
+from src.core.domain.mail.sand_mail import sandMail
 
 url = 'https://www.bancomoc.mz/Files/REFR/ZMMIREFR.pdf'
 
