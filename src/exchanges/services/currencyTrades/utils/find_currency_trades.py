@@ -1,19 +1,20 @@
-from distutils.errors import UnknownFileError
 import re
 
-unknownNomes = ['Emiratos A.Unid', 'Kowait', 'Nova Zelandia']
+def find(countryName: str, currenciesTrades: list[list[str]]):
+  for trades in currenciesTrades:
+    match = re.search(countryName, trades[0])
 
-def findCurrencyTrades(currenciesTrades: list[list[str]], countryName: str):
-    for currencyTrades in currenciesTrades:
-      match = re.search(countryName, currencyTrades[0])
+    if match is not None:
+      return trades
 
-      if match is not None:
-        return currencyTrades
+def findCurrencyTrades(countryName: str, currenciesTrades: list[list[str]]):
+  if (countryName == 'Emirados Árabes Unidos'):
+    return find(countryName='Emiratos A.Unid', currenciesTrades=currenciesTrades)
 
-      if match is None:
-        for unknownname in unknownNomes:
-          match = re.search(unknownname, currencyTrades[0])
+  if (countryName == 'Kuwait'):
+    return find(countryName='Kowait', currenciesTrades=currenciesTrades)
+  
+  if (countryName == 'Nova Zelândia'):
+    return find(countryName='Nova Zelandia', currenciesTrades=currenciesTrades)
 
-          if match is not None:
-            return currencyTrades
-          
+  return find(countryName=countryName, currenciesTrades=currenciesTrades)    

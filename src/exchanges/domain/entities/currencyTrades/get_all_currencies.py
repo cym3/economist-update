@@ -1,4 +1,4 @@
-from src.core.connet_db import db
+from src.core.connect_db import db
 
 def getAllCurrenciesDB ():
   database = db()

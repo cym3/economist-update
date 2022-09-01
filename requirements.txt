@@ -1,9 +1,19 @@
 fastapi
 uvicorn
 pandas
-aiohttp
-pymongo
 python-dotenv
+
+# http
+aiohttp
+
+# MongoDB
 dnspython
+pymongo
 pymongo[aws]
+
+# PDF scrap
+tk
+ghostscript
 camelot-py
+
+#XPath

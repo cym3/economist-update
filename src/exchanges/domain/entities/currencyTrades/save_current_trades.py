@@ -1,19 +1,28 @@
-from src.core.connet_db import db
+from locale import currency
+from src.core.domain.errors.domain_error import DatabaseFailError
+from src.core.connect_db import db
+from pydantic import BaseModel
 
+class CurrencyTrade(BaseModel):
+  isoCode: str
+  buy: float
+  sale: float
+  date: str
 
-def saveCurrentTratesDB ():
-  database = db()
-  collection = database['exchange-rates-test']
+async def saveCurrentTradesDB (currencyTrades: list[CurrencyTrade]):
+  try:
+    database = db()
+    collection = database['exchange-rates']
 
-  currentTrades = {
-    'buy': 639.24,
-    'sale': 643.5,
-    'date': '2022-08-20 17:00'
-  }
+    for currency in currencyTrades:
+      collection.update_one(
+        {
+          'iso.code': currency['isoCode']
+        },
+        { '$set': { 'currentTrades': currency['trade'] }}
+    )
 
-  collection.update_one(
-    {'iso.code': 'USD'},
-    {'$set': { 'currentTrades': currentTrades }}
-  )
+  except Exception:
+    raise DatabaseFailError(f'Database has failed to save exchange rates, { currencyTrades[0].date }')
 
   return 'Done'
