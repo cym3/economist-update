@@ -1,5 +1,6 @@
 import smtplib
 import os
+from src.core.domain.errors.domain_error import EmailReportError
 
 async def sandMail(title: str, message: str):
   EMAIL_HOST = os.getenv('EMAIL_HOST')
@@ -18,5 +19,9 @@ async def sandMail(title: str, message: str):
   {message}"""
 
   with smtplib.SMTP(EMAIL_HOST, int(EMAIL_PORT)) as server:
+    try:
       server.login(EMAIL_HOST_USER, EMAIL_HOST_PASSWORD)
       server.sendmail(sender, receiver, mail_message)
+
+    except Exception as err:
+      raise EmailReportError(f'The Email was not sent ${err.args}')

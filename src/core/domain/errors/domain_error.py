@@ -9,3 +9,7 @@ class DataFetchError(DomainError):
   """Raised when data fetch fails or these's an error on the data fetched"""
   pass
 
+class EmailReportError(DomainError):
+  """Raised when the email report fails"""
+  pass
+
