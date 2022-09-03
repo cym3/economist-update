@@ -17,6 +17,6 @@ async def getAllCurrenciesDB ():
 
     await sandMail(title=errorTitle, message=errorMessage)
 
-    raise DatabaseFailError(f'{errorTitle} f{errorMessage}')
+    raise DatabaseFailError(f'{errorTitle} {errorMessage}')
 
   return currencies
