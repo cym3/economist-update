@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from src.exchanges.useCases.currencyTrades.current_trades import currentTradesUseCase
+from src.currentCurrencyTrades.main import currentTradesUseCase
 
 currencyTradesRouter = APIRouter(
     prefix='/currency-trades',

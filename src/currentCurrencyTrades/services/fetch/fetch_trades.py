@@ -1,6 +1,6 @@
 import camelot
-from src.core.domain.errors.domain_error import DataFetchError
-from src.core.domain.mail.sand_mail import sandMail
+from src.core.errors.domain_error import DataFetchError
+from src.core.mail.sand_mail import sandMail
 
 url = 'https://www.bancomoc.mz/Files/REFR/ZMMIREFR.pdf'
 
@@ -17,6 +17,9 @@ async def fetchTrades(date: str):
         'trades_by_1000': trades_by_1000
     }
   except Exception:
-    raise DataFetchError(
-      f'Exchange Rates could not be updated {date}: Could not fetch the exchange Rates, the url is {url}'
-    )
+    errorTitle = f'Exchange Rates could not be updated {date}'
+    errorMessage = f'Could not fetch the exchange Rates, the url is {url}'
+
+    await sandMail(title=errorTitle, message=errorMessage)
+
+    raise DataFetchError(f'{errorTitle} f{errorMessage}')

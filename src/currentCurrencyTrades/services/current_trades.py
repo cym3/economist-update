@@ -1,9 +1,9 @@
-from src.core.domain.mail.sand_mail import sandMail
-from src.exchanges.services.currencyTrades.utils.format_currency_trades import formatCurrencyTrades
-from src.exchanges.services.currencyTrades.utils.find_currency_trades import findCurrencyTrades
-from src.exchanges.services.currencyTrades.fetch.fetch_trades import fetchTrades
-from src.exchanges.domain.requiredFields.currencyTrades.currencies import Currency
-from src.core.domain.errors.domain_error import DataFetchError
+from src.core.mail.sand_mail import sandMail
+from src.currentCurrencyTrades.services.utils.format_currency_trades import formatCurrencyTrades
+from src.currentCurrencyTrades.services.utils.find_currency_trades import findCurrencyTrades
+from src.currentCurrencyTrades.services.fetch.fetch_trades import fetchTrades
+from src.currentCurrencyTrades.domain.requiredFields.currencies import Currency
+from src.core.errors.domain_error import DataFetchError
 from datetime import datetime
 
 

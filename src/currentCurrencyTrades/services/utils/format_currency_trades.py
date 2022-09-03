@@ -1,6 +1,6 @@
 import re
-from src.core.domain.errors.domain_error import DataFetchError
-from src.core.domain.mail.sand_mail import sandMail
+from src.core.errors.domain_error import DataFetchError
+from src.core.mail.sand_mail import sandMail
 
 async def formatCurrencyTrades(trades: list[str], date: str, divider: int, countryName: str, isoCode: str):
   regex = r'\d+'

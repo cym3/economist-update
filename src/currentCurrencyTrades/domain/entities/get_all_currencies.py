@@ -1,6 +1,6 @@
-from src.core.domain.errors.domain_error import DatabaseFailError
-from src.core.domain.mail.sand_mail import sandMail
-from src.core.connect_db import db
+from src.core.errors.domain_error import DatabaseFailError
+from src.core.mail.sand_mail import sandMail
+from src.core.db.connect_db import db
 
 async def getAllCurrenciesDB ():
   currencies = []
