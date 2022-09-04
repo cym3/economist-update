@@ -25,8 +25,9 @@ async def saveCurrentTradesDB (currencyTrades: list[CurrencyTrade]):
     await createTaskDB(isDone=True)
 
   except Exception:
-    await createTaskDB(isDone=False)
     errorMessage = f'Was not able to save exchange rates, { currencyTrades[0].date }'
+
+    await createTaskDB(isDone=False, error=errorMessage)
 
     await createError(errorMessage)
 

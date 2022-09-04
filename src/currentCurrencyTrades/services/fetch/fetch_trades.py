@@ -17,7 +17,8 @@ async def fetchTrades():
         'trades_by_1000': trades_by_1000
     }
   except Exception:
-    await createTaskDB(isDone=False)
     errorMessage = f'Could not fetch the exchange Rates, the url is {url}'
+
+    await createTaskDB(isDone=False, error=errorMessage)
 
     await createError(errorMessage)

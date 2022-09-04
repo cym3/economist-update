@@ -20,8 +20,9 @@ async def formatCurrencyTrades(trades: list[str], date: str, divider: int, count
     }
 
   except Exception:
-    await createTaskDB(isDone=False)
     errorMessage = f'The {countryName} currency has a format error'
+
+    await createTaskDB(isDone=False, error=errorMessage)
 
     await createError(errorMessage)
 

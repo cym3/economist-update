@@ -12,8 +12,9 @@ async def getAllCurrenciesDB ():
     currencies = collection.find()
 
   except Exception:
-    await createTaskDB(isDone=False)
     errorMessage = 'Database failed to get currencies'
+
+    await createTaskDB(isDone=False, error=errorMessage)
 
     await createError(errorMessage)
 
