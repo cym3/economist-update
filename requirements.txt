@@ -16,4 +16,7 @@ tk
 ghostscript
 camelot-py
 
+# Excell
+xlsxwriter
+
 #XPath

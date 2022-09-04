@@ -10,6 +10,6 @@ async def currentTradesUseCase():
 
     await saveCurrentTradesDB(currenciesTrades)
 
-    await create_error('')
+    await create_error('Test do Error')
 
     return currenciesTrades
