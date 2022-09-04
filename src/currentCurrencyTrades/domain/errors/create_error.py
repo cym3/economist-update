@@ -6,7 +6,8 @@ from src.utils.create_excel import createExcelFile
 file_title = 'Atualização das taxas correntes de câmbio: Relatório da Ultima actividade'
 file_header = ['Task Code', 'Name', 'description', 'Is Done', 'error', 'date']
 
-async def create_error(massage: str):
+async def createError(massage: str):
+    
     path = str(Path(__file__).parents[2].joinpath(f'assets/report.xlsx'))
 
     now = datetime.now()
@@ -15,7 +16,7 @@ async def create_error(massage: str):
     title = f'Exchange Rates could not be updated {date}'
 
     body = [
-        ['t1', 'CurrentCurrencyTrades', 'Update of current exchange rates', 'No', massage, date ]
+        ['T1', 'CurrentCurrencyTrades', 'Update of current exchange rates', 'No', massage, date ]
     ]
 
     await createExcelFile(body=body, title=file_title, header=file_header, path=path)

@@ -1,16 +1,16 @@
-from src.currentCurrencyTrades.domain.errors.create_error import create_error
+from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
+from src.currentCurrencyTrades.domain.errors.create_error import createError
 from src.currentCurrencyTrades.services.utils.format_currency_trades import formatCurrencyTrades
 from src.currentCurrencyTrades.services.utils.find_currency_trades import findCurrencyTrades
 from src.currentCurrencyTrades.services.fetch.fetch_trades import fetchTrades
 from src.currentCurrencyTrades.domain.requiredFields.currencies import Currency
 from datetime import datetime
 
-
 async def currencyTradesService(currencies: list[Currency]):
     now = datetime.now()
     date = now.strftime('%Y-%m-%d %H:%M:%S')
 
-    trades = await fetchTrades(date=date)
+    trades = await fetchTrades()
     trades_by_1 = trades['trades_by_1']
     trades_by_1000 = trades['trades_by_1000']
 
@@ -46,8 +46,9 @@ async def currencyTradesService(currencies: list[Currency]):
                 newCurrenciesTrades.append(formattedTrades)
 
             if currencyTrades is None:
+                await createTaskDB(isDone=False)
                 errorMessage = f'The {countryName} currency could not be found'
 
-                await create_error(errorMessage)
+                await createError(errorMessage)
 
     return newCurrenciesTrades

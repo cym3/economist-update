@@ -1,4 +1,5 @@
-from src.currentCurrencyTrades.domain.errors.create_error import create_error
+from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
+from src.currentCurrencyTrades.domain.errors.create_error import createError
 from src.core.db.connect_db import db
 
 async def getAllCurrenciesDB ():
@@ -11,8 +12,9 @@ async def getAllCurrenciesDB ():
     currencies = collection.find()
 
   except Exception:
-    errorMessage = f'Database failed to get currencies'
+    await createTaskDB(isDone=False)
+    errorMessage = 'Database failed to get currencies'
 
-    await create_error(errorMessage)
+    await createError(errorMessage)
 
   return currencies
