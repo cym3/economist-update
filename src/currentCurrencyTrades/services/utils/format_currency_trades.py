@@ -1,6 +1,5 @@
 import re
-from src.core.errors.domain_error import DataFetchError
-from src.core.mail.sand_mail import sandMail
+from src.currentCurrencyTrades.domain.errors.create_error import create_error
 
 async def formatCurrencyTrades(trades: list[str], date: str, divider: int, countryName: str, isoCode: str):
   regex = r'\d+'
@@ -20,11 +19,8 @@ async def formatCurrencyTrades(trades: list[str], date: str, divider: int, count
     }
 
   except Exception:
-    errorTitle = f'Exchange Rates could not be updated {date}'
     errorMessage = f'The {countryName} currency has a format error'
 
-    await sandMail(title=errorTitle, message=errorMessage)
-
-    raise DataFetchError(f'{errorTitle} f{errorMessage}')
+    await create_error(errorMessage)
 
   return formatted

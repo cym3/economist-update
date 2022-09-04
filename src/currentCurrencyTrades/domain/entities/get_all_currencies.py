@@ -1,5 +1,4 @@
-from src.core.errors.domain_error import DatabaseFailError
-from src.core.mail.sand_mail import sandMail
+from src.currentCurrencyTrades.domain.errors.create_error import create_error
 from src.core.db.connect_db import db
 
 async def getAllCurrenciesDB ():
@@ -12,11 +11,8 @@ async def getAllCurrenciesDB ():
     currencies = collection.find()
 
   except Exception:
-    errorTitle = f'Database has failed'
     errorMessage = f'Database failed to get currencies'
 
-    await sandMail(title=errorTitle, message=errorMessage)
-
-    raise DatabaseFailError(f'{errorTitle} {errorMessage}')
+    await create_error(errorMessage)
 
   return currencies

@@ -1,9 +1,8 @@
-from src.core.mail.sand_mail import sandMail
+from src.currentCurrencyTrades.domain.errors.create_error import create_error
 from src.currentCurrencyTrades.services.utils.format_currency_trades import formatCurrencyTrades
 from src.currentCurrencyTrades.services.utils.find_currency_trades import findCurrencyTrades
 from src.currentCurrencyTrades.services.fetch.fetch_trades import fetchTrades
 from src.currentCurrencyTrades.domain.requiredFields.currencies import Currency
-from src.core.errors.domain_error import DataFetchError
 from datetime import datetime
 
 
@@ -47,11 +46,8 @@ async def currencyTradesService(currencies: list[Currency]):
                 newCurrenciesTrades.append(formattedTrades)
 
             if currencyTrades is None:
-                errorTitle = f'Exchange Rates could not be updated {date}'
                 errorMessage = f'The {countryName} currency could not be found'
 
-                await sandMail(title=errorTitle, message=errorMessage)
+                await create_error(errorMessage)
 
-                raise DataFetchError(f'{errorTitle} f{errorMessage}')
-        
     return newCurrenciesTrades
