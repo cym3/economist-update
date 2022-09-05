@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.core.http.router.currency_trades import currencyTradesRouter
 from src.core.http.router.report import reportRouter
+from src.core.http.router.interest_rates import interestRatesRouter
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -22,3 +23,4 @@ app.add_middleware(
 
 app.include_router(currencyTradesRouter)
 app.include_router(reportRouter)
+app.include_router(interestRatesRouter)

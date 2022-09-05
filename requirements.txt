@@ -1,17 +1,19 @@
 fastapi
 uvicorn
 pandas
+bs4
 python-dotenv
 
 # http
 aiohttp
+aiodns
 
 # MongoDB
 dnspython
 pymongo
 pymongo[aws]
 
-# PDF scrap
+# PDF scrapping
 tk
 ghostscript
 camelot-py
@@ -19,4 +21,5 @@ camelot-py
 # Excell
 xlsxwriter
 
-#XPath
+#Web scrapping
+selenium
