@@ -7,9 +7,11 @@ async def findInterestRates(html: str):
 
   try:
     tables = pd.read_html(html)
-    table = tables[12].values.tolist()
 
-  except Exception:
+    table = tables[11].values.tolist()
+
+  except Exception as err:
+    print(err)
     errorMessage = f'The interest Rates has a format error'
 
     await createTaskDB(isDone=False, error=errorMessage)
