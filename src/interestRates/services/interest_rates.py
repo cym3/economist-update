@@ -9,7 +9,6 @@ async def interestRatesService(date: str):
   html = await fetchRates(date)
   table = await findInterestRates(html)
 
-  interestRates = await formatInterestRates(table)
-
+  interestRates = await formatInterestRates(table=table, date=date)
 
   return interestRates
