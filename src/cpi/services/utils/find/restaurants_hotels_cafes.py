@@ -16,7 +16,7 @@ def find_restaurants_hotels_cafes(table: list[list[Union[float, int]]]):
   value = find()
 
   return {
-    "id": 0,
+    "id": 10,
     "name": "Restaurantes, Hotéis, Cafés e Similares",
     "value": value
   }

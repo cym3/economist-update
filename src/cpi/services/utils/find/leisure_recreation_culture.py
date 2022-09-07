@@ -16,7 +16,7 @@ def find_leisure_recreation_culture(table: list[list[Union[float, int]]]):
   value = find()
 
   return {
-    "id": 0,
+    "id": 8,
     "name": "Lazer, Recreação e Cultura",
     "value": value
   }

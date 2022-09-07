@@ -16,7 +16,7 @@ def find_alcoholic_tobacco_and_narcotics(table: list[list[Union[float, int]]]):
   value = find()
 
   return {
-    "id": 0,
+    "id": 1,
     "name": "Bebidas Alcoólicas, Tabaco e Narcóticos",
     "value": value
   }

@@ -14,7 +14,7 @@ def find_education(table: list[list[Union[float, int]]]):
   value = find()
 
   return {
-    "id": 0,
+    "id": 9,
     "name": "Educação",
     "value": value
   }

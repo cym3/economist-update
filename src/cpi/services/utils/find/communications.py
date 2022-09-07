@@ -14,7 +14,7 @@ def find_communications(table: list[list[Union[float, int]]]):
   value = find()
 
   return {
-    "id": 0,
+    "id": 7,
     "name": "Comunicações",
     "value": value
   }

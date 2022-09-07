@@ -16,7 +16,7 @@ def find_other_goods_and_services(table: list[list[Union[float, int]]]):
   value = find()
 
   return {
-    "id": 0,
+    "id": 11,
     "name": "Bens e Serviços Diversos",
     "value": value
   }

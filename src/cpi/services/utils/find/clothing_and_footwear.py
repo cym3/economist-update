@@ -14,7 +14,7 @@ def find_clothing_and_footwear(table: list[list[Union[float, int]]]):
   value = find()
 
   return {
-    "id": 0,
+    "id": 2,
     "name": "Vestuários e Calçados",
     "value": value
   }

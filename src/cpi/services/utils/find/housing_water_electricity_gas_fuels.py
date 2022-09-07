@@ -17,7 +17,7 @@ def find_housing_water_electricity_gas_fuels(table: list[list[Union[float, int]]
   value = find()
 
   return {
-    "id": 0,
+    "id": 3,
     "name": "Habitação, Água, Electricidade, Gás e Outros Combustíveis",
     "value": value
   }

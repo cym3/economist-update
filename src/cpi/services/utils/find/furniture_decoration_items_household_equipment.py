@@ -18,7 +18,7 @@ def find_furniture_decoration_items_household_equipment(table: list[list[Union[f
   value = find()
 
   return {
-    "id": 0,
+    "id": 4,
     "name": "Mobiliário, Artigos de Decoração, Equipamento Doméstico e Manutenção da Habitação",
     "value": value
   }
