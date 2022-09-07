@@ -24,7 +24,7 @@ async def cpiUseCase():
     #     }
 
     date = {
-        'month': 2,
+        'month': 5,
         'year': 2022
     }
 
