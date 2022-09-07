@@ -23,7 +23,8 @@ async def formatInterestRates(table: list[list[str]], date: str):
         'date': date
       })
     
-  except Exception:
+  except Exception as err:
+    print(err)
     errorMessage = f'The interest Rates has a format error'
 
     await createTaskDB(isDone=False, error=errorMessage)

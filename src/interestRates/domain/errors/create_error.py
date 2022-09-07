@@ -22,5 +22,3 @@ async def createError(massage: str):
     await createExcelFile(body=body, title=file_title, header=tasks_header, path=path)
     
     await sandMail(title=title, message=massage, attachmentPath=path)
-
-    print(f'{title}, {massage}')

@@ -26,7 +26,8 @@ async def saveInterestRatesDB (data: list[InterestRates]):
     
     await createTaskDB(isDone=True)
 
-  except Exception:
+  except Exception as err:
+    print(err)
     errorMessage = f'Was not able to save Interest Rates, {date}'
 
     await createTaskDB(isDone=False, error=errorMessage)

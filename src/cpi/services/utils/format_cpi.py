@@ -1,23 +1,21 @@
+from itertools import product
 import re
 from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
 from src.currentCurrencyTrades.domain.errors.create_error import createError
 
-async def formatCurrencyTrades(trades: list[str], date: str, divider: int, countryName: str, isoCode: str):
+async def formatCpi(trades: list[str], date: str, divider: int, countryName: str, isoCode: str):
   regex = r'\d+'
-  formatted = {}
+
+  formatted = {
+    'products': [{
+        'name': 'Alimentos e Bebidas não Alcoólicas',
+        'value': 43
+    }],
+    'total': 43
+  }
   
   try:
-    buy = re.findall(regex, trades[0])
-    sale=  re.findall(regex, trades[1])
-
-    formatted = {
-      'isoCode': isoCode,
-      'trade': {
-        'buy': float('.'.join(buy)) / divider,
-        'sale': float('.'.join(sale)) / divider,
-        'date': date
-      }
-    }
+    print('Work')
 
   except Exception as err:
     print(err)

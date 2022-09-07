@@ -9,10 +9,10 @@ class CurrencyTrade(BaseModel):
   sale: float
   date: str
 
-async def saveCurrentTradesDB (currencyTrades: list[CurrencyTrade]):
+async def saveCpiDB (currencyTrades: list[CurrencyTrade]):
   try:
     database = db()
-    collection = database['exchange-rates']
+    collection = database['cpi-beira-test']
 
     for currency in currencyTrades:
       collection.update_one(

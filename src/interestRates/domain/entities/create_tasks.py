@@ -8,7 +8,7 @@ async def createTaskDB (isDone: bool, error: Union[str, None] = ''):
   date = now.strftime('%Y-%m-%d %H:%M:%S')
 
   task = {
-    'taskCode': 'T1',
+    'taskCode': 'T2',
     'name': 'InterestRates',
     'description': 'Daily Interest Rates update',
     'isDone': isDone,
@@ -22,7 +22,8 @@ async def createTaskDB (isDone: bool, error: Union[str, None] = ''):
 
     collection.insert_one(task)
     
-  except Exception:
+  except Exception as err:
+    print(err)
     errorMessage = 'Was not able to save interest rates Task.'
     await createError(errorMessage)
 

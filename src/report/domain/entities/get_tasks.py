@@ -10,7 +10,8 @@ async def getTasksDB():
 
     tasks = collection.find()
     
-  except Exception:
+  except Exception as err:
+    print(err)
     errorMessage = 'Was not able to get all Task.'
     await createError(errorMessage)
 

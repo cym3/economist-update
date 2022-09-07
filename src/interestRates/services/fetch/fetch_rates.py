@@ -33,7 +33,8 @@ async def fetchRates(rates_date: str):
         
         html = await response.text()
 
-  except Exception:
+  except Exception as err:
+    print(err)
     errorMessage = f'Could not fetch the Interest Rates, the url is {url}'
 
     await createTaskDB(isDone=False, error=errorMessage)

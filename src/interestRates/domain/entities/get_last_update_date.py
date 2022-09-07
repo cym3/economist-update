@@ -15,7 +15,8 @@ async def getLastUpdateDateDB():
 
     date = max(dates)
 
-  except Exception:
+  except Exception as err:
+    print(err)
     errorMessage = f'Was not able to save Interest Rates, {date}'
 
     await createTaskDB(isDone=False, error=errorMessage)
