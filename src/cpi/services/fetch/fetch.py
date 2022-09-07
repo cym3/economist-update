@@ -9,9 +9,10 @@ from selenium.webdriver.chrome.options import Options
 from src.cpi.services.utils.months import months
 from src.cpi.domain.requiredFields.cpi import DateCpi
 
-url = 'http://www.ine.gov.mz/estatisticas/estatisticas-economicas/indice-de-preco-no-consumidor/quadros/nacional'
 
-async def fetchCpi(date: DateCpi):
+async def fetchCpi(date: DateCpi, region: str):
+  url = f'http://www.ine.gov.mz/estatisticas/estatisticas-economicas/indice-de-preco-no-consumidor/quadros/{region}'
+
   driver_path = str(Path(__file__).parents[4].joinpath('driver/chromedriver'))
 
   month = months[date['month'] - 1]
@@ -41,13 +42,11 @@ async def fetchCpi(date: DateCpi):
       if (monthMatch is not None) and (yearMatch is not None):
         href = link.get_attribute('href')
 
-        # download_url = href.replace('view', 'at_download/file', 1)
-
         file_path = href.replace('/view', '', 1)
 
   except Exception as err:
     print(err)
-    errorMessage = f'Could not fetch the exchange Rates, the url is {url}'
+    errorMessage = f'Could not fetch the {region} CPI, the url is {url}'
 
     await createTaskDB(isDone=False, error=errorMessage)
 

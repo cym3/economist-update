@@ -23,7 +23,7 @@ async def createTaskDB (isDone: bool, error: Union[str, None] = ''):
     collection.insert_one(task)
     
   except Exception as err:
-    errorMessage = 'Was not able to save exchange rates Task.'
+    errorMessage = 'Was not able to save the task of exchange rates.'
     await createError(errorMessage)
     print(err)
 

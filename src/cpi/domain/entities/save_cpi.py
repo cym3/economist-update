@@ -9,7 +9,7 @@ class CurrencyTrade(BaseModel):
   sale: float
   date: str
 
-async def saveCpiDB (currencyTrades: list[CurrencyTrade]):
+async def saveCpiDB (currencyTrades: list[CurrencyTrade], region: str):
   try:
     database = db()
     collection = database['cpi-beira-test']
@@ -26,7 +26,7 @@ async def saveCpiDB (currencyTrades: list[CurrencyTrade]):
 
   except Exception as err:
     print(err)
-    errorMessage = f'Was not able to save exchange rates, { currencyTrades[0].date }'
+    errorMessage = f'Was not able to  {region} CPI'
 
     await createTaskDB(isDone=False, error=errorMessage)
 

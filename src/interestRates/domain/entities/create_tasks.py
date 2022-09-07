@@ -24,7 +24,7 @@ async def createTaskDB (isDone: bool, error: Union[str, None] = ''):
     
   except Exception as err:
     print(err)
-    errorMessage = 'Was not able to save interest rates Task.'
+    errorMessage = 'Was not able to save the task of interest rates.'
     await createError(errorMessage)
 
   return 'Done'

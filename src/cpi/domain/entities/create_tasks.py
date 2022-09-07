@@ -9,8 +9,8 @@ async def createTaskDB (isDone: bool, error: Union[str, None] = ''):
 
   task = {
     'taskCode': 'T3',
-    'name': 'CurrentCurrencyTrades',
-    'description': 'Update of current exchange rates',
+    'name': 'CPI',
+    'description': 'Update of consumer price Index (CPI)',
     'isDone': isDone,
     'error': error,
     'date': date
@@ -24,7 +24,7 @@ async def createTaskDB (isDone: bool, error: Union[str, None] = ''):
     
   except Exception as err:
     print(err)
-    errorMessage = 'Was not able to save exchange rates Task.'
+    errorMessage = 'Was not able to save the task of CPI.'
     await createError(errorMessage)
 
   return 'Done'

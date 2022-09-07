@@ -25,7 +25,7 @@ def find_last_row(sheet: list):
     index += 1
 
 
-async def findTable(path: str):
+async def findTable(path: str, region: str):
   table = []
 
   try:
@@ -47,7 +47,7 @@ async def findTable(path: str):
 
   except Exception as err:
     print(err)
-    errorMessage = f'The CPI has a format error'
+    errorMessage = f'The {region} CPI has a format error'
 
     await createTaskDB(isDone=False, error=errorMessage)
 
