@@ -37,7 +37,7 @@ regions = [
   },
   {
     'web_id': 'niassa',
-    'db_id': 'niassa'
+    'db_id': 'lichinga'
   },
   {
     'web_id': 'cabo-delgado',

@@ -11,37 +11,12 @@ def find_non_alcoholic_food(table: list[list[Union[float, int]]]):
       match3 = re.search('bebida', el)
 
       if (match1 is not None) and (match2 is not None) and (match3 is not None):
-
-        values = []
-        year = 2019
-        month = 11
-
-        index = 0
-        for col in row:
-
-          if index >= 4:
-            values.append({
-              "date": {
-                "year": year,
-                "month": month
-              },
-              "value": float(col)
-            })
-
-            if month == 12:
-              month = 1
-              year += 1
-            else:
-              month += 1
-
-          index += 1
-
-        return values
+        return float(row[-1])
   
-  values = find()
+  value = find()
 
   return {
     "id": 0,
     "name": "Alimentos e Bebidas não Alcoólicas",
-    "values": values
+    "value": value
   }

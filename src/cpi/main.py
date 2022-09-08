@@ -8,31 +8,30 @@ from dateutil.relativedelta import relativedelta
 
 async def cpiUseCase():
     
-    # for region in regions:
-    #     db_region_id = region['db_id']
-    #     web_region_id = region['web_id']
+    for region in regions:
+        db_region_id = region['db_id']
+        web_region_id = region['web_id']
 
-    #     last_date_in_DB = await getLastUpdateDateDB(db_region_id)
-    #     year = last_date_in_DB['year']
-    #     month = last_date_in_DB['month']
+        last_date_in_DB = await getLastUpdateDateDB(db_region_id)
 
-    #     new_date = datetime(year, month, 1) + relativedelta(months=1)
+        print(region)
+        print(last_date_in_DB)
+         
+        year = last_date_in_DB['year']
+        month = last_date_in_DB['month']
 
-    #     date = {
-    #         'year': new_date.year,
-    #         'month': new_date.month
-    #     }
+        new_date = datetime(year, month, 1) + relativedelta(months=1)
 
-    date = {
-        'month': 5,
-        'year': 2022
-    }
+        date = {
+            'year': new_date.year,
+            'month': new_date.month
+        }
 
-    CPI = await cpiService(region='cidade-da-matola-1', date=date)
+        CPI = await cpiService(region=web_region_id, date=date)
 
-    if CPI is not None:
-        print(CPI)
+        if CPI is not None:
+            print(CPI)
 
-        # await saveCpiDB(CPI)
+            # await saveCpiDB(CPI)
 
-    return CPI
+    return 'Done'
