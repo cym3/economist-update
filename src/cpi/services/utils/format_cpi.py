@@ -1,5 +1,5 @@
-import re
 from typing import Union
+from src.cpi.domain.requiredFields.cpi import DateCpi
 from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
 from src.currentCurrencyTrades.domain.errors.create_error import createError
 from src.cpi.services.utils.find.non_alcoholic_food import find_non_alcoholic_food
@@ -15,7 +15,7 @@ from src.cpi.services.utils.find.education import find_education
 from src.cpi.services.utils.find.restaurants_hotels_cafes import find_restaurants_hotels_cafes
 from src.cpi.services.utils.find.other_goods_and_services import find_other_goods_and_services
 
-async def formatCpi(table: list[list[Union[float, int]]]):
+async def formatCpi(table: list[list[Union[float, int]]], date: DateCpi):
   total = float(table[0][-1])
   
   non_alcoholic_food = find_non_alcoholic_food(table)
@@ -57,5 +57,6 @@ async def formatCpi(table: list[list[Union[float, int]]]):
       restaurants_hotels_cafes,
       other_goods_and_services
     ],
-    'total': total
+    'total': total,
+    'date': date
   }

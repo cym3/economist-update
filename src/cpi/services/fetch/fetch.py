@@ -21,7 +21,7 @@ async def fetchCpi(date: DateCpi, region: str):
   years = [last_update_year, last_update_year + 1]
 
   file_path: Union[str, None] = None
-  
+
   try:
     options = Options()
     options.headless = True
@@ -66,6 +66,7 @@ async def fetchCpi(date: DateCpi, region: str):
       href = link.get_attribute('href')
 
       file_path = href.replace('/view', '', 1)
+      date = { 'year': year, 'month': month }
 
   except Exception as err:
     print(err)
@@ -75,4 +76,6 @@ async def fetchCpi(date: DateCpi, region: str):
 
     await createError(errorMessage)
 
-  return file_path
+
+  if file_path is not None:
+    return {'path': file_path, 'date': date }

@@ -12,19 +12,9 @@ async def cpiUseCase():
         db_region_id = region['db_id']
         web_region_id = region['web_id']
 
-        last_date_in_DB = await getLastUpdateDateDB(db_region_id)
-         
-        year = last_date_in_DB['year']
-        month = last_date_in_DB['month']
+        last_update_date = await getLastUpdateDateDB(db_region_id)
 
-        new_date = datetime(year, month, 1) + relativedelta(months=1)
-
-        date = {
-            'year': new_date.year,
-            'month': new_date.month
-        }
-
-        CPI = await cpiService(region=web_region_id, date=date)
+        CPI = await cpiService(region=web_region_id, date=last_update_date)
 
         if CPI is not None:
             print(CPI)
