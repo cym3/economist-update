@@ -12,37 +12,11 @@ def find_housing_water_electricity_gas_fuels(table: list[list[Union[float, int]]
       match4 = re.search('gás', el)
 
       if (match1 is not None) and (match2 is not None) and (match3 is not None) and (match4 is not None):
-        values = []
-        year = 2018
-        month = 1
+        return float(row[-1])
 
-        index = 0
-        for col in row:
+  value = find()
 
-          if index >= 138:
-            if type(col) == type('str'):
-              col = 0
-            values.append({
-              "date": {
-                "year": year,
-                "month": month
-              },
-              "value": float(col)
-            })
-
-            if month == 12:
-              month = 1
-              year += 1
-            else:
-              month += 1
-
-          index += 1
-
-        return values
-  
-  values = find()
   return {
     "name": "Habitação, Água, Electricidade, Gás e Outros Combustíveis",
-    "by": "by-product",
-    "values": values
+    "value": value
   }

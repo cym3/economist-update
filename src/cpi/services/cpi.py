@@ -5,17 +5,17 @@ from src.cpi.services.utils.format_cpi import formatCpi
 from src.cpi.services.utils.find.find_table import findTable
 from src.cpi.services.fetch.fetch import fetchCpi
 
-async def cpiService(region: str, db_region: str, date: DateCpi):    
+async def cpiService(region: str, date: DateCpi):    
     fetch_result = await fetchCpi(date, region)
 
-    if fetch_result is None:
-        return 'No new IPC to update'
+    if fetch_result is not None:
+        path = fetch_result['path']
+        date = fetch_result['date']
 
-    path = fetch_result['path']
-    date = fetch_result['date']
+        table = await findTable(path, region)
 
-    table = await findTable(path, region)
+        formatted = await formatCpi(table, date=date)
 
-    formatted = await formatCpi(table, db_region, date=date)
+        return formatted
 
-    return formatted
+    return None

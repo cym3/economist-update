@@ -11,38 +11,11 @@ def find_leisure_recreation_culture(table: list[list[Union[float, int]]]):
       match3 = re.search('cultura', el)
 
       if (match1 is not None) and (match2 is not None) and (match3 is not None):
-        values = []
-        year = 2018
-        month = 1
+        return float(row[-1])
 
-        index = 0
-        for col in row:
-
-          if index >= 138:
-            if type(col) == type('str'):
-              col = 0
-            values.append({
-              "date": {
-                "year": year,
-                "month": month
-              },
-              "value": float(col)
-            })
-
-            if month == 12:
-              month = 1
-              year += 1
-            else:
-              month += 1
-
-          index += 1
-
-        return values
-  
-  values = find()
+  value = find()
 
   return {
     "name": "Lazer, Recreação e Cultura",
-    "by": "by-product",
-    "values": values
+    "value": value
   }
