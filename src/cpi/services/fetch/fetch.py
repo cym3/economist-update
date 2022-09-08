@@ -50,7 +50,7 @@ async def fetchCpi(date: DateCpi, region: str):
 
     for y in years:
       strs_y = [x for x in str(y)]
-      min_year = f'{strs_y[2]}{strs_y[3]}.xls'
+      min_year = f'{strs_y[2]}{strs_y[3]}'
 
       yearMatch = re.search(min_year, name)
 

@@ -11,12 +11,38 @@ def find_other_goods_and_services(table: list[list[Union[float, int]]]):
       match3 = re.search('diverso', el)
 
       if (match1 is not None) and (match2 is not None) and (match3 is not None):
-        return float(row[-1])
+        values = []
+        year = 2018
+        month = 1
 
-  value = find()
+        index = 0
+        for col in row:
+
+          if index >= 138:
+            if type(col) == type('str'):
+              col = 0
+            values.append({
+              "date": {
+                "year": year,
+                "month": month
+              },
+              "value": float(col)
+            })
+
+            if month == 12:
+              month = 1
+              year += 1
+            else:
+              month += 1
+
+          index += 1
+
+        return values
+  
+  values = find()
 
   return {
-    "id": 11,
     "name": "Bens e Serviços Diversos",
-    "value": value
+    "by": "by-product",
+    "values": values
   }

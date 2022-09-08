@@ -16,7 +16,7 @@ async def createError(massage: str):
     title = f'Exchange Rates could not be updated {date}'
 
     body = [
-        ['T1', 'CurrentCurrencyTrades', 'Update of current exchange rates', 'No', massage, date ]
+        ['T1', 'IPC', 'Monthly CPI', 'No', massage, date ]
     ]
 
     await createExcelFile(body=body, title=file_title, header=tasks_header, path=path)

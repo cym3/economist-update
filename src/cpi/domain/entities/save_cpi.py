@@ -1,5 +1,5 @@
 from itertools import product
-from cpi.domain.requiredFields.cpi import DateCpi
+from src.cpi.domain.requiredFields.cpi import DateCpi
 from src.cpi.domain.entities.create_tasks import createTaskDB
 from src.cpi.domain.errors.create_error import createError
 from src.core.db.connect_db import db
