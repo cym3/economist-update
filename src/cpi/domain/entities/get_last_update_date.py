@@ -16,7 +16,7 @@ async def getLastUpdateDateDB (region: str):
 
   except Exception as err:
     print(err)
-    errorMessage = f'Database failed to get {region} CPI'
+    errorMessage = f'Database failed to get {region} CPI last update date'
 
     await createTaskDB(isDone=False, error=errorMessage)
 

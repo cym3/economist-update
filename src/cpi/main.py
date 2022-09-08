@@ -13,9 +13,6 @@ async def cpiUseCase():
         web_region_id = region['web_id']
 
         last_date_in_DB = await getLastUpdateDateDB(db_region_id)
-
-        print(region)
-        print(last_date_in_DB)
          
         year = last_date_in_DB['year']
         month = last_date_in_DB['month']

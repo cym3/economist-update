@@ -1,3 +1,4 @@
+from datetime import datetime
 from pathlib import Path
 import re
 from typing import Union
@@ -15,11 +16,9 @@ async def fetchCpi(date: DateCpi, region: str):
 
   driver_path = str(Path(__file__).parents[4].joinpath('driver/chromedriver'))
 
-  month = months[date['month'] - 1]
-  strs = [x for x in str(date['year'])]
-
-  year = f'{strs[2]}{strs[3]}.xls'
-
+  last_update_year = date['year']
+  last_update_month = date['month']
+  years = [last_update_year, last_update_year + 1]
 
   file_path: Union[str, None] = None
   
@@ -32,17 +31,41 @@ async def fetchCpi(date: DateCpi, region: str):
     driver.get(url)
 
     links = driver.find_elements(by='xpath', value='//*[@id="content-core"]/table/tbody/tr/td[1]/a')
+    link = links[0]
+    name = link.text.lower()
 
-    for link in links:
-      name = link.text.lower()
+    year = 0
+    month = 0
 
-      monthMatch = re.search(month, name)
-      yearMatch = re.search(year, name)
+    index = 0
+    for m in months:
+      monthMatch = re.search(m, name)
 
-      if (monthMatch is not None) and (yearMatch is not None):
-        href = link.get_attribute('href')
+      if (monthMatch is not None):
+        month = index + 1
 
-        file_path = href.replace('/view', '', 1)
+      index += 1
+
+    index = 0
+
+    for y in years:
+      strs_y = [x for x in str(y)]
+      min_year = f'{strs_y[2]}{strs_y[3]}.xls'
+
+      yearMatch = re.search(min_year, name)
+
+      if (yearMatch is not None):
+        year = y
+
+      index += 1
+
+    last_update = datetime(last_update_year, last_update_month, 1)
+    new_update = datetime(year, month, 1)
+
+    if new_update > last_update:
+      href = link.get_attribute('href')
+
+      file_path = href.replace('/view', '', 1)
 
   except Exception as err:
     print(err)
