@@ -10,7 +10,7 @@ async def createTaskDB (isDone: bool, error: Union[str, None] = ''):
   task = {
     'taskCode': 'T3',
     'name': 'CPI',
-    'description': 'Update of consumer price Index (CPI)',
+    'description': 'Consumer Price Index update',
     'isDone': isDone,
     'error': error,
     'date': date

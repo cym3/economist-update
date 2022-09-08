@@ -4,7 +4,7 @@ from src.core.mail.sand_mail import sandMail
 from src.utils.create_excel import createExcelFile
 from src.utils.tasks import tasks_header
 
-file_title = 'Atualização das taxas correntes de câmbio: Relatório da Ultima actividade'
+file_title = 'Atualização dos indices de preços: Relatório da Ultima actividade'
 
 async def createError(massage: str):
     
@@ -13,10 +13,10 @@ async def createError(massage: str):
     now = datetime.now()
     date = now.strftime('%Y-%m-%d %H:%M:%S')
 
-    title = f'Exchange Rates could not be updated {date}'
+    title = f'Consumer Price Index could not be updated {date}'
 
     body = [
-        ['T1', 'IPC', 'Monthly CPI', 'No', massage, date ]
+        ['T1', 'IPC', 'Consumer Price Index update', 'No', massage, date ]
     ]
 
     await createExcelFile(body=body, title=file_title, header=tasks_header, path=path)

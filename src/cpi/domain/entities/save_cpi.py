@@ -40,7 +40,7 @@ async def saveCpiDB (CPIs: CPI, region: str):
 
   except Exception as err:
     print(err)
-    errorMessage = f'Was not able to  {region} CPI'
+    errorMessage = f'Was not able to {region} CPI'
 
     await createTaskDB(isDone=False, error=errorMessage)
 
