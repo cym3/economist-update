@@ -2,7 +2,7 @@ from src.currentCurrencyTrades.services.current_trades import currencyTradesServ
 from src.currentCurrencyTrades.domain.entities.save_current_trades import saveCurrentTradesDB
 from src.currentCurrencyTrades.domain.entities.get_all_currencies import getAllCurrenciesDB
 
-async def currentTradesUseCase():
+async def currentCurrencyTradesUseCase():
     currencies = await getAllCurrenciesDB()
     
     currenciesTrades = await currencyTradesService(currencies)

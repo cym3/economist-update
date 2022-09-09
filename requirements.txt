@@ -1,5 +1,10 @@
+# Run script on Http
 fastapi
 uvicorn
+
+# Run Script scheduler
+schedule
+
 pandas
 bs4
 python-dotenv

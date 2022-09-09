@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from src.currentCurrencyTrades.main import currentTradesUseCase
+from src.currentCurrencyTrades.main import currentCurrencyTradesUseCase
 
 currencyTradesRouter = APIRouter(
     prefix='/currency-trades',
@@ -8,7 +8,7 @@ currencyTradesRouter = APIRouter(
 
 @currencyTradesRouter.get('/current-trades')
 async def controller():
-  data = await currentTradesUseCase()
+  data = await currentCurrencyTradesUseCase()
 
   return data
   
