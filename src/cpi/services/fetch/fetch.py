@@ -2,6 +2,7 @@ from datetime import datetime
 from pathlib import Path
 import re
 from typing import Union
+from driver.path import getDriverPath
 from src.cpi.domain.entities.create_tasks import createTaskDB
 from src.cpi.domain.errors.create_error import createError
 from selenium import webdriver
@@ -14,7 +15,7 @@ from src.cpi.domain.requiredFields.cpi import DateCpi
 async def fetchCpi(date: DateCpi, region: str):
   url = f'http://www.ine.gov.mz/estatisticas/estatisticas-economicas/indice-de-preco-no-consumidor/quadros/{region}'
 
-  driver_path = str(Path(__file__).parents[4].joinpath('driver/chromedriver'))
+  driver_path = getDriverPath()
 
   last_update_year = date['year']
   last_update_month = date['month']
