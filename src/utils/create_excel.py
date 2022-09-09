@@ -1,6 +1,6 @@
 import xlsxwriter
 
-async def createExcelFile(body: list[list[str]], title: str, header: list[str], path: str): 
+def createExcelFile(body: list[list[str]], title: str, header: list[str], path: str): 
     workbook = xlsxwriter.Workbook(path)
     worksheet = workbook.add_worksheet('report')
 

@@ -1,7 +1,7 @@
 from src.interestRates.domain.entities.create_tasks import createTaskDB
 from src.interestRates.domain.errors.create_error import createError
 
-async def formatInterestRates(table: list[list[str]], date: str):
+def formatInterestRates(table: list[list[str]], date: str):
   formatted = []
 
   try:
@@ -27,8 +27,8 @@ async def formatInterestRates(table: list[list[str]], date: str):
     print(err)
     errorMessage = f'The interest Rates has a format error'
 
-    await createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, error=errorMessage)
 
-    await createError(errorMessage)
+    createError(errorMessage)
 
   return formatted

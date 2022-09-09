@@ -1,17 +1,13 @@
-from email.mime.base import MIMEBase
-from email import encoders
-from os.path import basename
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import ssl
 import os
-from typing import Union
 
 mail_from = 'mozeconomia@gmail.com'
 mail_to = 'arlindojosboa@gmail.com'
 
-async def sandMyMail(title: str, message: str): 
+def sandMyMail(): 
   title = 'Bom Dia Arlindo José Boa'
   mail_content = """
     Arlindo, você é o melhor. Por favor, continua fazendo o que você faz o Mundo agradece.

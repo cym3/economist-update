@@ -6,6 +6,8 @@ from src.interestRates.main import interestRatesUseCase
 from src.report.main import reportUseCase
 from src.core.mail.my_mail import sandMyMail
 
+schedule.every(5).seconds.do(cpiUseCase)
+
 schedule.every().day.at("00:00").do(cpiUseCase)
 schedule.every().day.at("04:00").do(sandMyMail)
 schedule.every().day.at("04:00").do(reportUseCase)

@@ -2,7 +2,7 @@ import re
 from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
 from src.currentCurrencyTrades.domain.errors.create_error import createError
 
-async def formatCurrencyTrades(trades: list[str], date: str, divider: int, countryName: str, isoCode: str):
+def formatCurrencyTrades(trades: list[str], date: str, divider: int, countryName: str, isoCode: str):
   regex = r'\d+'
   formatted = {}
   
@@ -23,8 +23,8 @@ async def formatCurrencyTrades(trades: list[str], date: str, divider: int, count
     print(err)
     errorMessage = f'The {countryName} currency has a format error'
 
-    await createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, error=errorMessage)
 
-    await createError(errorMessage)
+    createError(errorMessage)
 
   return formatted

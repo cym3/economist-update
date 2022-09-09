@@ -7,8 +7,8 @@ interestRatesRouter = APIRouter(
 )
 
 @interestRatesRouter.get('')
-async def controller():
-  data = await interestRatesUseCase()
+def controller():
+  data = interestRatesUseCase()
 
   return data
   

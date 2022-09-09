@@ -13,7 +13,7 @@ class CPI(BaseModel):
   total: float
   date: DateCpi
 
-async def saveCpiDB (CPIs: CPI, region: str):
+def saveCpiDB (CPIs: CPI, region: str):
   try:
     database = db()
     collection = database[f'cpi-{region}']
@@ -36,14 +36,14 @@ async def saveCpiDB (CPIs: CPI, region: str):
         { '$push': { 'values':  { 'date': date, 'value': value } }}
       )
     
-    await createTaskDB(isDone=True)
+    createTaskDB(isDone=True)
 
   except Exception as err:
     print(err)
     errorMessage = f'Was not able to {region} CPI'
 
-    await createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, error=errorMessage)
 
-    await createError(errorMessage)
+    createError(errorMessage)
 
   return 'Done'

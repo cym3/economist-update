@@ -8,7 +8,7 @@ class InterestRates(BaseModel):
   value: float
   date: str
 
-async def saveInterestRatesDB (data: list[InterestRates]):
+def saveInterestRatesDB (data: list[InterestRates]):
 
   try:
     database = db()
@@ -24,14 +24,14 @@ async def saveInterestRatesDB (data: list[InterestRates]):
         { '$push': { 'values':  { 'date': date, 'value': value } }}
       )
     
-    await createTaskDB(isDone=True)
+    createTaskDB(isDone=True)
 
   except Exception as err:
     print(err)
     errorMessage = f'Was not able to save Interest Rates, {date}'
 
-    await createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, error=errorMessage)
 
-    await createError(errorMessage)
+    createError(errorMessage)
 
   return 'Done'

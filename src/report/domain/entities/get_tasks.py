@@ -1,7 +1,7 @@
 from src.core.db.connect_db import db
 from src.currentCurrencyTrades.domain.errors.create_error import createError
 
-async def getTasksDB():
+def getTasksDB():
   tasks = []
 
   try:
@@ -13,6 +13,6 @@ async def getTasksDB():
   except Exception as err:
     print(err)
     errorMessage = 'Was not able to get all Task.'
-    await createError(errorMessage)
+    createError(errorMessage)
 
   return tasks

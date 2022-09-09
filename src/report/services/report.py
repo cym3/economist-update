@@ -1,6 +1,6 @@
 from src.report.domain.requiredFields.report import Report
 
-async def reportService(tasks: list[Report]):
+def reportService(tasks: list[Report]):
     r_tasks = []
     
     for task in tasks:

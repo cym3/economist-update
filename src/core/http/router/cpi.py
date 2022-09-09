@@ -7,8 +7,8 @@ cpiRouter = APIRouter(
 )
 
 @cpiRouter.get('')
-async def controller():
-  data = await cpiUseCase()
+def controller():
+  data = cpiUseCase()
 
   return data
   

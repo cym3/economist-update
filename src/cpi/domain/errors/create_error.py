@@ -6,7 +6,7 @@ from src.utils.tasks import tasks_header
 
 file_title = 'Atualização dos indices de preços: Relatório da Ultima actividade'
 
-async def createError(massage: str):
+def createError(massage: str):
     
     path = str(Path(__file__).parents[2].joinpath(f'assets/report.xlsx'))
 
@@ -19,6 +19,6 @@ async def createError(massage: str):
         ['T1', 'IPC', 'Consumer Price Index update', 'No', massage, date ]
     ]
 
-    await createExcelFile(body=body, title=file_title, header=tasks_header, path=path)
+    createExcelFile(body=body, title=file_title, header=tasks_header, path=path)
     
-    await sandMail(title=title, message=massage, attachmentPath=path)
+    sandMail(title=title, message=massage, attachmentPath=path)

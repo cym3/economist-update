@@ -4,7 +4,7 @@ from src.currentCurrencyTrades.domain.errors.create_error import createError
 
 url = 'https://www.bancomoc.mz/Files/REFR/ZMMIREFR.pdf'
 
-async def fetchTrades():
+def fetchTrades():
   try:
     table_by_1 = camelot.read_pdf(url, flavor='stream', table_regions=['170,530,560,270'])[0] 
     table_by_1000 = camelot.read_pdf(url, flavor='stream', table_regions=['170,210,600,130'])[0] 
@@ -20,6 +20,6 @@ async def fetchTrades():
     print(err)
     errorMessage = f'Could not fetch the exchange Rates, the url is {url}'
 
-    await createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, error=errorMessage)
 
-    await createError(errorMessage)
+    createError(errorMessage)

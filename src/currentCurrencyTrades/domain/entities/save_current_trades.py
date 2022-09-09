@@ -9,7 +9,7 @@ class CurrencyTrade(BaseModel):
   sale: float
   date: str
 
-async def saveCurrentTradesDB (currencyTrades: list[CurrencyTrade]):
+def saveCurrentTradesDB (currencyTrades: list[CurrencyTrade]):
   try:
     database = db()
     collection = database['exchange-rates']
@@ -22,14 +22,14 @@ async def saveCurrentTradesDB (currencyTrades: list[CurrencyTrade]):
         { '$set': { 'currentTrades': currency['trade'] }}
     )
     
-    await createTaskDB(isDone=True)
+    createTaskDB(isDone=True)
 
   except Exception as err:
     print(err)
     errorMessage = f'Was not able to save exchange rates, { currencyTrades[0].date }'
 
-    await createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, error=errorMessage)
 
-    await createError(errorMessage)
+    createError(errorMessage)
 
   return 'Done'

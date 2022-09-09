@@ -2,7 +2,7 @@ from src.interestRates.domain.entities.create_tasks import createTaskDB
 from src.interestRates.domain.errors.create_error import createError
 from src.core.db.connect_db import db
 
-async def getLastUpdateDateDB():
+def getLastUpdateDateDB():
   date = ''
 
   try:
@@ -19,8 +19,8 @@ async def getLastUpdateDateDB():
     print(err)
     errorMessage = f'Was not able to save Interest Rates, {date}'
 
-    await createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, error=errorMessage)
 
-    await createError(errorMessage)
+    createError(errorMessage)
 
   return date

@@ -12,7 +12,7 @@ from src.cpi.services.utils.months import months
 from src.cpi.domain.requiredFields.cpi import DateCpi
 
 
-async def fetchCpi(date: DateCpi, region: str):
+def fetchCpi(date: DateCpi, region: str):
   url = f'http://www.ine.gov.mz/estatisticas/estatisticas-economicas/indice-de-preco-no-consumidor/quadros/{region}'
 
   driver_path = getDriverPath()
@@ -73,9 +73,9 @@ async def fetchCpi(date: DateCpi, region: str):
     print(err)
     errorMessage = f'Could not fetch the {region} CPI, the url is {url}'
 
-    await createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, error=errorMessage)
 
-    await createError(errorMessage)
+    createError(errorMessage)
 
 
   if file_path is not None:

@@ -3,7 +3,7 @@ from src.core.db.connect_db import db
 from datetime import datetime
 from src.currentCurrencyTrades.domain.errors.create_error import createError
 
-async def createTaskDB (isDone: bool, error: Union[str, None] = ''):
+def createTaskDB (isDone: bool, error: Union[str, None] = ''):
   now = datetime.now()
   date = now.strftime('%Y-%m-%d %H:%M:%S')
 
@@ -24,7 +24,7 @@ async def createTaskDB (isDone: bool, error: Union[str, None] = ''):
     
   except Exception as err:
     errorMessage = 'Was not able to save the task of exchange rates.'
-    await createError(errorMessage)
+    createError(errorMessage)
     print(err)
 
   return 'Done'

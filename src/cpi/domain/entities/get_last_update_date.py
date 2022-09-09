@@ -2,7 +2,7 @@ from src.cpi.domain.entities.create_tasks import createTaskDB
 from src.cpi.domain.errors.create_error import createError
 from src.core.db.connect_db import db
 
-async def getLastUpdateDateDB (region: str):
+def getLastUpdateDateDB (region: str):
   date = {}
 
   try: 
@@ -18,8 +18,8 @@ async def getLastUpdateDateDB (region: str):
     print(err)
     errorMessage = f'Database failed to get {region} CPI last update date'
 
-    await createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, error=errorMessage)
 
-    await createError(errorMessage)
+    createError(errorMessage)
 
   return date

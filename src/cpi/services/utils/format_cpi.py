@@ -15,7 +15,7 @@ from src.cpi.services.utils.find.education import find_education
 from src.cpi.services.utils.find.restaurants_hotels_cafes import find_restaurants_hotels_cafes
 from src.cpi.services.utils.find.other_goods_and_services import find_other_goods_and_services
 
-async def formatCpi(table: list[list[Union[float, int]]], date: DateCpi):
+def formatCpi(table: list[list[Union[float, int]]], date: DateCpi):
   total = float(table[0][-1])
   
   non_alcoholic_food = find_non_alcoholic_food(table)

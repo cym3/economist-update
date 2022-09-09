@@ -1,8 +1,7 @@
 from datetime import datetime
 from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
 from src.currentCurrencyTrades.domain.errors.create_error import createError
-import aiohttp
-import asyncio
+import requests
 
 url = 'https://www.bancomoc.mz/fm_MercadosMMI.aspx?id=5'
 
@@ -18,7 +17,7 @@ headers = {
   'Sec-Fetch-User': '?1'
 }
 
-async def fetchRates(rates_date: str):
+def fetchRates(rates_date: str):
   new_date = datetime.strptime(rates_date, '%Y-%m-%d')
 
   date = new_date.strftime('%d-%m-%Y')
@@ -28,17 +27,16 @@ async def fetchRates(rates_date: str):
   html = ''
 
   try:
-    async with aiohttp.ClientSession(headers=headers) as session:
-      async with session.post(url, data=body) as response:
-        
-        html = await response.text()
+    response = requests.post(url=url, data=body, headers=headers)
+
+    html = response.text
 
   except Exception as err:
     print(err)
     errorMessage = f'Could not fetch the Interest Rates, the url is {url}'
 
-    await createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, error=errorMessage)
 
-    await createError(errorMessage)
+    createError(errorMessage)
 
   return html

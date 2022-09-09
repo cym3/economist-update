@@ -8,16 +8,16 @@ from src.utils.create_excel import createExcelFile
 
 path = str(Path(__file__).parent.joinpath(f'assets/report.xlsx'))
 
-async def reportUseCase():
+def reportUseCase():
     now = datetime.now()
     date = now.strftime('%Y-%m-%d %H:%M:%S')
 
-    tasks = await getTasksDB()
-    tasksReport = await reportService(tasks)
+    tasks = getTasksDB()
+    tasksReport = reportService(tasks)
 
     title = f'Relatório das Ultimas 24 horas {date}'
 
-    await createExcelFile(body=tasksReport, title=title, header=tasks_header, path=path)
+    createExcelFile(body=tasksReport, title=title, header=tasks_header, path=path)
 
     massage = f"""
         {date}
@@ -29,6 +29,6 @@ async def reportUseCase():
         Até amanhã à mesma hora.
     """
 
-    await sandMail(title=title, message=massage, attachmentPath=path)
+    sandMail(title=title, message=massage, attachmentPath=path)
 
     return tasksReport

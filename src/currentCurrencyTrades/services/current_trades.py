@@ -6,11 +6,11 @@ from src.currentCurrencyTrades.services.fetch.fetch_trades import fetchTrades
 from src.currentCurrencyTrades.domain.requiredFields.currencies import Currency
 from datetime import datetime
 
-async def currencyTradesService(currencies: list[Currency]):
+def currencyTradesService(currencies: list[Currency]):
     now = datetime.now()
     date = now.strftime('%Y-%m-%d %H:%M:%S')
 
-    trades = await fetchTrades()
+    trades = fetchTrades()
     trades_by_1 = trades['trades_by_1']
     trades_by_1000 = trades['trades_by_1000']
 
@@ -21,7 +21,7 @@ async def currencyTradesService(currencies: list[Currency]):
         currencyTrades = findCurrencyTrades(countryName=countryName, currenciesTrades=trades_by_1)
 
         if currencyTrades is not None:
-            formattedTrades = await formatCurrencyTrades(
+            formattedTrades = formatCurrencyTrades(
                 trades=currencyTrades,
                 date=date,
                 divider=1,
@@ -35,7 +35,7 @@ async def currencyTradesService(currencies: list[Currency]):
             currencyTrades = findCurrencyTrades(countryName=countryName, currenciesTrades=trades_by_1000)
 
             if currencyTrades is not None:
-                formattedTrades = await formatCurrencyTrades(
+                formattedTrades = formatCurrencyTrades(
                     trades=currencyTrades,
                     date=date,
                     divider=1000,
@@ -46,9 +46,9 @@ async def currencyTradesService(currencies: list[Currency]):
                 newCurrenciesTrades.append(formattedTrades)
 
             if currencyTrades is None:
-                await createTaskDB(isDone=False)
+                createTaskDB(isDone=False)
                 errorMessage = f'The {countryName} currency could not be found'
 
-                await createError(errorMessage)
+                createError(errorMessage)
 
     return newCurrenciesTrades

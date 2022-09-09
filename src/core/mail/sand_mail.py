@@ -11,7 +11,7 @@ from typing import Union
 mail_from = 'mozeconomia@gmail.com'
 mail_to = 'arlindojosboa@gmail.com,mozeconomia@gmail.com,team@mozeconomia.co.mz'
 
-async def sandMail(title: str, message: str, attachmentPath: Union[str, None] = None):  
+def sandMail(title: str, message: str, attachmentPath: Union[str, None] = None):  
   mail_content = message
   
   password = os.getenv('EMAIL_HOST_PASSWORD')
@@ -38,4 +38,3 @@ async def sandMail(title: str, message: str, attachmentPath: Union[str, None] = 
   with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
     smtp.login(mail_from, password)
     smtp.sendmail(mail_from, mail_to, msg.as_string())
-

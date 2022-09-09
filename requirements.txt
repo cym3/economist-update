@@ -22,6 +22,7 @@ pymongo[aws]
 tk
 ghostscript
 camelot-py
+opencv-python
 
 # Excell
 xlsxwriter

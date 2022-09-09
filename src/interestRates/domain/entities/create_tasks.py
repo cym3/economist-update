@@ -3,7 +3,7 @@ from src.core.db.connect_db import db
 from datetime import datetime
 from src.interestRates.domain.errors.create_error import createError
 
-async def createTaskDB (isDone: bool, error: Union[str, None] = ''):
+def createTaskDB (isDone: bool, error: Union[str, None] = ''):
   now = datetime.now()
   date = now.strftime('%Y-%m-%d %H:%M:%S')
 
@@ -25,6 +25,6 @@ async def createTaskDB (isDone: bool, error: Union[str, None] = ''):
   except Exception as err:
     print(err)
     errorMessage = 'Was not able to save the task of interest rates.'
-    await createError(errorMessage)
+    createError(errorMessage)
 
   return 'Done'
