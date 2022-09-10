@@ -5,6 +5,11 @@ from src.currentCurrencyTrades.main import currentCurrencyTradesUseCase
 from src.interestRates.main import interestRatesUseCase
 from src.report.main import reportUseCase
 from src.core.mail.my_mail import sandMyMail
+from dotenv import load_dotenv
+
+load_dotenv()
+
+schedule.every(5).seconds.do(reportUseCase)
 
 schedule.every().day.at("00:00").do(cpiUseCase)
 schedule.every().day.at("04:00").do(sandMyMail)
