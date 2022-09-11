@@ -9,6 +9,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+print('ta')
+schedule.every(5).seconds.do(interestRatesUseCase)
+
 schedule.every().day.at("00:00").do(cpiUseCase)
 schedule.every().day.at("04:00").do(sandMyMail)
 schedule.every().day.at("04:00").do(reportUseCase)
@@ -16,7 +19,6 @@ schedule.every().day.at("08:00").do(interestRatesUseCase)
 
 schedule.every().day.at("08:00").do(currentCurrencyTradesUseCase)
 schedule.every().day.at("16:00").do(currentCurrencyTradesUseCase)
-
 
 while True:
     schedule.run_pending()
