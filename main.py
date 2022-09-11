@@ -9,8 +9,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-print('ta')
-schedule.every(5).seconds.do(interestRatesUseCase)
+schedule.every(5).seconds.do(cpiUseCase)
 
 schedule.every().day.at("00:00").do(cpiUseCase)
 schedule.every().day.at("04:00").do(sandMyMail)

@@ -1,12 +1,11 @@
 from datetime import datetime
-from pathlib import Path
 import re
 from typing import Union
-from driver.path import getDriverPath
 from src.cpi.domain.entities.create_tasks import createTaskDB
 from src.cpi.domain.errors.create_error import createError
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from src.cpi.services.utils.months import months
 from src.cpi.domain.requiredFields.cpi import DateCpi
@@ -14,8 +13,6 @@ from src.cpi.domain.requiredFields.cpi import DateCpi
 
 def fetchCpi(date: DateCpi, region: str):
   url = f'http://www.ine.gov.mz/estatisticas/estatisticas-economicas/indice-de-preco-no-consumidor/quadros/{region}'
-
-  driver_path = getDriverPath()
 
   last_update_year = date['year']
   last_update_month = date['month']
@@ -27,8 +24,7 @@ def fetchCpi(date: DateCpi, region: str):
     options = Options()
     options.headless = True
 
-    service = Service(executable_path=driver_path)
-    driver = webdriver.Chrome(service=service, options=options)
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
     driver.get(url)
 
     links = driver.find_elements(by='xpath', value='//*[@id="content-core"]/table/tbody/tr/td[1]/a')
