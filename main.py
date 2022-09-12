@@ -9,6 +9,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+schedule.every(5).seconds.do(cpiUseCase)
+
 schedule.every().day.at("00:00").do(cpiUseCase)
 schedule.every().day.at("04:00").do(sandMyMail)
 schedule.every().day.at("04:00").do(reportUseCase)
