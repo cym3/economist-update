@@ -26,7 +26,7 @@ def sandMail(title: str, message: str, attachmentPath: Union[str, None] = None):
 
   if (attachmentPath is not None):
     with open(attachmentPath, 'rb') as file:
-      attachment =MIMEBase('application', 'octet-stream')
+      attachment = MIMEBase('application', 'octet-stream')
 
       attachment.set_payload(file.read())
       encoders.encode_base64(attachment)
