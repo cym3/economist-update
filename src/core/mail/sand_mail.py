@@ -9,7 +9,8 @@ import os
 from typing import Union
 
 mail_from = 'mozeconomia@gmail.com'
-mail_to = 'arlindojosboa@gmail.com,mozeconomia@gmail.com,team@mozeconomia.co.mz'
+mail_to = 'arlindojosboa@gmail.com'
+mail_cc = 'edmilsontembe.et@gmail.com, acuceno@gmail.com, nhantumboevanilson@gmail.com, team@mozeconomia.co.mz'
 
 def sandMail(title: str, message: str, attachmentPath: Union[str, None] = None):  
   mail_content = message
@@ -20,6 +21,7 @@ def sandMail(title: str, message: str, attachmentPath: Union[str, None] = None):
   msg['Subject'] = title 
   msg['From'] = mail_from
   msg['To'] = mail_to
+  msg['Cc'] = mail_cc
   msg.attach(MIMEText(mail_content, 'plain'))
 
   context = ssl.create_default_context()

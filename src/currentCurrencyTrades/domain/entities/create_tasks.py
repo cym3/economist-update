@@ -10,7 +10,7 @@ def createTaskDB (isDone: bool, error: Union[str, None] = ''):
   task = {
     'taskCode': 'T1',
     'name': 'CurrentCurrencyTrades',
-    'description': 'Update of current exchange rates',
+    'description': 'Current exchange rates update',
     'isDone': isDone,
     'error': error,
     'date': date
