@@ -1,7 +1,7 @@
 import re
 import pandas as pd
-from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
-from src.currentCurrencyTrades.domain.errors.create_error import createError
+from src.cpi.domain.entities.create_tasks import createTaskDB
+from src.cpi.domain.errors.create_error import createError
 
 def find_first_row(sheet: list):
   index = 0
