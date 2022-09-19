@@ -9,10 +9,6 @@ pandas
 bs4
 python-dotenv
 
-# http
-aiohttp
-aiodns
-
 # MongoDB
 dnspython
 pymongo
