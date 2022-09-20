@@ -12,7 +12,7 @@ def findTable(path: str, indicator: Indicator):
     indicator = validatePage(path, indicator)
     page_number = indicator['page_number']
 
-    tables = camelot.read_pdf(path, pages=str(page_number))
+    tables = camelot.read_pdf(path, pages=str(page_number), flavor='stream')
     list = tables[0].df.values.tolist()
 
     table = list

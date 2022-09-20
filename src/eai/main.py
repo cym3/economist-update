@@ -13,7 +13,7 @@ def eaiUseCase():
 
     last_update_date = {
         'month': 1,
-        'year': 2022
+        'year': 2021
     }
 
     eai = eaiService(date=last_update_date, indicator=indicator)

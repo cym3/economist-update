@@ -17,9 +17,8 @@ pymongo[aws]
 # PDF scrapping
 tk
 ghostscript
-camelot-py
+camelot-py[cv]
 lxml
-opencv-python
 
 # Excell
 xlsxwriter
