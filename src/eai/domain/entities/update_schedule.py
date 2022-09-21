@@ -14,7 +14,7 @@ def updateScheduleDB(schedule: Schedule):
 
     collection.update_one(
       {'_id': ObjectId(id)},
-      {'howToUpdate': howToUpdate, 'date': date}
+      {'$set': {'howToUpdate': howToUpdate, 'date': date}}
     )
     
   except Exception as err:

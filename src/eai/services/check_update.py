@@ -1,14 +1,20 @@
 from src.eai.domain.requiredFields.eai import DateEAI, Indicator
 from src.eai.services.fetch.fetch import fetchEAI
+from datetime import datetime
 
 def check_updateService(date: DateEAI, indicator: Indicator):   
   fetch_result = fetchEAI(date)
 
   if fetch_result is not None:
-    id = fetch_result['id']
     path = fetch_result['path']
-    date = fetch_result['date']
 
+    year = fetch_result['date']['year']
+    month = fetch_result['date']['month']
+
+    now = datetime(year, month, 1)
+    new_date = now.strftime('%Y-%m-%d %H:%M:%S')
+
+    id = indicator['id']
     name = indicator['name']
 
     howToUpdate = f"""
@@ -21,10 +27,9 @@ def check_updateService(date: DateEAI, indicator: Indicator):
     task = {
       'id': id,
       'howToUpdate': howToUpdate,
-      'date': date
+      'date': new_date
     }
 
     return task
-
 
   return None
