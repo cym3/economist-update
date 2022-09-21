@@ -1,6 +1,6 @@
 from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
 from src.currentCurrencyTrades.domain.errors.create_error import createError
-from src.core.db.connect_db import db
+from src.core.db.connect_db import economist_db
 from pydantic import BaseModel
 
 class CurrencyTrade(BaseModel):
@@ -11,7 +11,7 @@ class CurrencyTrade(BaseModel):
 
 def saveCurrentTradesDB (currencyTrades: list[CurrencyTrade]):
   try:
-    database = db()
+    database = economist_db()
     collection = database['exchange-rates']
 
     for currency in currencyTrades:

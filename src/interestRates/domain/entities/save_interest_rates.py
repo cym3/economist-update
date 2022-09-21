@@ -1,6 +1,6 @@
 from src.interestRates.domain.entities.create_tasks import createTaskDB
 from src.interestRates.domain.errors.create_error import createError
-from src.core.db.connect_db import db
+from src.core.db.connect_db import economist_db
 from pydantic import BaseModel
 
 class InterestRates(BaseModel):
@@ -11,7 +11,7 @@ class InterestRates(BaseModel):
 def saveInterestRatesDB (data: list[InterestRates]):
 
   try:
-    database = db()
+    database = economist_db()
     collection = database['interest-rates']
 
     for d in data:

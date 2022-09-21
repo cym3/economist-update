@@ -1,7 +1,7 @@
 from src.cpi.domain.requiredFields.cpi import DateCpi
 from src.cpi.domain.entities.create_tasks import createTaskDB
 from src.cpi.domain.errors.create_error import createError
-from src.core.db.connect_db import db
+from src.core.db.connect_db import economist_db
 from pydantic import BaseModel
 
 class Product(BaseModel):
@@ -15,7 +15,7 @@ class CPI(BaseModel):
 
 def saveCpiDB (CPIs: CPI, region: str):
   try:
-    database = db()
+    database = economist_db()
     collection = database[f'cpi-{region}']
 
     products = CPIs['products']

@@ -1,12 +1,12 @@
 from src.eai.domain.entities.create_tasks import createTaskDB
 from src.eai.domain.errors.create_error import createError
-from src.core.db.connect_db import db
+from src.core.db.connect_db import economist_db
 
 def getLastUpdateDateDB():
   date = {}
 
   try: 
-    database = db()
+    database = economist_db()
     collection = database['eai']
 
     eai = collection.find_one({ 'name': 'Indices do Volume de Negócios', 'type': 'Agregado' })
