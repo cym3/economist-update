@@ -6,5 +6,13 @@ class DateEAI(BaseModel):
 
 
 class Indicator(BaseModel):
-  title: str
+  id: str
+  name: str
+  page_title: str
   page_number: int
+
+
+class Schedule(BaseModel):
+  id: str
+  howToUpdate: str
+  date: str
