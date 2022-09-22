@@ -3,14 +3,9 @@ from src.eai.domain.entities.update_schedule import updateScheduleDB
 from src.eai.domain.entities.get_last_update_date import getLastUpdateDateDB
 from src.eai.indicator import indicator
 
-def check_updateUseCase():
+def check_eai_updateUseCase():
   name = indicator['name']
-  # last_update_date = getLastUpdateDateDB()
-
-  last_update_date = {
-      'month': 1,
-      'year': 2021
-  }
+  last_update_date = getLastUpdateDateDB()
 
   schedule = check_updateService(date=last_update_date, indicator=indicator)
 

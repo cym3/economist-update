@@ -1,5 +1,6 @@
 import schedule
 import time
+from src.eai.check_update import check_eai_updateUseCase
 from src.cpi.main import cpiUseCase
 from src.currentCurrencyTrades.main import currentCurrencyTradesUseCase
 from src.interestRates.main import interestRatesUseCase
@@ -8,6 +9,9 @@ from src.core.mail.my_mail import sandMyMail
 from dotenv import load_dotenv
 
 load_dotenv()
+
+# Check updates 
+schedule.every().day.at("02:00").do(check_eai_updateUseCase)
 
 schedule.every().day.at("03:00").do(cpiUseCase)
 schedule.every().day.at("04:00").do(sandMyMail)

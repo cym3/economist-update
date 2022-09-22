@@ -4,17 +4,7 @@ from src.eai.domain.entities.get_last_update_date import getLastUpdateDateDB
 from src.eai.indicator import indicator
 
 def eaiUseCase():
-    
-    # for region in regions:
-    #     db_region_id = region['db_id']
-    #     web_region_id = region['web_id']
-
-    # last_update_date = getLastUpdateDateDB()
-
-    last_update_date = {
-        'month': 1,
-        'year': 2021
-    }
+    last_update_date = getLastUpdateDateDB()
 
     eai = eaiService(date=last_update_date, indicator=indicator)
 

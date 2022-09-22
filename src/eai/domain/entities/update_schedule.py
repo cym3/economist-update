@@ -18,8 +18,6 @@ def updateScheduleDB(schedule: Schedule):
       {'$set': {'howToUpdate': howToUpdate, 'date': date}}
     )
 
-    print(da.matched_count)
-    
   except Exception as err:
     print(err)
     errorMessage = 'Was not able to save the task of CPI.'

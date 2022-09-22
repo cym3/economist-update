@@ -18,7 +18,7 @@ def check_updateService(date: DateEAI, indicator: Indicator):
     name = indicator['name']
 
     howToUpdate = f"""
-      Go to INE website download {name} pdf file, convert the file to excel,
+      Go to INE website download {name} pdf file, convert the file to excel and rename to 'economist-activity.xlsx'
       then add the excel file to {name} update system, and run the system.
 
       Link to the pdf file: {path}
