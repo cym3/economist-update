@@ -1,6 +1,7 @@
 from src.eai.domain.requiredFields.eai import Schedule
 from src.core.db.connect_db import jobs_db
 from bson.objectid import ObjectId
+
 from src.eai.domain.errors.create_error import createError
 
 def updateScheduleDB(schedule: Schedule):
@@ -10,12 +11,14 @@ def updateScheduleDB(schedule: Schedule):
 
   try:
     database = jobs_db()
-    collection = database['schedule']
+    collection = database['schedules']
 
-    collection.update_one(
+    da = collection.update_one(
       {'_id': ObjectId(id)},
       {'$set': {'howToUpdate': howToUpdate, 'date': date}}
     )
+
+    print(da.matched_count)
     
   except Exception as err:
     print(err)
