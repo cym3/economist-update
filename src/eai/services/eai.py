@@ -4,7 +4,7 @@ from src.eai.services.utils.formatter import formatter
 from src.eai.services.utils.find.main import findTable
 
 def eaiService(date: DateEAI, indicator: Indicator):
-    path = str(Path(__file__).parents[1].joinpath('assets/economist-activity.xlsx')) 
+    path = str(Path(__file__).parents[1].joinpath('assets/economic-activity.xlsx')) 
 
     table_data = findTable(path=path, indicator=indicator)
 

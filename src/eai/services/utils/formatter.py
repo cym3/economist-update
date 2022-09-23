@@ -7,10 +7,14 @@ def formatter(
   dates_row: list[datetime],
   date: DateEAI
 ):
-  return table
+  last_date_on_db = datetime(date['year'], date['month'], 1)
+  last_date_on_excel = dates_row[-1]
 
-  # industry_formatted = industry_formatter(sheet=)
+  if last_date_on_excel <= last_date_on_db:
+    return None
+
+  industry_formatted = industry_formatter(table, dates_row, last_date_on_db)
   
-  # return [
-  #   industry_formatted
-  # ]
+  return [
+    industry_formatted
+  ]
