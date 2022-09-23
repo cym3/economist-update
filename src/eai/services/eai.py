@@ -1,14 +1,20 @@
 from pathlib import Path
 from src.eai.domain.requiredFields.eai import DateEAI, Indicator
-from src.eai.services.utils.format_eai import formatEAI
-from src.eai.services.utils.find.table.main import findTable
+from src.eai.services.utils.formatter import formatter
+from src.eai.services.utils.find.main import findTable
 
 def eaiService(date: DateEAI, indicator: Indicator):
     path = str(Path(__file__).parents[1].joinpath('assets/economist-activity.xlsx')) 
 
-    table = findTable(path=path, indicator=indicator)
-    return table
+    table_data = findTable(path=path, indicator=indicator)
 
-        # formatted = formatEAI(table, date=date)
+    table = table_data['table']
+    dates_row = table_data['dates_row']
 
-        # return formatted
+    formatted = formatter(
+        table=table,
+        dates_row=dates_row,
+        date=date
+    )
+
+    return formatted
