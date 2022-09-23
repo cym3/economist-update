@@ -5,9 +5,9 @@ from src.eai.domain.entities.create_tasks import createTaskDB
 from src.eai.domain.errors.create_error import createError
 from src.eai.services.utils.find.filter_row import filter_row
 
-name = 'indústria'
+name = 'aloj.rest. similares'
 
-def industryFormatter(
+def accommodationsRestaurantsFormatter(
   table: list[list[Union[float, str]]],
   dates_row: list[datetime],
   last_date_on_db: datetime
@@ -16,7 +16,8 @@ def industryFormatter(
 
   try:
     for row in table:
-      row_name = row[0].lower()
+      names = str(row[0]).split('\n')
+      row_name = ' '.join(names).lower()
       match = re.search(name, row_name)
 
       if match is not None:
@@ -52,7 +53,7 @@ def industryFormatter(
     createError(errorMessage)
 
   return {
-    'id': '6306c46810f38589a0d189aa',
-    'name': 'Indústria',
+    'id': '6306c46810f38589a0d189ae',
+    'name': 'Aloj.Rest. similares',
     'values': values
   }

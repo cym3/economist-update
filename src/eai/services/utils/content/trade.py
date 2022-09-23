@@ -5,9 +5,9 @@ from src.eai.domain.entities.create_tasks import createTaskDB
 from src.eai.domain.errors.create_error import createError
 from src.eai.services.utils.find.filter_row import filter_row
 
-name = 'indústria'
+name = 'comércio'
 
-def industryFormatter(
+def tradeFormatter(
   table: list[list[Union[float, str]]],
   dates_row: list[datetime],
   last_date_on_db: datetime
@@ -52,7 +52,7 @@ def industryFormatter(
     createError(errorMessage)
 
   return {
-    'id': '6306c46810f38589a0d189aa',
-    'name': 'Indústria',
+    'id': '6306c46810f38589a0d189ac',
+    'name': 'Comércio',
     'values': values
   }
