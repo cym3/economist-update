@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from src.eai.main import eaiUseCase
-from src.eai.check_update import check_eai_updateUseCase
+from src.economicActivityAggregate.main import economicActivityUseCase
+from src.economicActivityAggregate.check_update import checkEconomicActivityUpdateUseCase
 
 economicActivityRouter = APIRouter(
     prefix='/economic-activity',
@@ -9,13 +9,13 @@ economicActivityRouter = APIRouter(
 
 @economicActivityRouter.get('/eai')
 def controller():
-  data = eaiUseCase()
+  data = economicActivityUseCase()
 
   return data
 
 @economicActivityRouter.get('/eai/schedule')
 def controller():
-  data = check_eai_updateUseCase()
+  data = checkEconomicActivityUpdateUseCase()
 
   return data
   
