@@ -4,15 +4,17 @@ from typing import Union
 from src.economicActivityAggregate.domain.entities.create_tasks import createTaskDB
 from src.economicActivityAggregate.domain.errors.create_error import createError
 from src.economicActivityAggregate.services.utils.find.filter_row import filter_row
-
-name = 'índices do volume de negócios'
+from src.economicActivityAggregate.domain.requiredFields.economic_activity import Indicator
 
 def mainIndexFormatter(
   table: list[list[Union[float, str]]],
   dates_row: list[datetime],
-  last_date_on_db: datetime
+  last_date_on_db: datetime,
+  indicator: Indicator
 ):
   values = []
+
+  name = indicator['name'].lower()
 
   try:
     for row in table:
@@ -46,7 +48,7 @@ def mainIndexFormatter(
 
   except Exception as err:
     print(err)
-    errorMessage = f'aggregate Economic Activities Index: has a format error on {name}'
+    errorMessage = f'aggregate Economic Activities: has a format error on {name}'
 
     createTaskDB(isDone=False, error=errorMessage)
 

@@ -46,7 +46,7 @@ def energyWaterAndSanFormatter(
 
   except Exception as err:
     print(err)
-    errorMessage = f'aggregate Economic Activities Index: has a format error on {name}'
+    errorMessage = f'aggregate Economic Activities: has a format error on {name}'
 
     createTaskDB(isDone=False, error=errorMessage)
 

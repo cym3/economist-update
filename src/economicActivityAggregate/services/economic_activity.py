@@ -14,6 +14,7 @@ def economicActivityService(date: DateEconomicActivity, indicator: Indicator):
     formatted = formatter(
         table=table,
         dates_row=dates_row,
+        indicator=indicator,
         date=date
     )
 
