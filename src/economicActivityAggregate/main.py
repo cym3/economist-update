@@ -1,5 +1,5 @@
 from src.economicActivityAggregate.services.economic_activity import economicActivityService
-from src.economicActivityAggregate.domain.entities.save_cpi import saveCpiDB
+from src.economicActivityAggregate.domain.entities.save_economic_activity import saveEconomicActivityDB
 from src.economicActivityAggregate.domain.entities.get_last_update_date import getLastUpdateDateDB
 from src.economicActivityAggregate.indicators import indicators
 
@@ -11,13 +11,13 @@ def economicActivityUseCase():
 
         last_update_date = getLastUpdateDateDB(db_name)
 
-        economicActivity = economicActivityService(date=last_update_date, indicator=indicator)
+        economicActivities = economicActivityService(date=last_update_date, indicator=indicator)
 
-            # if CPI is not None:
-            #     saveCpiDB(CPIs=CPI, region=db_region_id)
-            #     print(CPI)
+        if economicActivity is not None:
+            saveEconomicActivityDB(economicActivities=economicActivities, db_name=db_name)
+            print(db_name)
 
-            # else:
-            #     print('No new IPC to update')
+        else:
+            print('No new IPC to update')
 
     return economicActivity

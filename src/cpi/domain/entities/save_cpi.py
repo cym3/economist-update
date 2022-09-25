@@ -40,7 +40,7 @@ def saveCpiDB (CPIs: CPI, region: str):
 
   except Exception as err:
     print(err)
-    errorMessage = f'Was not able to {region} CPI'
+    errorMessage = f'Was not able to save {region} CPI'
 
     createTaskDB(isDone=False, error=errorMessage)
 
