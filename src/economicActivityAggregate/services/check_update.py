@@ -18,8 +18,8 @@ def check_updateService(date: DateEconomicActivity, indicator: Indicator):
     name = indicator['name']
 
     howToUpdate = f"""
-      Go to INE website download {name} pdf file, convert the file to excel and rename to 'economist-activity.xlsx'
-      then add the excel file to {name} update system, and run the system.
+      Go to INE website download {name} pdf file, go to https://www.ilovepdf.com/ convert the pdf file to excel, download and rename to 'economic-activity.xlsx'
+      then add the file to {name} update system, and run the system.
 
       Link to the pdf file: {path}
     """
