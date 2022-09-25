@@ -17,12 +17,15 @@ def mainIndexFormatter(
   name = indicator['name'].lower()
 
   try:
+    row_is_found = False
+    
     for row in table:
       names = str(row[0]).split('\n')
       row_name = ' '.join(names).lower()
       match = re.search(name, row_name)
 
       if match is not None:
+        row_is_found = True
 
         # Get only the first 12 list elements
         # row must have the same length with date_row
@@ -43,7 +46,7 @@ def mainIndexFormatter(
               'value': value
             })
 
-    if not values:
+    if row_is_found == False:
       raise Exception(f"'{name}' index is not found on the excel file.")
 
   except Exception as err:
