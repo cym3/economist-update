@@ -10,8 +10,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-schedule.every(5).seconds.do(currentCurrencyTradesUseCase)
-
 # Check updates 
 schedule.every().day.at("02:00").do(checkEconomicActivityUpdateUseCase)
 
@@ -22,6 +20,10 @@ schedule.every().day.at("08:00").do(interestRatesUseCase)
 
 schedule.every().day.at("08:00").do(currentCurrencyTradesUseCase)
 schedule.every().day.at("16:00").do(currentCurrencyTradesUseCase)
+
+
+
+# schedule.every(5).seconds.do(reportUseCase)
 
 while True:
     schedule.run_pending()

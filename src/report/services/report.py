@@ -1,19 +1,26 @@
+from datetime import datetime
 from src.report.domain.requiredFields.report import Report
 
 def reportService(tasks: list[Report]):
     r_tasks = []
     
     for task in tasks:
-        task.pop('_id')
-        
-        if task['isDone'] == True:
-            task['isDone'] = 'Yes'
-        if task['isDone'] == False:
-            task['isDone'] = 'No'
+        isDone = task['isDone']
+        if isDone == True:
+            isDone = 'Yes'
+        if isDone == False:
+            isDone = 'No'
 
-        values = task.values()
+        created_at: datetime = task['created_at']
+        date = created_at.strftime('%Y-%m-%d %H:%M:%S')
+        task['date'] = date
 
-        values = [v for v in values]
+        jobCode = task['jobCode']
+        name = task['name']
+        description = task['description']
+        error = task['error']
+
+        values = [jobCode, name, description, isDone, error, date]
         
         r_tasks.append(values)
 
