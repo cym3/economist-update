@@ -16,7 +16,7 @@ def createError(massage: str):
     title = f'Interest Rates could not be updated {date}'
 
     body = [
-        ['02-job', 'CurrentCurrencyTrades', 'Daily Interest Rates update', 'No', massage, date ]
+        ['02-job', 'CurrentCurrencyTrades', 'Daily Interest Rates update', 'No', massage, now ]
     ]
 
     createExcelFile(body=body, title=file_title, header=tasks_header, path=path)

@@ -5,7 +5,6 @@ from src.interestRates.domain.errors.create_error import createError
 
 def createTaskDB (isDone: bool, error: Union[str, None] = ''):
   now = datetime.now()
-  date = now.strftime('%Y-%m-%d %H:%M:%S')
 
   task = {
     'jobCode': '02-job',
@@ -13,7 +12,7 @@ def createTaskDB (isDone: bool, error: Union[str, None] = ''):
     'description': 'Daily Interest Rates update',
     'isDone': isDone,
     'error': error,
-    'date': date
+    'created_at': now
   }
 
   try:

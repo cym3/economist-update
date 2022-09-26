@@ -1,11 +1,10 @@
 from src.economicActivityAggregate.domain.requiredFields.economic_activity import Schedule
 from src.core.db.connect_db import jobs_db
-from bson.objectid import ObjectId
 
 from src.economicActivityAggregate.domain.errors.create_error import createError
 
 def updateScheduleDB(schedule: Schedule):
-  id = schedule['id']
+  scheduleCode = schedule['scheduleCode']
   howToUpdate = schedule['howToUpdate']
   date = schedule['date']
 
@@ -13,9 +12,9 @@ def updateScheduleDB(schedule: Schedule):
     database = jobs_db()
     collection = database['schedules']
 
-    da = collection.update_one(
-      {'_id': ObjectId(id)},
-      {'$set': {'howToUpdate': howToUpdate, 'date': date}}
+    collection.update_one(
+      {'scheduleCode': scheduleCode },
+      {'$set': { 'howToUpdate': howToUpdate, 'date': date }}
     )
 
   except Exception as err:

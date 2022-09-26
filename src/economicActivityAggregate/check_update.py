@@ -5,8 +5,9 @@ from src.economicActivityAggregate.indicators import indicators
 
 def checkEconomicActivityUpdateUseCase():
   for indicator in indicators:
-    name = indicator['name']
-    last_update_date = getLastUpdateDateDB()
+    db_name = indicator['db_name']
+
+    last_update_date = getLastUpdateDateDB(db_name)
 
     schedule = check_updateService(date=last_update_date, indicator=indicator)
 
@@ -14,6 +15,6 @@ def checkEconomicActivityUpdateUseCase():
       updateScheduleDB(schedule=schedule)
 
     else:
-      print(f'No new {name} to update')
+      print(f'No new {db_name} to update')
 
   return schedule

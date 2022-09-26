@@ -14,7 +14,7 @@ def check_updateService(date: DateEconomicActivity, indicator: Indicator):
     now = datetime(year, month, 1)
     new_date = now.strftime('%Y-%m-%d %H:%M:%S')
 
-    id = indicator['id']
+    scheduleCode = indicator['scheduleCode']
     name = indicator['name']
 
     howToUpdate = f"""
@@ -25,7 +25,7 @@ def check_updateService(date: DateEconomicActivity, indicator: Indicator):
     """
 
     task = {
-      'id': id,
+      'scheduleCode': scheduleCode,
       'howToUpdate': howToUpdate,
       'date': new_date
     }

@@ -5,7 +5,6 @@ from src.currentCurrencyTrades.domain.errors.create_error import createError
 
 def createTaskDB (isDone: bool, error: Union[str, None] = ''):
   now = datetime.now()
-  date = now.strftime('%Y-%m-%d %H:%M:%S')
 
   task = {
     'jobCode': '01-job',
@@ -13,7 +12,7 @@ def createTaskDB (isDone: bool, error: Union[str, None] = ''):
     'description': 'Current exchange rates update',
     'isDone': isDone,
     'error': error,
-    'date': date
+    'created_at': now
   }
 
   try:

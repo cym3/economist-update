@@ -16,7 +16,7 @@ def createError(massage: str):
     title = f'Economic Activity Index could not be updated {date}'
 
     body = [
-        ['04-job', 'Economic Activity Index', 'Economic Activity Index update', 'No', massage, now ]
+        ['04-job', 'Economic Activity Index', 'Economic Activity update', 'No', massage, now ]
     ]
 
     createExcelFile(body=body, title=file_title, header=tasks_header, path=path)

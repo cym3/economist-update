@@ -10,6 +10,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+schedule.every(5).seconds.do(currentCurrencyTradesUseCase)
+
 # Check updates 
 schedule.every().day.at("02:00").do(checkEconomicActivityUpdateUseCase)
 
