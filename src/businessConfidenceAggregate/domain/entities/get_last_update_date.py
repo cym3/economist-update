@@ -3,16 +3,16 @@ from src.economicActivityAggregate.domain.errors.create_error import createError
 from src.core.db.connect_db import economist_db
 
 def getLastUpdateDateDB(db_name: str):
-  date = {}
+  quarter = {}
 
   try: 
     database = economist_db()
     collection = database[db_name]
 
-    eai = collection.find_one({'type': 'Agregado' })
-    last = eai['values'][-1]
+    business_confidence = collection.find_one({'type': 'Agregado' })
+    last = business_confidence['values'][-1]
 
-    date = last['date']
+    quarter = last['quarter']
 
   except Exception as err:
     print(err)
@@ -22,4 +22,4 @@ def getLastUpdateDateDB(db_name: str):
 
     createError(errorMessage)
 
-  return date
+  return quarter

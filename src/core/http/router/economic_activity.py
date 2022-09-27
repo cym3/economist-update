@@ -7,13 +7,13 @@ economicActivityRouter = APIRouter(
     tags=['Economic Activity']
 )
 
-@economicActivityRouter.get('/eai')
+@economicActivityRouter.get('/aggregate')
 def controller():
   data = economicActivityUseCase()
 
   return data
 
-@economicActivityRouter.get('/eai/schedule')
+@economicActivityRouter.get('/aggregate/schedule')
 def controller():
   data = checkEconomicActivityUpdateUseCase()
 

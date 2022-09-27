@@ -1,18 +1,18 @@
 from datetime import datetime
 import re
 from typing import Union
-from src.cpi.domain.entities.create_tasks import createTaskDB
-from src.cpi.domain.errors.create_error import createError
+from src.economicActivityAggregate.domain.entities.create_tasks import createTaskDB
+from src.economicActivityAggregate.domain.errors.create_error import createError
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
-from src.cpi.services.utils.months import months
-from src.cpi.domain.requiredFields.cpi import DateCpi
+from src.economicActivityAggregate.services.utils.months import months
+from src.economicActivityAggregate.domain.requiredFields.economic_activity import DateEconomicActivity
 
 url = 'http://www.ine.gov.mz/estatisticas/estatisticas-economicas/indice-de-actividades-economicas-iae'
 
-def fetchEconomicActivity(date: DateCpi):
+def fetchEconomicActivity(date: DateEconomicActivity):
   last_update_year = date['year']
   last_update_month = date['month']
   years = [last_update_year, last_update_year + 1]

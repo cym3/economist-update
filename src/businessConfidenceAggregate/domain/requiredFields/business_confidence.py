@@ -1,16 +1,16 @@
 from pydantic import BaseModel
 
-class DateEconomicActivity(BaseModel):
-  month: int
+class Quarter(BaseModel):
   year: int
+  sign: str
+  fromMonth: str
+  toMonth: str
 
 class Indicator(BaseModel):
   name: str
-  page_title: str
-  sheet_name: str
-  db_name: str
+  page_identities: str
+  db_name: int
   scheduleCode: str
-
 
 class Schedule(BaseModel):
   scheduleCode: str

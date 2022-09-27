@@ -1,35 +1,38 @@
-from src.economicActivityAggregate.domain.requiredFields.economic_activity import DateEconomicActivity, Indicator
-from src.economicActivityAggregate.services.fetch.fetch import fetchEconomicActivity
+from src.businessConfidenceAggregate.domain.requiredFields.business_confidence import Quarter
+from src.businessConfidenceAggregate.domain.requiredFields.business_confidence import Indicator
+from src.businessConfidenceAggregate.services.fetch.fetch import fetchBusinessConfidence
 from datetime import datetime
 
-def check_updateService(date: DateEconomicActivity, indicator: Indicator):   
-  fetch_result = fetchEconomicActivity(date)
+def check_updateService(quarter: Quarter, indicator: Indicator):   
+  fetch_result = fetchBusinessConfidence(quarter)
 
-  if fetch_result is not None:
-    path = fetch_result['path']
+  return fetch_result
 
-    year = fetch_result['date']['year']
-    month = fetch_result['date']['month']
+  # if fetch_result is not None:
+  #   path = fetch_result['path']
 
-    now = datetime(year, month, 1)
-    new_date = now.strftime('%Y-%m-%d %H:%M:%S')
+  #   year = fetch_result['date']['year']
+  #   month = fetch_result['date']['month']
 
-    scheduleCode = indicator['scheduleCode']
-    name = indicator['name']
+  #   now = datetime(year, month, 1)
+  #   new_date = now.strftime('%Y-%m-%d %H:%M:%S')
 
-    howToUpdate = f"""
-      Go to INE website download {name} pdf file, go to https://www.ilovepdf.com/ convert the pdf file to excel, download and rename to 'economic-activity.xlsx'
-      then add the file to {name} update system, and run the system.
+  #   scheduleCode = indicator['scheduleCode']
+  #   name = indicator['name']
 
-      Link to the pdf file: {path}
-    """
+  #   howToUpdate = f"""
+  #     Go to INE website download {name} pdf file, go to https://www.ilovepdf.com/ convert the pdf file to excel, download and rename to 'economic-activity.xlsx'
+  #     then add the file to {name} update system, and run the system.
 
-    task = {
-      'scheduleCode': scheduleCode,
-      'howToUpdate': howToUpdate,
-      'date': new_date
-    }
+  #     Link to the pdf file: {path}
+  #   """
 
-    return task
+  #   task = {
+  #     'scheduleCode': scheduleCode,
+  #     'howToUpdate': howToUpdate,
+  #     'date': new_date
+  #   }
+
+  #   return task
 
   return None
