@@ -4,21 +4,21 @@ indicators = [
     'page_title': 'Índices Agregados do Volume de Negócios, Variação Mensal dos Índices Agregados do Volume de Negócios',
     'sheet_name': 'Table 2',
     'db_name': 'turnover-index',
-    'scheduleCode': '01-schedule'
+    'scheduleCode': '01-schedule-economic-activity'
   },
   {
     'name': 'Índices de Emprego',
     'page_title': 'Índices Agregados do Emprego, Variação Mensal dos Índices Agregados do Emprego',
     'sheet_name': 'Table 3',
     'db_name': 'employment-index',
-    'scheduleCode': '02-schedule'
+    'scheduleCode': '02-schedule-economic-activity'
   },
   {
     'name': 'Índices de Remunerações',
     'page_title': 'Índices Agregados de Remunerações, Variação Mensal dos Índices Agregados de Remunerações',
     'sheet_name': 'Table 4',
     'db_name': 'income-index',
-    'scheduleCode': '03-schedule'
+    'scheduleCode': '03-schedule-economic-activity'
   },
 ]
 

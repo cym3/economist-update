@@ -7,7 +7,7 @@ def createTaskDB (isDone: bool, error: Union[str, None] = ''):
   now = datetime.now()
 
   task = {
-    'jobCode': '01-job',
+    'jobCode': '01-job-currency-trades',
     'name': 'CurrentCurrencyTrades',
     'description': 'Current exchange rates update',
     'isDone': isDone,

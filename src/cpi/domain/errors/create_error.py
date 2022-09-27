@@ -16,7 +16,7 @@ def createError(massage: str):
     title = f'Consumer Price Index could not be updated {date}'
 
     body = [
-        ['03-job', 'IPC', 'Consumer Price Index update', 'No', massage, now ]
+        ['03-job-cpi', 'IPC', 'Consumer Price Index update', 'No', massage, now ]
     ]
 
     createExcelFile(body=body, title=file_title, header=tasks_header, path=path)

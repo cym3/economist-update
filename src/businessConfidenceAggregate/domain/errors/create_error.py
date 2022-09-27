@@ -4,7 +4,7 @@ from src.core.mail.sand_mail import sandMail
 from src.utils.create_excel import createExcelFile
 from src.utils.tasks import tasks_header
 
-file_title = 'Atualização das taxas de Juros diarias: Relatório da Ultima actividade'
+file_title = 'Atualização dos Índices Agregados do Volume de Negócios: Relatório da Ultima actividade'
 
 def createError(massage: str):
     
@@ -13,10 +13,10 @@ def createError(massage: str):
     now = datetime.now()
     date = now.strftime('%Y-%m-%d %H:%M:%S')
 
-    title = f'Interest Rates could not be updated {date}'
+    title = f'Economic Activity Index could not be updated {date}'
 
     body = [
-        ['02-job-interest-rates', 'CurrentCurrencyTrades', 'Daily Interest Rates update', 'No', massage, now ]
+        ['04-job', 'Economic Activity Index', 'Economic Activity update', 'No', massage, now ]
     ]
 
     createExcelFile(body=body, title=file_title, header=tasks_header, path=path)
