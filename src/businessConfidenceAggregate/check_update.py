@@ -10,10 +10,10 @@ def checkBusinessConfidenceAggregateUpdateUseCase():
 
   schedule = check_updateService(quarter=last_update_quarter, indicator=indicator)
 
-  # if schedule is not None:
-  #   updateScheduleDB(schedule=schedule)
+  if schedule is not None:
+    updateScheduleDB(schedule=schedule)
 
-  # else:
-  #   print(f'No new {db_name} to update')
+  else:
+    print(f'No new {db_name} to update')
 
   return schedule
