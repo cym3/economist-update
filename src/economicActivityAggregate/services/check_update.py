@@ -6,7 +6,7 @@ def check_updateService(date: DateEconomicActivity, indicator: Indicator):
   fetch_result = fetchEconomicActivity(date)
 
   if fetch_result is not None:
-    path = fetch_result['path']
+    url = fetch_result['url']
 
     year = fetch_result['date']['year']
     month = fetch_result['date']['month']
@@ -21,7 +21,7 @@ def check_updateService(date: DateEconomicActivity, indicator: Indicator):
       Go to INE website download {name} pdf file, go to https://www.ilovepdf.com/ convert the pdf file to excel, download and rename to 'economic-activity.xlsx'
       then add the file to {name} update system, and run the system.
 
-      Link to the pdf file: {path}
+      Link to the pdf file: {url}
     """
 
     task = {

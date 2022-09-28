@@ -19,6 +19,7 @@ tk
 ghostscript
 camelot-py[cv]
 lxml
+pypdf2
 
 # Excell
 xlsxwriter

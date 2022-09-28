@@ -17,7 +17,7 @@ def fetchEconomicActivity(date: DateEconomicActivity):
   last_update_month = date['month']
   years = [last_update_year, last_update_year + 1]
 
-  file_path: Union[str, None] = None
+  file_url: Union[str, None] = None
 
   try:
     options = Options()
@@ -36,7 +36,7 @@ def fetchEconomicActivity(date: DateEconomicActivity):
     match3 = re.search('económica', name)
 
     if (match1 is None) or (match2 is None) or (match3 is None):
-      file_path = None
+      file_url = None
       return
 
     # Find EAI Month
@@ -72,7 +72,7 @@ def fetchEconomicActivity(date: DateEconomicActivity):
     if new_update > last_update:
       href = link.get_attribute('href')
 
-      file_path = href.replace('/view', '', 1)
+      file_url = href.replace('/view', '', 1)
       date = { 'year': year, 'month': month }
 
   except Exception as err:
@@ -83,5 +83,5 @@ def fetchEconomicActivity(date: DateEconomicActivity):
 
     createError(errorMessage)
 
-  if file_path is not None:
-    return {'path': file_path, 'date': date }
+  if file_url is not None:
+    return {'url': file_url, 'date': date }

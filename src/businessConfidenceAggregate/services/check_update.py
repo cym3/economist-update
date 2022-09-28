@@ -1,13 +1,19 @@
+from pathlib import Path
+from src.businessConfidenceAggregate.services.download.pdf_table import downloadPdfTable
 from src.businessConfidenceAggregate.domain.requiredFields.business_confidence import Quarter
 from src.businessConfidenceAggregate.domain.requiredFields.business_confidence import Indicator
 from src.businessConfidenceAggregate.services.fetch.fetch import fetchBusinessConfidence
 from datetime import datetime
 
-def check_updateService(quarter: Quarter, indicator: Indicator):   
+def check_updateService(quarter: Quarter, indicator: Indicator):  
+  path = str(Path(__file__).parents[1].joinpath('assets/business-confidence.pdf')) 
+   
   fetch_result = fetchBusinessConfidence(quarter)
 
   if fetch_result is not None:
-    path = fetch_result['path']
+    url = fetch_result['url']
+
+    path = downloadPdfTable(url=url, path=path, indicator=indicator)
 
     year = fetch_result['quarter']['year']
     month = fetch_result['quarter']['toMonth']
@@ -16,13 +22,11 @@ def check_updateService(quarter: Quarter, indicator: Indicator):
     new_date = now.strftime('%Y-%m-%d %H:%M:%S')
 
     scheduleCode = indicator['scheduleCode']
-    name = indicator['name']
+    name = indicator['db_name']
 
     howToUpdate = f"""
-      Go to INE website download {name} pdf file, go to https://www.ilovepdf.com/ convert the pdf file to excel, download and rename to 'business-confidence.xlsx'
-      then add the file to {name} update system, and run the system.
-
-      Link to the pdf file: {path}
+      Go to {name} system update, you will find ONE PDF file named 'business-confidence.pdf', It should have just ONE PAGE, go to https://www.ilovepdf.com/ convert the pdf file to excel, download and rename to 'business-confidence.xlsx'
+      then add excel file in the {name} system update, and run the system.
     """
 
     task = {
