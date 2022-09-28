@@ -7,7 +7,13 @@ def checkEconomicActivityUpdateUseCase():
   for indicator in indicators:
     db_name = indicator['db_name']
 
-    last_update_date = getLastUpdateDateDB(db_name)
+    # last_update_date = getLastUpdateDateDB(db_name)
+
+    last_update_date = {
+      'year': 2022,
+      'month': 1
+    }
+
 
     schedule = check_updateService(date=last_update_date, indicator=indicator)
 

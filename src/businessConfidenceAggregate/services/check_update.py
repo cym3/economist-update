@@ -6,7 +6,8 @@ from src.businessConfidenceAggregate.services.fetch.fetch import fetchBusinessCo
 from datetime import datetime
 
 def check_updateService(quarter: Quarter, indicator: Indicator):  
-  path = str(Path(__file__).parents[1].joinpath('assets/business-confidence.pdf')) 
+  name = indicator['db_name']
+  path = str(Path(__file__).parents[1].joinpath(f'assets/{name}.pdf')) 
    
   fetch_result = fetchBusinessConfidence(quarter)
 
@@ -22,10 +23,9 @@ def check_updateService(quarter: Quarter, indicator: Indicator):
     new_date = now.strftime('%Y-%m-%d %H:%M:%S')
 
     scheduleCode = indicator['scheduleCode']
-    name = indicator['db_name']
 
     howToUpdate = f"""
-      Go to {name} system update, you will find ONE PDF file named 'business-confidence.pdf', It should have just ONE PAGE, go to https://www.ilovepdf.com/ convert the pdf file to excel, download and rename to 'business-confidence.xlsx'
+      Go to {name} system update, you will find ONE PDF file named '{name}.pdf', It should have just ONE PAGE, go to https://www.ilovepdf.com/ convert the pdf file to excel, download and rename to '{name}.xlsx'
       then add excel file in the {name} system update, and run the system.
     """
 

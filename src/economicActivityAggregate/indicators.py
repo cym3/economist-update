@@ -1,22 +1,47 @@
 indicators = [
   {
     'name': 'Índices do Volume de Negócios',
-    'page_title': 'Índices Agregados do Volume de Negócios, Variação Mensal dos Índices Agregados do Volume de Negócios',
-    'sheet_name': 'Table 2',
+    'page_identifiers': {
+      'positives': [
+        'Quadro',
+        '2.1:',
+        'Índices Agregados do Volume de Negócios, Variação Mensal dos Índices Agregados do Volume de Negócios',
+        'Base:',
+        'Média Anual'
+      ],
+      'negatives': ['ÍNDICE', 'METODOLOGIA DOS ÍNDICES DE ACTIVIDADES ECONÓMICAS']
+    },
     'db_name': 'turnover-index',
     'scheduleCode': '01-schedule-economic-activity'
   },
   {
     'name': 'Índices de Emprego',
-    'page_title': 'Índices Agregados do Emprego, Variação Mensal dos Índices Agregados do Emprego',
-    'sheet_name': 'Table 3',
+    'page_identifiers': {
+      'positives': [
+        'Quadro',
+        '2.2:',
+        'Índices Agregados do Emprego, Variação Mensal dos Índices Agregados do Emprego',
+        'Base:',
+        'Média Anual'
+      ],
+      'negatives': ['ÍNDICE', 'METODOLOGIA DOS ÍNDICES DE ACTIVIDADES ECONÓMICAS']
+    },
     'db_name': 'employment-index',
     'scheduleCode': '02-schedule-economic-activity'
   },
   {
     'name': 'Índices de Remunerações',
-    'page_title': 'Índices Agregados de Remunerações, Variação Mensal dos Índices Agregados de Remunerações',
-    'sheet_name': 'Table 4',
+    'page_identifiers': {
+      'positives': [
+        'Quadro',
+        '2.3:',
+        'Agregado',
+        'Remunerações',
+        'Base:',
+        'Média Anual'
+        ],
+      'negatives': ['ÍNDICE', 'METODOLOGIA DOS ÍNDICES DE ACTIVIDADES ECONÓMICAS']
+    },
     'db_name': 'income-index',
     'scheduleCode': '03-schedule-economic-activity'
   },

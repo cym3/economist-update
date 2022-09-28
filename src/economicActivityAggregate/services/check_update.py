@@ -1,12 +1,19 @@
+from pathlib import Path
 from src.economicActivityAggregate.domain.requiredFields.economic_activity import DateEconomicActivity, Indicator
 from src.economicActivityAggregate.services.fetch.fetch import fetchEconomicActivity
+from src.economicActivityAggregate.services.download.pdf_table import downloadPdfTable
 from datetime import datetime
 
 def check_updateService(date: DateEconomicActivity, indicator: Indicator):   
+  name = indicator['db_name']
+  path = str(Path(__file__).parents[1].joinpath(f'assets/{name}.pdf')) 
+   
   fetch_result = fetchEconomicActivity(date)
 
   if fetch_result is not None:
     url = fetch_result['url']
+
+    path = downloadPdfTable(url=url, path=path, indicator=indicator)
 
     year = fetch_result['date']['year']
     month = fetch_result['date']['month']
@@ -15,13 +22,10 @@ def check_updateService(date: DateEconomicActivity, indicator: Indicator):
     new_date = now.strftime('%Y-%m-%d %H:%M:%S')
 
     scheduleCode = indicator['scheduleCode']
-    name = indicator['name']
 
     howToUpdate = f"""
-      Go to INE website download {name} pdf file, go to https://www.ilovepdf.com/ convert the pdf file to excel, download and rename to 'economic-activity.xlsx'
-      then add the file to {name} update system, and run the system.
-
-      Link to the pdf file: {url}
+      Go to {name} system update, you will find ONE PDF file named '{name}.pdf', It should have just ONE PAGE, go to https://www.ilovepdf.com/ convert the pdf file to excel, download and rename to '{name}.xlsx'
+      then add excel file in the {name} system update, and run the system.
     """
 
     task = {
