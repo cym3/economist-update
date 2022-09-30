@@ -4,6 +4,7 @@ from typing import Union
 from src.economicActivityAggregate.domain.entities.create_tasks import createTaskDB
 from src.economicActivityAggregate.domain.errors.create_error import createError
 from src.economicActivityAggregate.services.utils.find.filter_row import filter_row
+import rapidfuzz.fuzz as fuzz
 
 name = 'energia,água e san'
 
@@ -23,7 +24,9 @@ def energyWaterAndSanFormatter(
 
       match = re.search(name, row_name)
 
-      if match is not None:
+      match_confidence = fuzz.token_set_ratio(name, row_name)
+
+      if (match is not None) or (match_confidence > 85):
         row_is_found = True
 
         # Get only the first 12 list elements
@@ -35,7 +38,7 @@ def energyWaterAndSanFormatter(
           if el > last_date_on_db:
             year = el.year
             month = el.month
-            value = int(row[index])
+            value = row[index]
 
             if type(value) == int:
               values.append({

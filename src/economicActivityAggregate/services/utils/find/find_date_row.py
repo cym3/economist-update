@@ -1,14 +1,12 @@
 from datetime import datetime
-from mimetypes import init
 import re
 from src.economicActivityAggregate.services.utils.find.filter_row import filter_row
 from src.economicActivityAggregate.services.utils.months import months
 
 def findLastYear(years_row: list):
   years = []
-  
+
   for el in years_row:
-    el = int(el)
     if type(el) == type(1):
       years.append(el)
 

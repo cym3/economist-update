@@ -1,4 +1,5 @@
 from trp import Document
+from src.economicActivityAggregate.aws.parse.type_format import dataType
 
 def tablesParser(textExtractResponse: dict):
   doc = Document(textExtractResponse)
@@ -12,7 +13,7 @@ def tablesParser(textExtractResponse: dict):
       for r, row in enumerate(table.rows):
         new_row = []
         for c, cell in enumerate(row.cells):
-          text = cell.text.strip()
+          text = dataType(cell.text)
           new_row.append(text)
 
         new_table.append(new_row)
