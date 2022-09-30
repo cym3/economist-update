@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from src.economicActivityAggregate.main import economicActivityUseCase
+from src.economicActivityAggregate.main import economicActivityAggregateUseCase
 
 economicActivityRouter = APIRouter(
     prefix='/economic-activity',
@@ -8,6 +8,6 @@ economicActivityRouter = APIRouter(
 
 @economicActivityRouter.get('/aggregate')
 def controller():
-  data = economicActivityUseCase()
+  data = economicActivityAggregateUseCase()
 
   return data

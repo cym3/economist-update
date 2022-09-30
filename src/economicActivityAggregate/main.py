@@ -1,4 +1,3 @@
-import re
 from src.economicActivityAggregate.domain.requiredFields.page_validator import fileValidator
 from src.economicActivityAggregate.aws.extract.tables import extractTable
 from src.economicActivityAggregate.infra.main import economicActivityInfra
@@ -9,7 +8,7 @@ from src.economicActivityAggregate.domain.entities.get_last_update_date import g
 from src.economicActivityAggregate.indicators import indicators
 
 
-def economicActivityUseCase():
+def economicActivityAggregateUseCase():
     economicActivity = []
     
     for indicator in indicators:
@@ -33,7 +32,7 @@ def economicActivityUseCase():
                     indicator=indicator
                 )
 
-                # saveEconomicActivityDB(economicActivities=economicActivity, db_name=db_name)
+                saveEconomicActivityDB(economicActivities=economicActivity, db_name=db_name)
                 print(db_name)
 
         else:
