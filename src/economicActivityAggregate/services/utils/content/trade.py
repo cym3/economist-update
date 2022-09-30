@@ -46,6 +46,8 @@ def tradeFormatter(
               'value': value
             })
 
+          index += 1
+
     if row_is_found == False:
       raise Exception(f"'{name}' index is not found on the excel file.")
 

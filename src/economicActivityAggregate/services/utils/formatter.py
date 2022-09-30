@@ -30,11 +30,11 @@ def formatter(
   indices_of_business = mainIndexFormatter(table, dates_row, last_date_on_db, indicator)
   
   return [
+    indices_of_business,
     industry,
+    energy_water_and_san,
+    trade,
     transport,
     accommodations_restaurants,
-    energy_water_and_san,
-    indices_of_business,
     other_services,
-    trade
   ]

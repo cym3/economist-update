@@ -15,8 +15,6 @@ def filterDates(table: list, indicator: Indicator):
 
     dates_row = findDatesRow(table, first_row_index)
 
-    print(dates_row)
-
     index = 0
     for row in table:
       if (index >= first_row_index) and (index <= last_row_index):
