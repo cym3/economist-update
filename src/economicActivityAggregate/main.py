@@ -33,7 +33,7 @@ def economicActivityUseCase():
                     indicator=indicator
                 )
 
-                # saveEconomicActivityDB(economicActivities=economicActivities, db_name=db_name)
+                # saveEconomicActivityDB(economicActivities=economicActivity, db_name=db_name)
                 print(db_name)
 
         else:
