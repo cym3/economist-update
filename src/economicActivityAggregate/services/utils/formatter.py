@@ -15,9 +15,9 @@ def formatter(
   indicator: Indicator
 ):
   last_date_on_db = datetime(date['year'], date['month'], 1)
-  last_date_on_excel = dates_row[-1]
+  last_date_on_table = dates_row[-1]
 
-  if last_date_on_excel <= last_date_on_db:
+  if last_date_on_table <= last_date_on_db:
     return None
 
   industry = industryFormatter(table, dates_row, last_date_on_db)

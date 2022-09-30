@@ -35,7 +35,7 @@ def energyWaterAndSanFormatter(
           if el > last_date_on_db:
             year = el.year
             month = el.month
-            value = row[index]
+            value = int(row[index])
 
             if type(value) == int:
               values.append({

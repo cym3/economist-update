@@ -20,6 +20,8 @@ ghostscript
 camelot-py[cv]
 lxml
 pypdf2
+boto3[crt]
+amazon-textract-response-parser
 
 # Excell
 xlsxwriter

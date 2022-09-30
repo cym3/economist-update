@@ -33,7 +33,7 @@ def tradeFormatter(
           if el > last_date_on_db:
             year = el.year
             month = el.month
-            value = row[index]
+            value = int(row[index])
 
             values.append({
               'date': {

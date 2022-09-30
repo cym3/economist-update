@@ -73,7 +73,6 @@ def fetchEconomicActivity(date: DateEconomicActivity):
       href = link.get_attribute('href')
 
       file_url = href.replace('/view', '', 1)
-      date = { 'year': year, 'month': month }
 
   except Exception as err:
     print(err)
@@ -83,5 +82,4 @@ def fetchEconomicActivity(date: DateEconomicActivity):
 
     createError(errorMessage)
 
-  if file_url is not None:
-    return {'url': file_url, 'date': date }
+  return file_url

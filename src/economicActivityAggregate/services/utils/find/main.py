@@ -1,43 +1,33 @@
-import pandas as pd
-from src.economicActivityAggregate.services.utils.find.filter_row import filter_row
 from src.economicActivityAggregate.services.utils.find.find_date_row import findDatesRow
 from src.economicActivityAggregate.services.utils.find.index import findFirstRow, findLastRow
-from src.economicActivityAggregate.services.utils.find.page import validatePage
 from src.economicActivityAggregate.domain.requiredFields.economic_activity import Indicator
 from src.economicActivityAggregate.domain.entities.create_tasks import createTaskDB
 from src.economicActivityAggregate.domain.errors.create_error import createError
 
-def findTable(path: str, indicator: Indicator):
-  sheet_name = indicator['sheet_name']
-  table = []
+def filterDates(table: list, indicator: Indicator):
+  db_name = indicator['db_name']
   dates_row = []
+  new_table = []
 
   try:
-    df = pd.read_excel(path, sheet_name=sheet_name)
-    validatePage(df, indicator)
+    first_row_index = findFirstRow(table, indicator)
+    last_row_index = findLastRow(table)
 
-    sheet = df.values.tolist()
-
-    first_row_index = findFirstRow(sheet, indicator)
-    last_row_index = findLastRow(sheet)
-
-    dates_row = findDatesRow(sheet, first_row_index)
-     
-    table = []
+    dates_row = findDatesRow(table, first_row_index)
 
     index = 0
-    for row in sheet:
+    for row in table:
       if (index >= first_row_index) and (index <= last_row_index):
-        table.append(row)
+        new_table.append(row)
       
       index += 1
 
   except Exception as err:
     print(err)
-    errorMessage = f'The economicActivityAggregate has a format error'
+    errorMessage = f'The {db_name} table could not be filtered. Error occurred'
 
     createTaskDB(isDone=False, error=errorMessage)
 
     createError(errorMessage)
 
-  return { 'table': table, 'dates_row': dates_row }
+  return { 'table': new_table, 'dates_row': dates_row }

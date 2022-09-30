@@ -1,4 +1,5 @@
 from datetime import datetime
+from mimetypes import init
 import re
 from src.economicActivityAggregate.services.utils.find.filter_row import filter_row
 from src.economicActivityAggregate.services.utils.months import months
@@ -7,6 +8,7 @@ def findLastYear(years_row: list):
   years = []
   
   for el in years_row:
+    el = int(el)
     if type(el) == type(1):
       years.append(el)
 
@@ -33,6 +35,7 @@ def yearsFilter(years_row: list):
 
   # UnReverse the order of list elements
   years.reverse()
+
   return years
 
 def createMonths(months_row: list):
@@ -51,10 +54,9 @@ def createMonths(months_row: list):
 
   return months_int
 
-
-def findDatesRow(sheet: list, first_row_index: int):
-  years_row = yearsFilter(sheet[first_row_index -2])
-  months_row = createMonths(sheet[first_row_index -1])
+def findDatesRow(table: list, first_row_index: int):
+  years_row = yearsFilter(table[first_row_index -2])
+  months_row = createMonths(table[first_row_index -1])
 
   dates_row = []
 
