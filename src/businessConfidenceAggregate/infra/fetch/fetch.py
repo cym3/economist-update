@@ -71,7 +71,6 @@ def fetchBusinessConfidence(quarter: Quarter):
       href = link.get_attribute('href')
 
       file_url = href.replace('/view', '', 1)
-      quarter = newQuarter
 
   except Exception as err:
     print(err)
@@ -81,5 +80,4 @@ def fetchBusinessConfidence(quarter: Quarter):
 
     createError(errorMessage)
 
-  if file_url is not None:
-    return {'url': file_url, 'quarter': quarter }
+  return file_url

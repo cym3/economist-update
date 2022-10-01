@@ -1,23 +1,23 @@
 from datetime import datetime
-from src.economicActivityAggregate.domain.requiredFields.economic_activity import DateEconomicActivity, Indicator
-from src.economicActivityAggregate.services.utils.content.industry import industryFormatter
-from src.economicActivityAggregate.services.utils.content.transport import transportFormatter
-from src.economicActivityAggregate.services.utils.content.accommodations_restaurants import accommodationsRestaurantsFormatter
-from src.economicActivityAggregate.services.utils.content.energy_water_and_san import energyWaterAndSanFormatter
-from src.economicActivityAggregate.services.utils.content.main_index import mainIndexFormatter
-from src.economicActivityAggregate.services.utils.content.other_services import otherServicesFormatter
-from src.economicActivityAggregate.services.utils.content.trade import tradeFormatter
+from src.businessConfidenceAggregate.domain.requiredFields.business_confidence import Quarter, Indicator
+from src.businessConfidenceAggregate.services.utils.content.industry import industryFormatter
+from src.businessConfidenceAggregate.services.utils.content.transport import transportFormatter
+from src.businessConfidenceAggregate.services.utils.content.accommodations_restaurants import accommodationsRestaurantsFormatter
+from src.businessConfidenceAggregate.services.utils.content.energy_water_and_san import energyWaterAndSanFormatter
+from src.businessConfidenceAggregate.services.utils.content.main_index import mainIndexFormatter
+from src.businessConfidenceAggregate.services.utils.content.other_services import otherServicesFormatter
+from src.businessConfidenceAggregate.services.utils.content.trade import tradeFormatter
 
 def formatter(
   table: list[list[float]],
   dates_row: list[datetime],
-  date: DateEconomicActivity,
+  quarter: Quarter,
   indicator: Indicator
 ):
-  last_date_on_db = datetime(date['year'], date['month'], 1)
-  last_date_on_excel = dates_row[-1]
+  last_date_on_db = datetime(quarter['year'], quarter['toMonth'], 1)
+  last_date_on_table = dates_row[-1]
 
-  if last_date_on_excel <= last_date_on_db:
+  if last_date_on_table <= last_date_on_db:
     return None
 
   industry = industryFormatter(table, dates_row, last_date_on_db)
@@ -30,11 +30,11 @@ def formatter(
   indices_of_business = mainIndexFormatter(table, dates_row, last_date_on_db, indicator)
   
   return [
+    indices_of_business,
     industry,
+    energy_water_and_san,
+    trade,
     transport,
     accommodations_restaurants,
-    energy_water_and_san,
-    indices_of_business,
     other_services,
-    trade
   ]

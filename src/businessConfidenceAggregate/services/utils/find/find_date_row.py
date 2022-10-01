@@ -1,11 +1,12 @@
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 import re
 from src.economicActivityAggregate.services.utils.find.filter_row import filter_row
 from src.economicActivityAggregate.services.utils.months import months
 
-def findLastYear(years_row: list):
+def get_end_year(years_row: list):
   years = []
-  
+
   for el in years_row:
     if type(el) == type(1):
       years.append(el)
@@ -13,57 +14,31 @@ def findLastYear(years_row: list):
   return years[-1]
 
 
-def yearsFilter(years_row: list):
-  years_row = filter_row(years_row)
+def get_end_month(months_row: list):
+  end_month = months_row[-1]
 
-  year = findLastYear(years_row)
-  years = []
-
-  # reverse the order of list elements
-  years_row.reverse()
-
-  # Fill NaN list elements with the respective years
-  for el in years_row:
-    if type(el) == type(1):
-      years.append(year)
-      year = year -1
-
-    else:
-      years.append(year)
-
-  # UnReverse the order of list elements
-  years.reverse()
-  return years
-
-def createMonths(months_row: list):
-  months_row = filter_row(months_row)
-
-  months_int = []
-
-  for el in months_row:
-    index = 0
-
-    for m in months:
-      if re.search(el.lower(), m) is not None:
-        months_int.append(index + 1)
-
-      index += 1
-
-  return months_int
+  index = 0
+  for m in months:
+    if re.search(end_month.lower(), m) is not None:
+      return index + 1
+    index += 1
 
 
-def findDatesRow(sheet: list, first_row_index: int):
-  years_row = yearsFilter(sheet[first_row_index -2])
-  months_row = createMonths(sheet[first_row_index -1])
+def findDatesRow(table: list, first_row_index: int):
+  years_row = filter_row(table[first_row_index -2])
+  end_year = get_end_year(years_row)
+
+  months_row = filter_row(table[first_row_index -1])
+  end_month = get_end_month(months_row)
 
   dates_row = []
 
   index = 0
-  for month in months_row:
-    year = years_row[index]
-    date = datetime(year, month, 1)
-    dates_row.append(date)
+  for m in months_row:
+    now = datetime(end_year, end_month, 1)
+    new_date = now - relativedelta(months=index)
 
+    dates_row.insert(0, new_date)
     index += 1
-
+    
   return dates_row

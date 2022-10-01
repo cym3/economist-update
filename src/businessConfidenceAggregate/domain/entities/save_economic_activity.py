@@ -1,34 +1,34 @@
 from mimetypes import init
-from src.economicActivityAggregate.domain.requiredFields.economic_activity import DateEconomicActivity
-from src.economicActivityAggregate.domain.entities.create_tasks import createTaskDB
-from src.economicActivityAggregate.domain.errors.create_error import createError
+from src.businessConfidenceAggregate.domain.requiredFields.business_confidence import Quarter
+from src.businessConfidenceAggregate.domain.entities.create_tasks import createTaskDB
+from src.businessConfidenceAggregate.domain.errors.create_error import createError
 from src.core.db.connect_db import economist_db
 from pydantic import BaseModel
 
 class Value(BaseModel):
-  date: DateEconomicActivity
+  quarter: Quarter
   value: float
 
-class EconomicActivity(BaseModel):
+class BusinessConfidence(BaseModel):
   id: str
   values: list[Value]
 
-def saveEconomicActivityDB(economicActivities: list[EconomicActivity], db_name: str):
+def saveBusinessConfidenceDB(economicActivities: list[BusinessConfidence], db_name: str):
   try:
     database = economist_db()
     collection = database[db_name]
 
-    for economicActivity in economicActivities:
-      id = economicActivity['id']
-      values = economicActivity['values']
+    for BusinessConfidence in economicActivities:
+      id = BusinessConfidence['id']
+      values = BusinessConfidence['values']
 
       for el in values:
-        date = el['date']
+        quarter = el['quarter']
         value = el['value']
 
         collection.update_one(
           { '_id': id },
-          { '$push': { 'values':  { 'date': date, 'value': value } }}
+          { '$push': { 'values':  { 'quarter': quarter, 'value': value } }}
         )
     
     createTaskDB(isDone=True)

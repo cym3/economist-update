@@ -9,14 +9,14 @@ def getLastUpdateDateDB(db_name: str):
     database = economist_db()
     collection = database[db_name]
 
-    business_confidence = collection.find_one({'type': 'Agregado' })
-    last = business_confidence['values'][-1]
+    eai = collection.find_one({'type': 'Agregado' })
+    last = eai['values'][-1]
 
     quarter = last['quarter']
 
   except Exception as err:
     print(err)
-    errorMessage = f'Database failed to get {db_name} update date'
+    errorMessage = f'Database failed to get EAI update date'
 
     createTaskDB(isDone=False, error=errorMessage)
 

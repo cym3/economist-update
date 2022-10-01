@@ -1,30 +1,26 @@
-import re
-from src.economicActivityAggregate.domain.requiredFields.economic_activity import Indicator
+from rapidfuzz.process import extractOne
 
-import re
+def findFirstRow(table: list):
+  pattern = 'Indicador do Clima Económico'
 
-def findFirstRow(table: list, indicator: Indicator):
-  name: str = indicator['name'].lower()
+  names = [row[0] for row in table]
 
-  index = 0
-  for row in table:
-    el = str(row[0]).split('\n')
-    row_name = ' '.join(el).lower()
+  match = extractOne(pattern, names)
+  match_score  = match[-2]
+  matched_index  = match[-1]
 
-    match = re.search(name, row_name)
-
-    if match is not None:
-      return index
-    index += 1
+  if (match_score > 90):
+    return matched_index
 
 
 def findLastRow(table: list):
-  index = 0
+  pattern = 'Indicador de Expectativas de Preços'
 
-  for row in table:
-    row_name = str(row[0]).lower()
-    match = re.search('outros serviços', row_name)
+  names = [row[0] for row in table]
 
-    if match is not None:
-      return index
-    index += 1
+  match = extractOne(pattern, names)
+  match_score  = match[-2]
+  matched_index  = match[-1]
+
+  if (match_score > 90):
+    return matched_index

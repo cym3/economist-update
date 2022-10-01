@@ -1,6 +1,5 @@
 from fastapi import APIRouter
-from src.businessConfidenceAggregate.main import economicActivityUseCase
-from src.businessConfidenceAggregate.check_update import checkBusinessConfidenceAggregateUpdateUseCase
+from src.businessConfidenceAggregate.main import businessConfidenceAggregateUseCase
 
 businessConfidenceRouter = APIRouter(
     prefix='/business-confidence',
@@ -9,13 +8,7 @@ businessConfidenceRouter = APIRouter(
 
 @businessConfidenceRouter.get('/aggregate')
 def controller():
-  data = economicActivityUseCase()
-
-  return data
-
-@businessConfidenceRouter.get('/aggregate/schedule')
-def controller():
-  data = checkBusinessConfidenceAggregateUpdateUseCase()
+  data = businessConfidenceAggregateUseCase()
 
   return data
   

@@ -1,10 +1,12 @@
-indicator = {
-  'name': 'Indicadores de Confiança e de Clima Económico',
-  'page_number': 10,
-  'page_identifiers': ['3.ANEXOS', '3.1. Resumo Estatístico dos Indicadores'],
-  'db_name': 'business-confidence-aggregate',
-  'scheduleCode': '01-schedule-business-confidence'
-}
+indicators = [
+  {
+    'name': 'Indicadores de Confiança e de Clima Económico',
+    'page_number': 10,
+    'page_identifiers': ['3.ANEXOS', '3.1. Resumo Estatístico dos Indicadores'],
+    'db_name': 'business-confidence-aggregate',
+    'scheduleCode': '01-schedule-business-confidence'
+  }
+]
 
 # scheduleCode - used to identify the schedule in database
 # name - Name of the indicator, used to filter indicator data
