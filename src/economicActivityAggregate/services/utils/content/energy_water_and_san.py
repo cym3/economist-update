@@ -40,7 +40,7 @@ def energyWaterAndSanFormatter(
             month = el.month
             value = row[index]
 
-            if type(value) == int:
+            if type(value) == type(1) or (type(value) == type(1.00)):
               values.append({
                 'date': {
                   'year': year,
