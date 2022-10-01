@@ -1,10 +1,9 @@
-import re
 from datetime import datetime
 from typing import Union
 from src.economicActivityAggregate.domain.entities.create_tasks import createTaskDB
 from src.economicActivityAggregate.domain.errors.create_error import createError
 from src.economicActivityAggregate.services.utils.find.filter_row import filter_row
-import rapidfuzz.fuzz as fuzz
+from rapidfuzz.process import extractOne
 
 name = 'transportes'
 
@@ -18,35 +17,37 @@ def  transportFormatter(
   try:
     row_is_found = False
 
-    for row in table:
-      row_name = row[0].lower()
-      match = re.search(name, row_name)
+    names = [row[0] for row in table]
 
-      match_confidence = fuzz.token_set_ratio(name, row_name)
+    match = extractOne(name, names)
+    match_score  = match[-2]
+    matched_index  = match[-1]
 
-      if (match is not None) or (match_confidence > 85):
-        row_is_found = True
+    if (match_score > 85):
+      row_is_found = True
 
-        # Get only the first 12 list elements
-        # row must have the same length with date_row
-        row = filter_row(row)
+      row = table[matched_index]
 
-        index = 0
-        for el in dates_row:
-          if el > last_date_on_db:
-            year = el.year
-            month = el.month
-            value = row[index]
+      # Get only the first 12 list elements
+      # row must have the same length with date_row
+      row = filter_row(row)
 
-            values.append({
-              'date': {
-                'year': year,
-                'month': month
-              },
-              'value': value
-            })
+      index = 0
+      for el in dates_row:
+        if el > last_date_on_db:
+          year = el.year
+          month = el.month
+          value = row[index]
+
+          values.append({
+            'date': {
+              'year': year,
+              'month': month
+            },
+            'value': value
+          })
           
-          index += 1
+        index += 1
 
     if row_is_found == False:
       raise Exception(f"'{name}' index is not found on the excel file.")
