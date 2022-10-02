@@ -60,8 +60,6 @@ def energyWaterAndSanFormatter(
 
     createError(errorMessage)
 
-  # name can be one of the options below
-  # - Energia,Água e San
   return {
     'id': '632efbfafe566554468a12c6',
     'values': values

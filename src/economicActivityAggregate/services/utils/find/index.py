@@ -1,7 +1,9 @@
 from rapidfuzz.process import extractOne
 
-def findFirstRow(table: list):
-  pattern = 'Indicador do Clima Económico'
+from src.economicActivityAggregate.domain.requiredFields.economic_activity import Indicator
+
+def findFirstRow(table: list, indicator: Indicator):
+  pattern: str = indicator['name']
 
   names = [row[0] for row in table]
 

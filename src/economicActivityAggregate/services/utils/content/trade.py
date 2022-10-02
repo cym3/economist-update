@@ -60,8 +60,6 @@ def tradeFormatter(
 
     createError(errorMessage)
 
-  # name can be one of the options below
-  # - Comércio
   return {
     'id': '6306c1b54145e6a1fc2b9ed4',
     'values': values

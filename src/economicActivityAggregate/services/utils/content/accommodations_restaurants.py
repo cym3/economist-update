@@ -60,8 +60,6 @@ def accommodationsRestaurantsFormatter(
 
     createError(errorMessage)
 
-  # name can be one of the options below
-  # - Aloj.Rest. similares
   return {
     'id': '6306c1b54145e6a1fc2b9ed6',
     'values': values

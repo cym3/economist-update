@@ -2,7 +2,7 @@ from src.businessConfidenceAggregate.domain.requiredFields.page_validator import
 from src.businessConfidenceAggregate.aws.extract.tables import extractTable
 from src.businessConfidenceAggregate.infra.main import businessConfidenceInfra
 from src.businessConfidenceAggregate.aws.parse.tables import tablesParser
-from src.businessConfidenceAggregate.services.economic_activity import businessConfidenceService
+from src.businessConfidenceAggregate.services.business_confidence import businessConfidenceService
 from src.businessConfidenceAggregate.domain.entities.save_economic_activity import saveBusinessConfidenceDB
 from src.businessConfidenceAggregate.domain.entities.get_last_update_date import getLastUpdateDateDB
 from src.businessConfidenceAggregate.indicators import indicators

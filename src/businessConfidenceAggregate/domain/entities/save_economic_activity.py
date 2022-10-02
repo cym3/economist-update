@@ -1,4 +1,3 @@
-from mimetypes import init
 from src.businessConfidenceAggregate.domain.requiredFields.business_confidence import Quarter
 from src.businessConfidenceAggregate.domain.entities.create_tasks import createTaskDB
 from src.businessConfidenceAggregate.domain.errors.create_error import createError
@@ -13,14 +12,14 @@ class BusinessConfidence(BaseModel):
   id: str
   values: list[Value]
 
-def saveBusinessConfidenceDB(economicActivities: list[BusinessConfidence], db_name: str):
+def saveBusinessConfidenceDB(businessConfidence: list[BusinessConfidence], db_name: str):
   try:
     database = economist_db()
     collection = database[db_name]
 
-    for BusinessConfidence in economicActivities:
-      id = BusinessConfidence['id']
-      values = BusinessConfidence['values']
+    for b_indicator in businessConfidence:
+      id = b_indicator['id']
+      values = b_indicator['values']
 
       for el in values:
         quarter = el['quarter']
