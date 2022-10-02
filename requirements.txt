@@ -4,10 +4,10 @@ uvicorn
 
 # Run Script scheduler
 schedule
-
 pandas
 bs4
 python-dotenv
+rapidfuzz
 
 # MongoDB
 dnspython
