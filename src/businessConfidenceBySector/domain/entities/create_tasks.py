@@ -1,15 +1,15 @@
 from typing import Union
 from src.core.db.connect_db import jobs_db
 from datetime import datetime
-from src.businessConfidenceAggregate.domain.errors.create_error import createError
+from src.businessConfidenceBySector.domain.errors.create_error import createError
 
 def createTaskDB (isDone: bool, error: Union[str, None] = ''):
   now = datetime.now()
 
   task = {
     'jobCode': '04-job',
-    'name': 'Aggregate Business Confidence indicator',
-    'description': 'Aggregate Business Confidence indicator update',
+    'name': 'By Sector Business Confidence indicator',
+    'description': 'By Sector Business Confidence indicator update',
     'isDone': isDone,
     'error': error,
     'created_at': now
@@ -23,7 +23,7 @@ def createTaskDB (isDone: bool, error: Union[str, None] = ''):
     
   except Exception as err:
     print(err)
-    errorMessage = 'Was not able to save the task of Aggregate Business Confidence indicator.'
+    errorMessage = 'Was not able to save the task of By Sector Business Confidence indicator.'
     createError(errorMessage)
 
   return 'Done'

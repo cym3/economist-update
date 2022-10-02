@@ -1,6 +1,6 @@
-from src.businessConfidenceAggregate.domain.requiredFields.business_confidence import Quarter
-from src.businessConfidenceAggregate.domain.entities.create_tasks import createTaskDB
-from src.businessConfidenceAggregate.domain.errors.create_error import createError
+from src.businessConfidenceBySector.domain.requiredFields.business_confidence import Quarter
+from src.businessConfidenceBySector.domain.entities.create_tasks import createTaskDB
+from src.businessConfidenceBySector.domain.errors.create_error import createError
 from src.core.db.connect_db import economist_db
 from pydantic import BaseModel
 
@@ -34,7 +34,7 @@ def saveBusinessConfidenceDB(businessConfidence: list[BusinessConfidence], db_na
 
   except Exception as err:
     print(err)
-    errorMessage = f'Was not able to save {db_name} Aggregate Business Confidence indicator'
+    errorMessage = f'Was not able to save {db_name} By Sector Business Confidence indicator'
 
     createTaskDB(isDone=False, error=errorMessage)
 

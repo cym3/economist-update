@@ -1,14 +1,14 @@
 from datetime import datetime
 import re
 from typing import Union
-from src.businessConfidenceAggregate.domain.requiredFields.business_confidence import Quarter
-from src.businessConfidenceAggregate.domain.entities.create_tasks import createTaskDB
-from src.businessConfidenceAggregate.domain.errors.create_error import createError
+from src.businessConfidenceBySector.domain.requiredFields.business_confidence import Quarter
+from src.businessConfidenceBySector.domain.entities.create_tasks import createTaskDB
+from src.businessConfidenceBySector.domain.errors.create_error import createError
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
-from src.businessConfidenceAggregate.services.utils.months import quarters
+from src.businessConfidenceBySector.services.utils.months import quarters
 
 url = 'http://www.ine.gov.mz/estatisticas/estatisticas-economicas/icce'
 
@@ -74,7 +74,7 @@ def fetchBusinessConfidence(quarter: Quarter):
 
   except Exception as err:
     print(err)
-    errorMessage = f'Could not fetch the Aggregate Business Confidence indicator, the url is {url}'
+    errorMessage = f'Could not fetch the By Sector Business Confidence indicator, the url is {url}'
 
     createTaskDB(isDone=False, error=errorMessage)
 

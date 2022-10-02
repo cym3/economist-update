@@ -1,12 +1,12 @@
-from src.businessConfidenceAggregate.domain.requiredFields.business_confidence import Indicator, Quarter
 from typing import Union
-from src.businessConfidenceAggregate.domain.entities.create_tasks import createTaskDB
-from src.businessConfidenceAggregate.domain.errors.create_error import createError
+from src.businessConfidenceBySector.domain.requiredFields.business_confidence import Indicator, Quarter
+from src.businessConfidenceBySector.domain.entities.create_tasks import createTaskDB
+from src.businessConfidenceBySector.domain.errors.create_error import createError
 from rapidfuzz.process import extractOne
 
-name = 'Indicador de Expectativas de Procura'
+name = 'Produção Industrial'
 
-def demandExpectationsFormatter(
+def industrialProductionFormatter(
   table: list[list[Union[float, str]]],
   new_quarter: Quarter,
   indicator: Indicator
@@ -40,13 +40,13 @@ def demandExpectationsFormatter(
 
   except Exception as err:
     print(err)
-    errorMessage = f'Aggregate Business Confidence indicators: has a format error on {name}'
+    errorMessage = f'BySector Business Confidence indicator: has a format error on {name}'
 
     createTaskDB(isDone=False, error=errorMessage)
 
     createError(errorMessage)
 
   return {
-    'id': '6332ee55feef414249d8dc2f',
+    'id': '6332ee71feef414249d8dc35',
     'values': values
   }

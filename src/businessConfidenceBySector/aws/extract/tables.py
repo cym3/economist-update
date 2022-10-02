@@ -1,6 +1,6 @@
 import boto3
-from src.businessConfidenceAggregate.domain.entities.create_tasks import createTaskDB
-from src.businessConfidenceAggregate.domain.errors.create_error import createError
+from src.businessConfidenceBySector.domain.entities.create_tasks import createTaskDB
+from src.businessConfidenceBySector.domain.errors.create_error import createError
 
 def extractTable(documentPath: str):
   response = None

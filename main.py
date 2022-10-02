@@ -1,6 +1,8 @@
 import schedule
 import time
 from src.economicActivityAggregate.main import economicActivityAggregateUseCase
+from src.businessConfidenceAggregate.main import businessConfidenceAggregateUseCase
+from src.businessConfidenceBySector.main import businessConfidenceBySectorUseCase
 from src.cpi.main import cpiUseCase
 from src.currentCurrencyTrades.main import currentCurrencyTradesUseCase
 from src.interestRates.main import interestRatesUseCase
@@ -10,8 +12,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Check updates 
 schedule.every().day.at("02:00").do(economicActivityAggregateUseCase)
+schedule.every().day.at("02:05").do(businessConfidenceAggregateUseCase)
+schedule.every().day.at("02:10").do(businessConfidenceBySectorUseCase)
+
 
 schedule.every().day.at("03:00").do(cpiUseCase)
 schedule.every().day.at("04:00").do(sandMyMail)

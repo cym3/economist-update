@@ -1,5 +1,5 @@
 from trp import Document
-from src.businessConfidenceAggregate.aws.parse.type_format import dataType
+from src.businessConfidenceBySector.aws.parse.type_format import dataType
 
 def tablesParser(textExtractResponse: dict):
   doc = Document(textExtractResponse)
