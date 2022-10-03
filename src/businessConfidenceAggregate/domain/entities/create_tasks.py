@@ -7,7 +7,7 @@ def createTaskDB (isDone: bool, error: Union[str, None] = ''):
   now = datetime.now()
 
   task = {
-    'jobCode': '04-job',
+    'jobCode': '01-business-confidence',
     'name': 'Aggregate Business Confidence indicator',
     'description': 'Aggregate Business Confidence indicator update',
     'isDone': isDone,

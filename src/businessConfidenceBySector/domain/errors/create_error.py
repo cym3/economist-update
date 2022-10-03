@@ -16,7 +16,7 @@ def createError(massage: str):
     title = f'By Sector Business Confidence indicator could not be updated {date}'
 
     body = [
-        ['04-job', 'By Sector Business Confidence indicator', 'By Sector Business Confidence indicator update', 'No', massage, now ]
+        ['02-business-confidence', 'By Sector Business Confidence indicator', 'By Sector Business Confidence indicator update', 'No', massage, now ]
     ]
 
     createExcelFile(body=body, title=file_title, header=tasks_header, path=path)
