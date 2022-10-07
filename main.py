@@ -27,7 +27,7 @@ schedule.every().day.at("16:00").do(currentCurrencyTradesUseCase)
 
 
 
-# schedule.every(5).seconds.do(reportUseCase)
+# schedule.every(5).seconds.do(businessConfidenceAggregateUseCase)
 
 while True:
     schedule.run_pending()
