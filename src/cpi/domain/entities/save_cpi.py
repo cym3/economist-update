@@ -23,7 +23,7 @@ def saveCpiDB (CPIs: CPI, region: str):
     date = CPIs['date']
 
     collection.update_one(
-      { 'by': 'by-region' },
+      { 'type': 'by-region' },
       { '$push': { 'values':  { 'date': date, 'value': total } }}
     )
 
@@ -32,7 +32,7 @@ def saveCpiDB (CPIs: CPI, region: str):
       value = product['value']
 
       collection.update_one(
-        { 'by': 'by-product', 'name': product_name },
+        { 'type': 'by-product', 'name': product_name },
         { '$push': { 'values':  { 'date': date, 'value': value } }}
       )
     

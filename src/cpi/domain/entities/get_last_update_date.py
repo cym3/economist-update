@@ -9,7 +9,7 @@ def getLastUpdateDateDB (region: str):
     database = economist_db()
     collection = database[f'cpi-{region}']
 
-    cpi = collection.find_one({ 'by': 'by-region' })
+    cpi = collection.find_one({ 'type': 'by-region' })
     last = cpi['values'][-1]
 
     date = last['date']
