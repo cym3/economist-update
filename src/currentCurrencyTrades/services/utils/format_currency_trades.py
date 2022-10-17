@@ -2,19 +2,22 @@ import re
 from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
 from src.currentCurrencyTrades.domain.errors.create_error import createError
 
-def formatCurrencyTrades(trades: list[str], date: str, divider: int, countryName: str, isoCode: str):
+def formatCurrencyTrades(tableRow: list[str], date: str, divider: int, countryName: str, isoCode: str):
   regex = r'\d+'
   formatted = {}
   
   try:
-    buy = re.findall(regex, trades[0])
-    sale=  re.findall(regex, trades[1])
+    buy = re.findall(regex, tableRow[2])
+    buy = '.'.join(buy)
+
+    sale =  re.findall(regex, tableRow[3])
+    sale = '.'.join(sale)
 
     formatted = {
       'isoCode': isoCode,
       'trade': {
-        'buy': float('.'.join(buy)) / divider,
-        'sale': float('.'.join(sale)) / divider,
+        'buy': float(buy) / divider,
+        'sale': float(sale) / divider,
         'date': date
       }
     }
