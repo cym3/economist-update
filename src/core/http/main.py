@@ -6,6 +6,7 @@ from src.core.http.router.interest_rates import interestRatesRouter
 from src.core.http.router.cpi import cpiRouter
 from src.core.http.router.economic_activity import economicActivityRouter
 from src.core.http.router.business_confidence import businessConfidenceRouter
+from src.core.http.router.credit import creditRouter
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -28,5 +29,6 @@ app.include_router(currencyTradesRouter)
 app.include_router(reportRouter)
 app.include_router(interestRatesRouter)
 app.include_router(cpiRouter)
+app.include_router(creditRouter)
 app.include_router(economicActivityRouter)
 app.include_router(businessConfidenceRouter)

@@ -10,6 +10,7 @@ businessConfidenceRouter = APIRouter(
 @businessConfidenceRouter.get('/aggregate')
 def controller():
   data = businessConfidenceAggregateUseCase()
+  return data
 
 @businessConfidenceRouter.get('/by-sector')
 def controller():
