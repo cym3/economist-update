@@ -14,7 +14,7 @@ def creditByPurposeUseCase():
 
         # last_update_date_on_db = getLastUpdateDateDB(db_name)
 
-        last_update_date_on_db = { 'year': 2022, 'month': 7 }
+        last_update_date_on_db = { 'year': 2022, 'month': 6 }
 
         file_path = creditByPurposeInfra(date=last_update_date_on_db, indicator=indicator)
         
@@ -23,15 +23,13 @@ def creditByPurposeUseCase():
 
             creditTable = parseXlsx(response)
 
-            creditByPurpose = creditByPurposeService(
+            credit = creditByPurposeService(
                 table=creditTable,
                 date=last_update_date_on_db,
                 indicator=indicator
             )
 
-            credit = creditByPurpose
-
-            saveCreditByPurposeDB(creditByPurpose=creditByPurpose, db_name=db_name)
+            saveCreditByPurposeDB(creditByPurpose=credit, db_name=db_name)
             print(db_name)
 
         else:
