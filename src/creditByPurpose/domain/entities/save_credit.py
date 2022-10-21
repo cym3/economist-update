@@ -1,4 +1,3 @@
-from bson.objectid import ObjectId
 from src.creditByPurpose.domain.requiredFields.credit import DateCredit
 from src.creditByPurpose.domain.entities.create_tasks import createTaskDB
 from src.creditByPurpose.domain.errors.create_error import createError
@@ -21,7 +20,7 @@ def saveCreditByPurposeDB(creditByPurpose: list[CreditByPurpose], db_name: str):
     collection = database[db_name]
 
     for b_indicator in creditByPurpose:
-      id = ObjectId(b_indicator['id'])
+      id = b_indicator['id']
       values = b_indicator['values']
 
       date = values['date']

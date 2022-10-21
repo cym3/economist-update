@@ -1,4 +1,3 @@
-from bson.objectid import ObjectId
 from src.creditByActivitySector.domain.requiredFields.credit import DateCredit
 from src.creditByActivitySector.domain.entities.create_tasks import createTaskDB
 from src.creditByActivitySector.domain.errors.create_error import createError
@@ -19,7 +18,7 @@ def saveCreditByActivitySectorDB(creditByActivitySector: list[CreditByActivitySe
     collection = database[db_name]
 
     for b_indicator in creditByActivitySector:
-      id = ObjectId(b_indicator['id'])
+      id = b_indicator['id']
       values = b_indicator['values']
 
       date = values['date']
