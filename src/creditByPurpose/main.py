@@ -12,20 +12,18 @@ def creditByPurposeUseCase():
     for indicator in indicators:
         db_name = indicator['db_name']
 
-        # last_update_date_on_db = getLastUpdateDateDB(db_name)
+        old_date = getLastUpdateDateDB(db_name)
 
-        last_update_date_on_db = { 'year': 2022, 'month': 6 }
-
-        file_path = creditByPurposeInfra(date=last_update_date_on_db, indicator=indicator)
+        documentPath = creditByPurposeInfra(date=old_date)
         
-        if file_path:
-            response = readXlsx(documentPath=file_path)
+        if documentPath:
+            response = readXlsx(documentPath=documentPath)
 
             creditTable = parseXlsx(response)
 
             credit = creditByPurposeService(
                 table=creditTable,
-                date=last_update_date_on_db,
+                date=old_date,
                 indicator=indicator
             )
 

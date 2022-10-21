@@ -1,77 +1,54 @@
-from datetime import datetime
+import os
 import re
+import time
 from typing import Union
-from src.businessConfidenceBySector.domain.requiredFields.business_confidence import Quarter
-from src.businessConfidenceBySector.domain.entities.create_tasks import createTaskDB
-from src.businessConfidenceBySector.domain.errors.create_error import createError
+from src.creditByPurpose.infra.fetch.is_new_file import isNewFile
+from src.creditByPurpose.domain.requiredFields.credit import DateCredit
+from src.creditByPurpose.domain.entities.create_tasks import createTaskDB
+from src.creditByPurpose.domain.errors.create_error import createError
+from pathlib import Path
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
-from src.businessConfidenceBySector.services.utils.months import quarters
+from rapidfuzz.fuzz import partial_ratio
 
-url = 'http://www.ine.gov.mz/estatisticas/estatisticas-economicas/icce'
+url = 'https://www.bancomoc.mz/fm_pgLink.aspx?id=222'
 
-def fetchBusinessConfidence(quarter: Quarter):
-  last_update_year = quarter['year']
-  last_update_month = quarter['fromMonth']
-  years = [last_update_year, last_update_year + 1]
+def fetchCreditByPurpose(date: DateCredit, folder_path: Path):
+  file_folder = str(folder_path)
+  documentPath: Union[Path, None] = None
 
-  file_url: Union[str, None] = None
+  prefs = { 'download.default_directory' : file_folder }
 
   try:
     options = Options()
     options.headless = True
+    options.add_experimental_option('prefs', prefs)
 
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
     driver.get(url)
     
-    links = driver.find_elements(by='xpath', value='//*[@id="content-core"]/table/tbody/tr/td[1]/a')
+    link = driver.find_element(by='xpath', value='//*[@id="ContentPlaceHolder1_BMlnk_18_222"]')
+    name = link.accessible_name
+    link.click()
+    time.sleep(5)    
+    driver.close()
 
-    link = links[0]
-    name = link.text.lower()
-    # Check if is Indicadores de Confiança e de Clima Económico (ICCE) I Trimestre 2022
-    match1 = re.search('indicador', name)
-    match2 = re.search('confiança', name)
-    match3 = re.search('clima económico', name)
-    match4 = re.search('icce', name)
+    pattern = 'Finalidade.xlsx'
 
-    if (match1 is None) or (match2 is None) or (match3 is None) or (match4 is None):
-      file_url = None
-      return
+    for root, dirs, files in os.walk(file_folder):
+      for file in files:
+        match_score = partial_ratio(pattern, file)
+        if (match_score > 90):
+          documentPath = folder_path.joinpath(file)
 
-    # Find Business Confidence Year
-    year = 0
-    for y in years:
-      strs_y = [x for x in str(y)]
-      min_year = f'{strs_y[2]}{strs_y[3]}'
+    is_new = isNewFile(date, name)
 
-      yearMatch = re.search(min_year, name)
-
-      if (yearMatch is not None):
-        year = y
-
-    # Find Business Confidence Quarter
-    newQuarter: Union[Quarter, None] = None
-
-    for q in quarters:
-      sign = q['sign'].lower()
-      quarterMatch = re.search(f'{sign} trimestre', name)
-
-      if (quarterMatch is not None):
-        q['year'] = year
-        newQuarter = q
-
-    last_update = datetime(last_update_year, last_update_month, 1)
-    year = newQuarter['year']
-    month = newQuarter['fromMonth']
-    new_update = datetime(year, month, 1)
-
-    if new_update > last_update:
-      href = link.get_attribute('href')
-
-      file_url = href.replace('/view', '', 1)
-
+    if is_new is False:
+      documentPath.unlink()
+      return None
+    
   except Exception as err:
     print(err)
     errorMessage = f'Could not fetch the By Sector Business Confidence indicator, the url is {url}'
@@ -80,4 +57,4 @@ def fetchBusinessConfidence(quarter: Quarter):
 
     createError(errorMessage)
 
-  return file_url
+  return str(documentPath)

@@ -1,4 +1,3 @@
-from typing import Union
 from src.creditByPurpose.domain.requiredFields.credit import DateCredit
 from src.creditByPurpose.domain.entities.create_tasks import createTaskDB
 from src.creditByPurpose.domain.errors.create_error import createError
