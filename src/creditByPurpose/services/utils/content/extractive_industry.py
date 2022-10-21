@@ -4,9 +4,9 @@ from src.creditByPurpose.domain.entities.create_tasks import createTaskDB
 from src.creditByPurpose.domain.errors.create_error import createError
 from rapidfuzz.fuzz import partial_ratio
 
-name = '10. COMÉRCIO'
+name = '5. INDUSTRIA EXTRACTIVA'
 
-def tradesFormatter(
+def extractiveIndustryFormatter(
   table: list[list[Union[float, str]]],
   new_date: DateCredit
 ):
@@ -47,6 +47,6 @@ def tradesFormatter(
     createError(errorMessage)
 
   return {
-    'id': '6351831c4630a096007da370',
+    'id': '6351831c4630a096007da36b',
     'values': value
   }
