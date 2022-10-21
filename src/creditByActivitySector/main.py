@@ -1,41 +1,41 @@
-from src.creditByActivitySector.domain.requiredFields.page_validator import fileValidator
-from src.creditByActivitySector.infra.main import businessConfidenceInfra
+from src.creditByActivitySector.infra.main import creditByActivitySectorInfra
 from src.creditByActivitySector.xlsx.read import readXlsx
 from src.creditByActivitySector.xlsx.parser import parseXlsx
-from src.creditByActivitySector.services.business_confidence import businessConfidenceService
-from src.creditByActivitySector.domain.entities.save_economic_activity import saveBusinessConfidenceDB
+from src.creditByActivitySector.services.main import creditByActivitySectorService
+from src.creditByActivitySector.domain.entities.save_credit import saveCreditByActivitySectorDB
 from src.creditByActivitySector.domain.entities.get_last_update_date import getLastUpdateDateDB
 from src.creditByActivitySector.indicators import indicators
 
-
 def creditByActivitySectorUseCase():
-    businessConfidence = []
+    credit = []
     
     for indicator in indicators:
         db_name = indicator['db_name']
 
-        last_update_date_on_db = getLastUpdateDateDB(db_name)
+        # old_date = getLastUpdateDateDB(db_name)
 
-        file_path = businessConfidenceInfra(quarter=last_update_date_on_db, indicator=indicator)
+        old_date = {
+            'year': 2022,
+            'month': 7
+        }
 
-        if file_path:
-            response = readXlsx(documentPath=file_path)
+        documentPath = creditByActivitySectorInfra(date=old_date)
+        
+        if documentPath:
+            response = readXlsx(documentPath=documentPath)
 
-            is_valid_page = fileValidator(response, indicator)
+            creditTable = parseXlsx(response)
 
-            if is_valid_page:
-                tables = parseXlsx(response)
+            credit = creditByActivitySectorService(
+                table=creditTable,
+                date=old_date,
+                indicator=indicator
+            )
 
-                businessConfidence = businessConfidenceService(
-                    table=tables[0],
-                    quarter=last_update_date_on_db,
-                    indicator=indicator
-                )
-
-                saveBusinessConfidenceDB(businessConfidence=businessConfidence, db_name=db_name)
-                print(db_name)
+            saveCreditByActivitySectorDB(creditByActivitySector=credit, db_name=db_name)
+            print(db_name)
 
         else:
             print(f'No new {db_name} to update')
 
-    return businessConfidence
+    return credit

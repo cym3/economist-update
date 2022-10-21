@@ -1,4 +1,3 @@
-from pprint import pprint
 from src.creditByPurpose.services.utils.content.construction import constructionFormatter
 from src.creditByPurpose.services.utils.content.electricity_gas_and_water import electricityGasAndWaterFormatter
 from src.creditByPurpose.services.utils.content.extractive_industry import extractiveIndustryFormatter

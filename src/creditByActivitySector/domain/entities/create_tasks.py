@@ -1,7 +1,7 @@
 from typing import Union
 from src.core.db.connect_db import jobs_db
 from datetime import datetime
-from src.businessConfidenceBySector.domain.errors.create_error import createError
+from src.creditByActivitySector.domain.errors.create_error import createError
 
 def createTaskDB (isDone: bool, error: Union[str, None] = ''):
   now = datetime.now()

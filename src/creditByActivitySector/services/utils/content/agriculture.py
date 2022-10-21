@@ -1,12 +1,12 @@
 from typing import Union
-from src.creditByPurpose.domain.requiredFields.credit import DateCredit
-from src.creditByPurpose.domain.entities.create_tasks import createTaskDB
-from src.creditByPurpose.domain.errors.create_error import createError
+from src.creditByActivitySector.domain.requiredFields.credit import DateCredit
+from src.creditByActivitySector.domain.entities.create_tasks import createTaskDB
+from src.creditByActivitySector.domain.errors.create_error import createError
 from rapidfuzz.fuzz import partial_ratio
 
-name = 'COMÉRCIO'
+name: str = 'AGRICULTURA'
 
-def tradesFormatter(
+def agricultureFormatter(
   table: list[list[Union[float, str]]],
   new_date: DateCredit
 ):
@@ -45,6 +45,6 @@ def tradesFormatter(
     createError(errorMessage)
 
   return {
-    'id': '6351831c4630a096007da370',
+    'id': '63503b410fb0a210901b891b',
     'values': value
   }

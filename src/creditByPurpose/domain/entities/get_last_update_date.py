@@ -1,5 +1,5 @@
-from src.businessConfidenceBySector.domain.entities.create_tasks import createTaskDB
-from src.businessConfidenceBySector.domain.errors.create_error import createError
+from src.creditByPurpose.domain.entities.create_tasks import createTaskDB
+from src.creditByPurpose.domain.errors.create_error import createError
 from src.core.db.connect_db import economist_db
 
 def getLastUpdateDateDB(db_name: str):

@@ -1,18 +1,10 @@
 from pathlib import Path
-from src.businessConfidenceBySector.domain.requiredFields.business_confidence import Quarter, Indicator
-from src.businessConfidenceBySector.infra.fetch.fetch import fetchBusinessConfidence
-from src.businessConfidenceBySector.infra.download.pdf_page import downloadPdfPage
+from src.creditByActivitySector.domain.requiredFields.credit import DateCredit
+from src.creditByActivitySector.infra.fetch.fetch import fetchCreditByActivitySector
 
-def businessConfidenceInfra(quarter: Quarter, indicator: Indicator):   
-  name = indicator['db_name']
-  path = str(Path(__file__).parents[1].joinpath(f'assets/{name}.pdf')) 
+def creditByActivitySectorInfra(date: DateCredit):   
+  folder_path = Path(__file__).parents[1].joinpath('assets')
    
-  file_url = fetchBusinessConfidence(quarter)
+  documentPath = fetchCreditByActivitySector(date, folder_path)
 
-  if file_url is not None:
-
-    path = downloadPdfPage(url=file_url, path=path, indicator=indicator)
-
-    return path
-
-  return None
+  return documentPath

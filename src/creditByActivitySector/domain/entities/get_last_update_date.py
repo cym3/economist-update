@@ -1,18 +1,18 @@
-from src.businessConfidenceBySector.domain.entities.create_tasks import createTaskDB
-from src.businessConfidenceBySector.domain.errors.create_error import createError
+from src.creditByActivitySector.domain.entities.create_tasks import createTaskDB
+from src.creditByActivitySector.domain.errors.create_error import createError
 from src.core.db.connect_db import economist_db
 
 def getLastUpdateDateDB(db_name: str):
-  quarter = {}
+  date = {}
 
   try: 
     database = economist_db()
     collection = database[db_name]
 
-    eai = collection.find_one()
-    last = eai['values'][-1]
+    credit = collection.find_one()
+    last = credit['values'][-1]
 
-    quarter = last['quarter']
+    date = last['date']
 
   except Exception as err:
     print(err)
@@ -22,4 +22,4 @@ def getLastUpdateDateDB(db_name: str):
 
     createError(errorMessage)
 
-  return quarter
+  return date

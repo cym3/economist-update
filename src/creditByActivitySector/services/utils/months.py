@@ -13,25 +13,17 @@ months = [
   'dezembro'
 ]
 
-quarters = [
-  {
-    'sign': "I",
-    'fromMonth': 1,
-    'toMonth': 3
-  },
-  {
-    'sign': "II",
-    'fromMonth': 4,
-    'toMonth': 6
-  },
-  {
-    'sign': "III",
-    'fromMonth': 7,
-    'toMonth': 9
-  },
-  {
-    'sign': "IV",
-    'fromMonth': 10,
-    'toMonth': 12
-  }
+min_months = [
+  'jan',
+  'fev',
+  'mar',
+  'abr',
+  'mai',
+  'jun',
+  'jul',
+  'ago',
+  'set',
+  'out',
+  'nov',
+  'dez'
 ]
