@@ -3,7 +3,7 @@ import re
 import time
 from typing import Union
 from src.creditByActivitySector.infra.fetch.is_new_file import isNewFile
-from src.creditByActivitySector.domain.requiredFields.credit import DateCredit
+from src.creditByActivitySector.domain.requiredFields.credit import DateCredit, Indicator
 from src.creditByActivitySector.domain.entities.create_tasks import createTaskDB
 from src.creditByActivitySector.domain.errors.create_error import createError
 from pathlib import Path
@@ -15,7 +15,8 @@ from rapidfuzz.fuzz import partial_ratio
 
 url = 'https://www.bancomoc.mz/fm_pgLink.aspx?id=222'
 
-def fetchCreditByActivitySector(date: DateCredit, folder_path: Path):
+def fetchCreditByActivitySector(date: DateCredit, folder_path: Path, indicator: Indicator):
+  db_name = indicator['db_name']
   file_folder = str(folder_path)
   documentPath: Union[Path, None] = None
 
@@ -51,9 +52,9 @@ def fetchCreditByActivitySector(date: DateCredit, folder_path: Path):
     
   except Exception as err:
     print(err)
-    errorMessage = f'Could not fetch the By Sector Business Confidence indicator, the url is {url}'
+    errorMessage = f'Could not fetch the {db_name}, the url is {url}'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
     createError(errorMessage)
 

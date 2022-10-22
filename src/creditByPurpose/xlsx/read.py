@@ -1,8 +1,9 @@
 import pandas as pd
+from creditByPurpose.domain.requiredFields.credit import Indicator
 from src.cpi.domain.entities.create_tasks import createTaskDB
 from src.cpi.domain.errors.create_error import createError
 
-def readXlsx(documentPath: str):
+def readXlsx(documentPath: str, indicator: Indicator):
   table = []
 
   try:

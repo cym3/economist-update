@@ -20,12 +20,12 @@ def formatter(
   if last_date_on_table <= last_date_on_db:
     return None
 
-  industry = industryFormatter(table, dates_row, last_date_on_db)
-  transport = transportFormatter(table, dates_row, last_date_on_db)
-  accommodations_restaurants = accommodationsRestaurantsFormatter(table, dates_row, last_date_on_db)
-  energy_water_and_san = energyWaterAndSanFormatter(table, dates_row, last_date_on_db)
-  other_services = otherServicesFormatter(table, dates_row, last_date_on_db)
-  trade = tradeFormatter(table, dates_row, last_date_on_db)
+  industry = industryFormatter(table, dates_row, last_date_on_db, indicator)
+  transport = transportFormatter(table, dates_row, last_date_on_db, indicator)
+  accommodations_restaurants = accommodationsRestaurantsFormatter(table, dates_row, last_date_on_db, indicator)
+  energy_water_and_san = energyWaterAndSanFormatter(table, dates_row, last_date_on_db, indicator)
+  other_services = otherServicesFormatter(table, dates_row, last_date_on_db, indicator)
+  trade = tradeFormatter(table, dates_row, last_date_on_db, indicator)
 
   indices_of_business = mainIndexFormatter(table, dates_row, last_date_on_db, indicator)
   

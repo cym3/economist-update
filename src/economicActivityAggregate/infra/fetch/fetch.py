@@ -8,11 +8,12 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from src.economicActivityAggregate.services.utils.months import months
-from src.economicActivityAggregate.domain.requiredFields.economic_activity import DateEconomicActivity
+from src.economicActivityAggregate.domain.requiredFields.economic_activity import DateEconomicActivity, Indicator
 
 url = 'http://www.ine.gov.mz/estatisticas/estatisticas-economicas/indice-de-actividades-economicas-iae'
 
-def fetchEconomicActivity(date: DateEconomicActivity):
+def fetchEconomicActivity(date: DateEconomicActivity, indicator: Indicator):
+  db_name = indicator['db_name']
   last_update_year = date['year']
   last_update_month = date['month']
   years = [last_update_year, last_update_year + 1]
@@ -76,9 +77,9 @@ def fetchEconomicActivity(date: DateEconomicActivity):
 
   except Exception as err:
     print(err)
-    errorMessage = f'Could not fetch the Economic Activities Index, the url is {url}'
+    errorMessage = f'Could not fetch the {db_name}, the url is {url}'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
     createError(errorMessage)
 

@@ -1,5 +1,6 @@
 from datetime import datetime
 from typing import Union
+from src.economicActivityAggregate.domain.requiredFields.economic_activity import Indicator
 from src.economicActivityAggregate.domain.entities.create_tasks import createTaskDB
 from src.economicActivityAggregate.domain.errors.create_error import createError
 from src.economicActivityAggregate.services.utils.find.filter_row import filter_row
@@ -10,8 +11,10 @@ name = 'indústria'
 def industryFormatter(
   table: list[list[Union[float, str]]],
   dates_row: list[datetime],
-  last_date_on_db: datetime
+  last_date_on_db: datetime,
+  indicator: Indicator
 ):
+  db_name = indicator['db_name']
   values = []
 
   try:
@@ -53,7 +56,7 @@ def industryFormatter(
 
   except Exception as err:
     print(err)
-    errorMessage = f'aggregate Economic Activities Index: has a format error on {name}'
+    errorMessage = f'{db_name}: has a format error on {name}'
 
     createTaskDB(isDone=False, error=errorMessage)
 

@@ -6,11 +6,7 @@ class DateCredit(BaseModel):
 
 class Indicator(BaseModel):
   name: str
+  description: str
   page_identifiers: list[str]
   db_name: str
-  scheduleCode: str
-
-class Schedule(BaseModel):
-  scheduleCode: str
-  howToUpdate: str
-  date: str
+  jobCode: str

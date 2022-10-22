@@ -2,10 +2,10 @@ from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
 from src.currentCurrencyTrades.domain.errors.create_error import createError
 from src.currentCurrencyTrades.services.utils.format_currency_trades import formatCurrencyTrades
 from src.currentCurrencyTrades.services.utils.find_currency_trades import findCurrencyTrades
-from src.currentCurrencyTrades.domain.requiredFields.currencies import Currency
+from src.currentCurrencyTrades.domain.requiredFields.currencies import Currency, Indicator
 from datetime import datetime
 
-def currencyTradesService(currencies: list[Currency], tables: list):
+def currencyTradesService(currencies: list[Currency], tables: list, indicator: Indicator):
     now = datetime.now()
     date = now.strftime('%Y-%m-%d %H:%M:%S')
 
@@ -23,7 +23,6 @@ def currencyTradesService(currencies: list[Currency], tables: list):
                 tableRow=tableRow,
                 date=date,
                 divider=1,
-                countryName=countryName,
                 isoCode=currency['iso']['code']
             )
 
@@ -37,14 +36,14 @@ def currencyTradesService(currencies: list[Currency], tables: list):
                     tableRow=tableRow,
                     date=date,
                     divider=1000,
-                    countryName=countryName,
-                    isoCode=currency['iso']['code']
+                    isoCode=currency['iso']['code'],
+                    indicator=indicator
                 )
 
                 newCurrenciesTrades.append(formattedTrades)
 
             if tableRow is None:
-                createTaskDB(isDone=False)
+                createTaskDB(isDone=False, indicator=indicator,)
                 errorMessage = f'The {countryName} currency could not be found'
 
                 createError(errorMessage)

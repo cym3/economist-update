@@ -12,6 +12,7 @@ def mainIndexFormatter(
   last_date_on_db: datetime,
   indicator: Indicator
 ):
+  db_name = indicator['db_name']
   values = []
 
   name = indicator['name'].lower()
@@ -56,7 +57,7 @@ def mainIndexFormatter(
 
   except Exception as err:
     print(err)
-    errorMessage = f'aggregate Economic Activities: has a format error on {name}'
+    errorMessage = f'{db_name}: has a format error on {name}'
 
     createTaskDB(isDone=False, error=errorMessage)
 

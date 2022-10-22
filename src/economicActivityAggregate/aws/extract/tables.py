@@ -1,8 +1,9 @@
 import boto3
+from economicActivityAggregate.domain.requiredFields.economic_activity import Indicator
 from src.economicActivityAggregate.domain.entities.create_tasks import createTaskDB
 from src.economicActivityAggregate.domain.errors.create_error import createError
 
-def extractTable(documentPath: str):
+def extractTable(documentPath: str, indicator: Indicator):
   response = None
 
   try:
@@ -22,7 +23,7 @@ def extractTable(documentPath: str):
     print(err)
     errorMessage = f'AWS Textract failed to extract {documentPath} document table.'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
     createError(errorMessage)
 

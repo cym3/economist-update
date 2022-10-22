@@ -1,10 +1,18 @@
 import re
+from currentCurrencyTrades.domain.requiredFields.currencies import Indicator
 from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
 from src.currentCurrencyTrades.domain.errors.create_error import createError
 
-def formatCurrencyTrades(tableRow: list[str], date: str, divider: int, countryName: str, isoCode: str):
+def formatCurrencyTrades(
+  tableRow: list[str],
+  date: str,
+  divider: int,
+  isoCode: str,
+  indicator: Indicator
+):
   regex = r'\d+'
   formatted = {}
+  db_name = indicator['db_name']
   
   try:
     buy = re.findall(regex, tableRow[2])
@@ -24,9 +32,9 @@ def formatCurrencyTrades(tableRow: list[str], date: str, divider: int, countryNa
 
   except Exception as err:
     print(err)
-    errorMessage = f'The {countryName} currency has a format error'
+    errorMessage = f'{db_name}: has a format error on {isoCode}'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
     createError(errorMessage)
 

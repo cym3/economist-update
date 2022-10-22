@@ -1,5 +1,5 @@
 from typing import Union
-from src.creditByPurpose.domain.requiredFields.credit import DateCredit
+from src.creditByPurpose.domain.requiredFields.credit import DateCredit, Indicator
 from src.creditByPurpose.domain.entities.create_tasks import createTaskDB
 from src.creditByPurpose.domain.errors.create_error import createError
 from rapidfuzz.fuzz import partial_ratio
@@ -8,8 +8,10 @@ name = 'TOTAL'
 
 def totalFormatter(
   table: list[list[Union[float, str]]],
-  new_date: DateCredit
+  new_date: DateCredit,
+  indicator: Indicator
 ):
+  db_name = indicator['db_name']
   value = {}
 
   try:
@@ -38,7 +40,7 @@ def totalFormatter(
 
   except Exception as err:
     print(err)
-    errorMessage = f'Credit By Purpose: has a format error on {name}'
+    errorMessage = f'{db_name}: has a format error on {name}'
 
     createTaskDB(isDone=False, error=errorMessage)
 

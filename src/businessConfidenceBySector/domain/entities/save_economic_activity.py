@@ -1,4 +1,4 @@
-from src.businessConfidenceBySector.domain.requiredFields.business_confidence import Quarter
+from src.businessConfidenceBySector.domain.requiredFields.business_confidence import Indicator, Quarter
 from src.businessConfidenceBySector.domain.entities.create_tasks import createTaskDB
 from src.businessConfidenceBySector.domain.errors.create_error import createError
 from src.core.db.connect_db import economist_db
@@ -12,7 +12,8 @@ class BusinessConfidence(BaseModel):
   id: str
   values: list[Value]
 
-def saveBusinessConfidenceDB(businessConfidence: list[BusinessConfidence], db_name: str):
+def saveBusinessConfidenceDB(businessConfidence: list[BusinessConfidence], indicator: Indicator):
+  db_name = indicator['db_name']
   try:
     database = economist_db()
     collection = database[db_name]
@@ -30,11 +31,11 @@ def saveBusinessConfidenceDB(businessConfidence: list[BusinessConfidence], db_na
           { '$push': { 'values':  { 'quarter': quarter, 'value': value } }}
         )
     
-    createTaskDB(isDone=True)
+    createTaskDB(isDone=True, indicator=indicator)
 
   except Exception as err:
     print(err)
-    errorMessage = f'Was not able to save {db_name} By Sector Business Confidence indicator'
+    errorMessage = f'Was not able to save {db_name}'
 
     createTaskDB(isDone=False, error=errorMessage)
 

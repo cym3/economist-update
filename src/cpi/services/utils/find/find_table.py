@@ -1,5 +1,6 @@
 import re
 import pandas as pd
+from cpi.domain.requiredFields.cpi import Indicator
 from src.cpi.domain.entities.create_tasks import createTaskDB
 from src.cpi.domain.errors.create_error import createError
 
@@ -25,7 +26,8 @@ def find_last_row(sheet: list):
     index += 1
 
 
-def findTable(path: str, region: str):
+def findTable(path: str, indicator: Indicator):
+  name = indicator['db_name']
   table = []
 
   try:
@@ -47,7 +49,7 @@ def findTable(path: str, region: str):
 
   except Exception as err:
     print(err)
-    errorMessage = f'The {region} CPI has a format error'
+    errorMessage = f'The {name} CPI has a format error'
 
     createTaskDB(isDone=False, error=errorMessage)
 

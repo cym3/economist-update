@@ -1,12 +1,13 @@
-from src.businessConfidenceAggregate.domain.entities.create_tasks import createTaskDB
-from src.businessConfidenceAggregate.domain.errors.create_error import createError
+from currentCurrencyTrades.domain.requiredFields.currencies import Indicator
+from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
+from src.currentCurrencyTrades.domain.errors.create_error import createError
 from PyPDF2 import PdfReader, PdfFileWriter
 import requests
 
 page_number = 0
 
 # Download the page containing the indicator table data
-def downloadPdfPage(url: str, path: str):
+def downloadPdfPage(url: str, path: str, indicator: Indicator):
   try:
     response = requests.get(url)
 
@@ -26,7 +27,7 @@ def downloadPdfPage(url: str, path: str):
     print(err)
     errorMessage = f'Could not download the pdf file, the url is {url}'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
     createError(errorMessage)
 

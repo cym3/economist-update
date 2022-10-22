@@ -8,11 +8,7 @@ class Quarter(BaseModel):
 
 class Indicator(BaseModel):
   name: str
-  page_identities: str
-  db_name: int
-  scheduleCode: str
-
-class Schedule(BaseModel):
-  scheduleCode: str
-  howToUpdate: str
-  date: str
+  description: str
+  page_identifiers: list[str]
+  db_name: str
+  jobCode: str

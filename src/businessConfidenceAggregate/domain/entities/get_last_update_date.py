@@ -2,7 +2,8 @@ from src.businessConfidenceAggregate.domain.entities.create_tasks import createT
 from src.businessConfidenceAggregate.domain.errors.create_error import createError
 from src.core.db.connect_db import economist_db
 
-def getLastUpdateDateDB(db_name: str):
+def getLastUpdateDateDB(indicator: str):
+  db_name = indicator['db_name']
   quarter = {}
 
   try: 
@@ -18,7 +19,7 @@ def getLastUpdateDateDB(db_name: str):
     print(err)
     errorMessage = f'Database failed to get Aggregate Business Confidence indicator update date'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
     createError(errorMessage)
 

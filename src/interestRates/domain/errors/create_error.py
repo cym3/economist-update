@@ -1,24 +1,25 @@
 from pathlib import Path
 from datetime import datetime
+from interestRates.domain.requiredFields.interest_rates import Indicator
 from src.core.mail.sand_mail import sandMail
 from src.utils.create_excel import createExcelFile
 from src.utils.tasks import tasks_header
 
-file_title = 'Atualização das taxas de Juros diarias: Relatório da Ultima actividade'
-
-def createError(massage: str):
+def createError(massage: str, indicator: Indicator):
+    name = indicator['name']
+    jobCode = indicator['jobCode']
+    description = indicator['description']
+    title = f'Atualização {name}: Relatório da Ultima actividade'
     
     path = str(Path(__file__).parents[2].joinpath(f'assets/report.xlsx'))
 
     now = datetime.now()
     date = now.strftime('%Y-%m-%d %H:%M:%S')
 
-    title = f'Interest Rates could not be updated {date}'
-
     body = [
-        ['02-job-interest-rates', 'CurrentCurrencyTrades', 'Daily Interest Rates update', 'No', massage, now ]
+        [jobCode, name, description, 'No', massage, now ]
     ]
 
-    createExcelFile(body=body, title=file_title, header=tasks_header, path=path)
+    createExcelFile(body=body, title=title, header=tasks_header, path=path)
     
     sandMail(title=title, message=massage, attachmentPath=path)

@@ -14,12 +14,12 @@ def businessConfidenceBySectorUseCase():
     for indicator in indicators:
         db_name = indicator['db_name']
 
-        last_update_date_on_db = getLastUpdateDateDB(db_name)
+        last_update_date_on_db = getLastUpdateDateDB(indicator)
 
         file_path = businessConfidenceInfra(quarter=last_update_date_on_db, indicator=indicator)
 
         if file_path:
-            response = extractTable(documentPath=file_path)
+            response = extractTable(documentPath=file_path, indicator=indicator)
 
             is_valid_page = fileValidator(response, indicator)
 
@@ -32,7 +32,11 @@ def businessConfidenceBySectorUseCase():
                     indicator=indicator
                 )
 
-                saveBusinessConfidenceDB(businessConfidence=businessConfidence, db_name=db_name)
+                saveBusinessConfidenceDB(
+                    businessConfidence=businessConfidence,
+                    db_name=db_name,
+                    indicator=indicator
+                )
                 print(db_name)
 
         else:

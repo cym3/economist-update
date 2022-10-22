@@ -1,6 +1,7 @@
 from datetime import datetime
 import re
 from typing import Union
+from businessConfidenceAggregate.domain.requiredFields.business_confidence import Indicator
 from src.businessConfidenceAggregate.domain.requiredFields.business_confidence import Quarter
 from src.businessConfidenceAggregate.domain.entities.create_tasks import createTaskDB
 from src.businessConfidenceAggregate.domain.errors.create_error import createError
@@ -12,7 +13,8 @@ from src.businessConfidenceAggregate.services.utils.months import quarters
 
 url = 'http://www.ine.gov.mz/estatisticas/estatisticas-economicas/icce'
 
-def fetchBusinessConfidence(quarter: Quarter):
+def fetchBusinessConfidence(quarter: Quarter, indicator: Indicator):
+  db_name = indicator['db_name']
   last_update_year = quarter['year']
   last_update_month = quarter['fromMonth']
   years = [last_update_year, last_update_year + 1]
@@ -74,9 +76,9 @@ def fetchBusinessConfidence(quarter: Quarter):
 
   except Exception as err:
     print(err)
-    errorMessage = f'Could not fetch the Aggregate Business Confidence indicator, the url is {url}'
+    errorMessage = f'Could not fetch the {db_name} the url is {url}'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
     createError(errorMessage)
 

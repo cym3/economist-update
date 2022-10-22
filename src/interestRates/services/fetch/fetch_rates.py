@@ -1,4 +1,5 @@
 from datetime import datetime
+from interestRates.domain.requiredFields.interest_rates import Indicator
 from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
 from src.currentCurrencyTrades.domain.errors.create_error import createError
 import requests
@@ -17,7 +18,8 @@ headers = {
   'Sec-Fetch-User': '?1'
 }
 
-def fetchRates(rates_date: str):
+def fetchRates(rates_date: str, indicator: Indicator):
+  db_name = indicator['db_name']
   new_date = datetime.strptime(rates_date, '%Y-%m-%d')
 
   date = new_date.strftime('%d-%m-%Y')
@@ -33,9 +35,9 @@ def fetchRates(rates_date: str):
 
   except Exception as err:
     print(err)
-    errorMessage = f'Could not fetch the Interest Rates, the url is {url}'
+    errorMessage = f'Could not fetch the {db_name}, the url is {url}'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
     createError(errorMessage)
 

@@ -1,12 +1,10 @@
 indicators = [
   {
-    'name': 'Indicadores de Confiança e de Clima Económico',
-    'description': 'Indicadores de Confiança e de Clima Económico',
-    'page_number': 10,
-    'column_index': 2,
-    'page_identifiers': ['3.ANEXOS', '3.1. Resumo Estatístico dos Indicadores'],
-    'db_name': 'business-confidence-by-sector',
-    'jobCode': '02-job-business-confidence'
+    'name': 'Taxa de Câmbio Corrente',
+    'description': 'Taxas de Câmbio de Referência do Mercado  Interbancário (Cotações)',
+    'page_identifiers': [''],
+    'db_name': 'exchange-rates',
+    'jobCode': '02-exchange-rates',
   }
 ]
 

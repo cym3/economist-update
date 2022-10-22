@@ -2,11 +2,11 @@ from fastapi import APIRouter
 from src.currentCurrencyTrades.main import currentCurrencyTradesUseCase
 
 currencyTradesRouter = APIRouter(
-    prefix='/current-currency-trades',
+    prefix='/trades',
     tags=['Currencies']
 )
 
-@currencyTradesRouter.get('')
+@currencyTradesRouter.get('/current-currency')
 def controller():
   data = currentCurrencyTradesUseCase()
 

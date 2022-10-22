@@ -1,8 +1,9 @@
+from currentCurrencyTrades.domain.requiredFields.currencies import Indicator
 from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
 from src.currentCurrencyTrades.domain.errors.create_error import createError
 from src.core.db.connect_db import economist_db
 
-def getAllCurrenciesDB ():
+def getAllCurrenciesDB (indicator: Indicator):
   currencies = []
 
   try: 
@@ -15,7 +16,7 @@ def getAllCurrenciesDB ():
     print(err)
     errorMessage = 'Database failed to get currencies'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
     createError(errorMessage)
 

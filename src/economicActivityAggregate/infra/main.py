@@ -7,7 +7,7 @@ def economicActivityInfra(date: DateEconomicActivity, indicator: Indicator):
   name = indicator['db_name']
   path = str(Path(__file__).parents[1].joinpath(f'assets/{name}.pdf')) 
    
-  file_url = fetchEconomicActivity(date)
+  file_url = fetchEconomicActivity(date, indicator)
 
   if file_url is not None:
 

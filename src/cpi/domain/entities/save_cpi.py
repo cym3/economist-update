@@ -1,4 +1,4 @@
-from src.cpi.domain.requiredFields.cpi import DateCpi
+from src.cpi.domain.requiredFields.cpi import DateCpi, Indicator
 from src.cpi.domain.entities.create_tasks import createTaskDB
 from src.cpi.domain.errors.create_error import createError
 from src.core.db.connect_db import economist_db
@@ -13,10 +13,11 @@ class CPI(BaseModel):
   total: float
   date: DateCpi
 
-def saveCpiDB (CPIs: CPI, region: str):
+def saveCpiDB (CPIs: CPI, indicator: Indicator):
+  db_name = indicator['db_name']
   try:
     database = economist_db()
-    collection = database[f'cpi-{region}']
+    collection = database[db_name]
 
     products = CPIs['products']
     total = CPIs['total']
@@ -36,13 +37,13 @@ def saveCpiDB (CPIs: CPI, region: str):
         { '$push': { 'values':  { 'date': date, 'value': value } }}
       )
     
-    createTaskDB(isDone=True)
+    createTaskDB(isDone=True, indicator=indicator)
 
   except Exception as err:
     print(err)
-    errorMessage = f'Was not able to save {region} CPI'
+    errorMessage = f'Was not able to save {db_name}'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
     createError(errorMessage)
 

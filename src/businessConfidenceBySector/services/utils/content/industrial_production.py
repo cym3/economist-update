@@ -11,6 +11,7 @@ def industrialProductionFormatter(
   new_quarter: Quarter,
   indicator: Indicator
 ):
+  db_name = indicator['db_name']
   values = []
 
   try:
@@ -40,7 +41,7 @@ def industrialProductionFormatter(
 
   except Exception as err:
     print(err)
-    errorMessage = f'BySector Business Confidence indicator: has a format error on {name}'
+    errorMessage = f'{db_name}: has a format error on {name}'
 
     createTaskDB(isDone=False, error=errorMessage)
 

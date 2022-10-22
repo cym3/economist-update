@@ -27,7 +27,7 @@ def findNewQuarter(table: list, indicator: Indicator):
     print(err)
     errorMessage = f'The {db_name} table could not be filtered. Error occurred'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
     createError(errorMessage)
 

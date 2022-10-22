@@ -1,8 +1,10 @@
+from economicActivityAggregate.domain.requiredFields.economic_activity import Indicator
 from src.economicActivityAggregate.domain.entities.create_tasks import createTaskDB
 from src.economicActivityAggregate.domain.errors.create_error import createError
 from src.core.db.connect_db import economist_db
 
-def getLastUpdateDateDB(db_name: str):
+def getLastUpdateDateDB(indicator: Indicator):
+  db_name = indicator['db_name']
   date = {}
 
   try: 
@@ -18,7 +20,7 @@ def getLastUpdateDateDB(db_name: str):
     print(err)
     errorMessage = f'Database failed to get EAI update date'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
     createError(errorMessage)
 

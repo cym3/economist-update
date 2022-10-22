@@ -12,14 +12,14 @@ def formatter(
   table: list[list[float]],
   new_date: DateCredit
 ):
-  agriculture = agricultureFormatter(table, new_date)
-  construction = constructionFormatter(table, new_date)
-  industry = extractiveIndustryFormatter(table, new_date)
-  other_sectores = otherSectoresFormatter(table, new_date)
-  total = totalFormatter(table, new_date)
-  tourism = tourismFormatter(table, new_date)
-  trades = tradesFormatter(table, new_date)
-  transport_and_communication = transportAndCommunicationFormatter(table, new_date)
+  agriculture = agricultureFormatter(table, new_date, indicator)
+  construction = constructionFormatter(table, new_date, indicator)
+  industry = extractiveIndustryFormatter(table, new_date, indicator)
+  other_sectores = otherSectoresFormatter(table, new_date, indicator)
+  total = totalFormatter(table, new_date, indicator)
+  tourism = tourismFormatter(table, new_date, indicator)
+  trades = tradesFormatter(table, new_date, indicator)
+  transport_and_communication = transportAndCommunicationFormatter(table, new_date, indicator)
 
   return [
     agriculture,

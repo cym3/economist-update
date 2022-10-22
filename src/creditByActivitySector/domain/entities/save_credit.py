@@ -1,4 +1,4 @@
-from src.creditByActivitySector.domain.requiredFields.credit import DateCredit
+from src.creditByActivitySector.domain.requiredFields.credit import DateCredit, Indicator
 from src.creditByActivitySector.domain.entities.create_tasks import createTaskDB
 from src.creditByActivitySector.domain.errors.create_error import createError
 from src.core.db.connect_db import economist_db
@@ -12,7 +12,9 @@ class CreditByActivitySector(BaseModel):
   id: str
   values: Value
 
-def saveCreditByActivitySectorDB(creditByActivitySector: list[CreditByActivitySector], db_name: str):
+def saveCreditByActivitySectorDB(creditByActivitySector: list[CreditByActivitySector], indicator: Indicator):
+  db_name = indicator['db_name']
+  
   try:
     database = economist_db()
     collection = database[db_name]
@@ -34,13 +36,13 @@ def saveCreditByActivitySectorDB(creditByActivitySector: list[CreditByActivitySe
         }}
       )
     
-    createTaskDB(isDone=True)
+    createTaskDB(isDone=True, indicator=indicator)
 
   except Exception as err:
     print(err)
-    errorMessage = f'Was not able to save {db_name} By Sector Business Confidence indicator'
+    errorMessage = f'Was not able to save {db_name}'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
     createError(errorMessage)
 

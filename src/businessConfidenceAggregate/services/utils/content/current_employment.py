@@ -11,6 +11,7 @@ def currentEmploymentFormatter(
   new_quarter: Quarter,
   indicator: Indicator
 ):
+  db_name = indicator['db_name']
   values = []
 
   try:
@@ -40,9 +41,9 @@ def currentEmploymentFormatter(
 
   except Exception as err:
     print(err)
-    errorMessage = f'Aggregate Business Confidence indicator: has a format error on {name}'
+    errorMessage = f'{db_name}: has a format error on {name}'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False,  error=errorMessage)
 
     createError(errorMessage)
 

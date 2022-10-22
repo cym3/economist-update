@@ -12,12 +12,12 @@ def creditByActivitySectorUseCase():
     for indicator in indicators:
         db_name = indicator['db_name']
 
-        old_date = getLastUpdateDateDB(db_name)
+        old_date = getLastUpdateDateDB(db_name, indicator)
 
-        documentPath = creditByActivitySectorInfra(date=old_date)
+        documentPath = creditByActivitySectorInfra(date=old_date, indicator=indicator)
 
         if documentPath:
-            response = readXlsx(documentPath=documentPath)
+            response = readXlsx(documentPath=documentPath, indicator=indicator)
 
             creditTable = parseXlsx(response)
 
@@ -27,7 +27,11 @@ def creditByActivitySectorUseCase():
                 indicator=indicator
             )
 
-            saveCreditByActivitySectorDB(creditByActivitySector=credit, db_name=db_name)
+            saveCreditByActivitySectorDB(
+                creditByActivitySector=credit,
+                db_name=db_name,
+                indicator=indicator
+            )
             print(db_name)
 
         else:

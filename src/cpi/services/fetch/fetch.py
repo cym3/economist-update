@@ -8,10 +8,11 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from src.cpi.services.utils.months import months
-from src.cpi.domain.requiredFields.cpi import DateCpi
+from src.cpi.domain.requiredFields.cpi import DateCpi, Indicator
 
 
-def fetchCpi(date: DateCpi, region: str):
+def fetchCpi(date: DateCpi, indicator: Indicator):
+  region = indicator['web_name']
   url = f'http://www.ine.gov.mz/estatisticas/estatisticas-economicas/indice-de-preco-no-consumidor/quadros/{region}'
 
   last_update_year = date['year']
@@ -67,9 +68,9 @@ def fetchCpi(date: DateCpi, region: str):
 
   except Exception as err:
     print(err)
-    errorMessage = f'Could not fetch the {region} CPI, the url is {url}'
+    errorMessage = f'Could not fetch the {region}, the url is {url}'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
     createError(errorMessage)
 

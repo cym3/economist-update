@@ -1,5 +1,5 @@
 from typing import Union
-from src.creditByPurpose.domain.requiredFields.credit import DateCredit
+from src.creditByPurpose.domain.requiredFields.credit import DateCredit, Indicator
 from src.creditByPurpose.domain.entities.create_tasks import createTaskDB
 from src.creditByPurpose.domain.errors.create_error import createError
 from rapidfuzz.fuzz import partial_ratio
@@ -8,11 +8,13 @@ name: str = '1. AGRICULTURA'
 
 def agricultureFormatter(
   table: list[list[Union[float, str]]],
-  new_date: DateCredit
+  new_date: DateCredit,
+  indicator: Indicator
 ):
   value = {}
 
   try:
+    db_name = indicator['db_name']
     row_is_found = False
 
     for row in table:
@@ -40,7 +42,7 @@ def agricultureFormatter(
 
   except Exception as err:
     print(err)
-    errorMessage = f'Credit By Purpose: has a format error on {name}'
+    errorMessage = f'{db_name}: has a format error on {name}'
 
     createTaskDB(isDone=False, error=errorMessage)
 

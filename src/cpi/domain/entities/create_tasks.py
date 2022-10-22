@@ -1,15 +1,16 @@
 from typing import Union
 from src.core.db.connect_db import jobs_db
 from datetime import datetime
-from src.currentCurrencyTrades.domain.errors.create_error import createError
+from src.cpi.domain.errors.create_error import createError
+from src.cpi.domain.requiredFields.cpi import Indicator
 
-def createTaskDB (isDone: bool, error: Union[str, None] = ''):
+def createTaskDB (isDone: bool, indicator: Indicator, error: Union[str, None] = '',):
   now = datetime.now()
 
   task = {
-    'jobCode': '03-job-cpi',
-    'name': 'CPI',
-    'description': 'Consumer Price Index update',
+    'jobCode': indicator['jobCode'],
+    'name': indicator['name'],
+    'description': indicator['description'],
     'isDone': isDone,
     'error': error,
     'created_at': now

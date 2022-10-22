@@ -12,12 +12,12 @@ def creditByPurposeUseCase():
     for indicator in indicators:
         db_name = indicator['db_name']
 
-        old_date = getLastUpdateDateDB(db_name)
+        old_date = getLastUpdateDateDB(db_name, indicator)
 
-        documentPath = creditByPurposeInfra(date=old_date)
+        documentPath = creditByPurposeInfra(date=old_date, indicator=indicator)
         
         if documentPath:
-            response = readXlsx(documentPath=documentPath)
+            response = readXlsx(documentPath=documentPath, indicator=indicator)
 
             creditTable = parseXlsx(response)
 
@@ -27,7 +27,11 @@ def creditByPurposeUseCase():
                 indicator=indicator
             )
 
-            saveCreditByPurposeDB(creditByPurpose=credit, db_name=db_name)
+            saveCreditByPurposeDB(
+                creditByPurpose=credit,
+                db_name=db_name,
+                indicator=indicator
+            )
             print(db_name)
 
         else:

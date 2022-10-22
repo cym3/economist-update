@@ -2,19 +2,19 @@ from typing import Union
 from src.core.db.connect_db import jobs_db
 from datetime import datetime
 from src.businessConfidenceAggregate.domain.errors.create_error import createError
+from src.businessConfidenceAggregate.domain.requiredFields.business_confidence import Indicator
 
-def createTaskDB (isDone: bool, error: Union[str, None] = ''):
+def createTaskDB (isDone: bool, indicator: Indicator, error: Union[str, None] = '',):
   now = datetime.now()
 
   task = {
-    'jobCode': '01-business-confidence',
-    'name': 'Aggregate Business Confidence indicator',
-    'description': 'Aggregate Business Confidence indicator update',
+    'jobCode': indicator['jobCode'],
+    'name': indicator['name'],
+    'description': indicator['description'],
     'isDone': isDone,
     'error': error,
     'created_at': now
   }
-
   try:
     database = jobs_db()
     collection = database['jobs']

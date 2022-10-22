@@ -9,7 +9,9 @@ class Indicator(BaseModel):
   page_title: str
   sheet_name: str
   db_name: str
-  scheduleCode: str
+  description: str
+  page_identifiers: list[str]
+  jobCode: str
 
 
 class Schedule(BaseModel):

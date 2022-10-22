@@ -3,7 +3,7 @@ import re
 import time
 from typing import Union
 from src.creditByPurpose.infra.fetch.is_new_file import isNewFile
-from src.creditByPurpose.domain.requiredFields.credit import DateCredit
+from src.creditByPurpose.domain.requiredFields.credit import DateCredit, Indicator
 from src.creditByPurpose.domain.entities.create_tasks import createTaskDB
 from src.creditByPurpose.domain.errors.create_error import createError
 from pathlib import Path
@@ -15,7 +15,7 @@ from rapidfuzz.fuzz import partial_ratio
 
 url = 'https://www.bancomoc.mz/fm_pgLink.aspx?id=222'
 
-def fetchCreditByPurpose(date: DateCredit, folder_path: Path):
+def fetchCreditByPurpose(date: DateCredit, folder_path: Path, indicator: Indicator):
   file_folder = str(folder_path)
   documentPath: Union[Path, None] = None
 

@@ -5,24 +5,26 @@ from src.currentCurrencyTrades.domain.requiredFields.page_validator import fileV
 from src.currentCurrencyTrades.services.current_trades import currencyTradesService
 from src.currentCurrencyTrades.domain.entities.save_current_trades import saveCurrentTradesDB
 from src.currentCurrencyTrades.domain.entities.get_all_currencies import getAllCurrenciesDB
-
-name: str = 'exchange-rates'
+from src.currentCurrencyTrades.indicators import indicators
 
 def currentCurrencyTradesUseCase():
-    file_path = tradesInfra(name=name)
+    currenciesTrades = []
+    
+    for indicator in indicators:
+        file_path = tradesInfra(indicator=indicator)
 
-    if file_path:
-        response = extractTable(documentPath=file_path)
+        if file_path:
+            response = extractTable(documentPath=file_path, indicator=indicator)
 
-        is_valid_page = fileValidator(response, name)
+            is_valid_page = fileValidator(response, indicator)
 
-        if is_valid_page:
-            tables = tablesParser(response)
+            if is_valid_page:
+                tables = tablesParser(response)
 
-            currencies = getAllCurrenciesDB()
-            
-            currenciesTrades = currencyTradesService(currencies, tables)
+                currencies = getAllCurrenciesDB(indicator)
+                
+                currenciesTrades = currencyTradesService(currencies, tables, indicator)
 
-            saveCurrentTradesDB(currenciesTrades)
+                saveCurrentTradesDB(currenciesTrades, indicator)
 
     return currenciesTrades

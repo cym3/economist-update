@@ -1,3 +1,4 @@
+from currentCurrencyTrades.domain.requiredFields.currencies import Indicator
 from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
 from src.currentCurrencyTrades.domain.errors.create_error import createError
 from src.core.db.connect_db import economist_db
@@ -9,10 +10,11 @@ class CurrencyTrade(BaseModel):
   sale: float
   date: str
 
-def saveCurrentTradesDB (currencyTrades: list[CurrencyTrade]):
+def saveCurrentTradesDB (currencyTrades: list[CurrencyTrade], indicator: Indicator):
+  db_name = indicator['db_name']
   try:
     database = economist_db()
-    collection = database['exchange-rates']
+    collection = database[db_name]
 
     for currency in currencyTrades:
       collection.update_one(
@@ -22,13 +24,13 @@ def saveCurrentTradesDB (currencyTrades: list[CurrencyTrade]):
         { '$set': { 'currentTrades': currency['trade'] }}
     )
     
-    createTaskDB(isDone=True)
+    createTaskDB(isDone=True, indicator=indicator)
 
   except Exception as err:
     print(err)
     errorMessage = f'Was not able to save exchange rates, { currencyTrades[0].date }'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
     createError(errorMessage)
 

@@ -27,7 +27,7 @@ def downloadPdfPage(url: str, path: str, indicator: Indicator):
     print(err)
     errorMessage = f'Could not download the pdf file, the url is {url}'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
     createError(errorMessage)
 

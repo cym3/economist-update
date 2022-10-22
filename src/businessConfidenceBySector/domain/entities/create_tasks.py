@@ -2,14 +2,15 @@ from typing import Union
 from src.core.db.connect_db import jobs_db
 from datetime import datetime
 from src.businessConfidenceBySector.domain.errors.create_error import createError
+from src.businessConfidenceBySector.domain.requiredFields.business_confidence import Indicator
 
-def createTaskDB (isDone: bool, error: Union[str, None] = ''):
+def createTaskDB (isDone: bool, indicator: Indicator, error: Union[str, None] = '',):
   now = datetime.now()
 
   task = {
-    'jobCode': '02-business-confidence',
-    'name': 'By Sector Business Confidence indicator',
-    'description': 'By Sector Business Confidence indicator update',
+    'jobCode': indicator['jobCode'],
+    'name': indicator['name'],
+    'description': indicator['description'],
     'isDone': isDone,
     'error': error,
     'created_at': now

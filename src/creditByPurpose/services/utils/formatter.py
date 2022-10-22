@@ -18,20 +18,20 @@ def formatter(
   table: list[list[float]],
   new_date: DateCredit
 ):
-  agriculture = agricultureFormatter(table, new_date)
-  construction = constructionFormatter(table, new_date)
-  electricity_gas_and_water = electricityGasAndWaterFormatter(table, new_date)
-  extractive_industry = extractiveIndustryFormatter(table, new_date)
-  fishery = fisheryFormatter(table, new_date)
+  agriculture = agricultureFormatter(table, new_date, indicator)
+  construction = constructionFormatter(table, new_date, indicator)
+  electricity_gas_and_water = electricityGasAndWaterFormatter(table, new_date, indicator)
+  extractive_industry = extractiveIndustryFormatter(table, new_date, indicator)
+  fishery = fisheryFormatter(table, new_date, indicator)
   livestock = livestockFormatter(table, new_date)
-  manufacturing_industry = manufacturingIndustryFormatter(table, new_date)
-  monetary_and_financial_institutions = monetaryAndFinancialInstitutionsFormatter(table, new_date)
-  other_sectores = otherSectoresFormatter(table, new_date)
-  silviculture = silvicultureFormatter(table, new_date)
-  total = totalFormatter(table, new_date)
-  tourism = tourismFormatter(table, new_date)
-  trades = tradesFormatter(table, new_date)
-  transport_and_communication = transportAndCommunicationFormatter(table, new_date)
+  manufacturing_industry = manufacturingIndustryFormatter(table, new_date, indicator)
+  monetary_and_financial_institutions = monetaryAndFinancialInstitutionsFormatter(table, new_date, indicator)
+  other_sectores = otherSectoresFormatter(table, new_date, indicator)
+  silviculture = silvicultureFormatter(table, new_date, indicator)
+  total = totalFormatter(table, new_date, indicator)
+  tourism = tourismFormatter(table, new_date, indicator)
+  trades = tradesFormatter(table, new_date, indicator)
+  transport_and_communication = transportAndCommunicationFormatter(table, new_date, indicator)
 
   return [
     agriculture,
