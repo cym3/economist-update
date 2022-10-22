@@ -1,4 +1,4 @@
-from economicActivityAggregate.domain.requiredFields.economic_activity import Indicator
+from src.economicActivityAggregate.domain.requiredFields.economic_activity import Indicator
 from src.economicActivityAggregate.domain.entities.create_tasks import createTaskDB
 from src.economicActivityAggregate.domain.errors.create_error import createError
 from src.core.db.connect_db import economist_db

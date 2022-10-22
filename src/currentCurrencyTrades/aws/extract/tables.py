@@ -1,5 +1,5 @@
 import boto3
-from currentCurrencyTrades.domain.requiredFields.currencies import Indicator
+from src.currentCurrencyTrades.domain.requiredFields.currencies import Indicator
 from src.businessConfidenceAggregate.domain.entities.create_tasks import createTaskDB
 from src.businessConfidenceAggregate.domain.errors.create_error import createError
 

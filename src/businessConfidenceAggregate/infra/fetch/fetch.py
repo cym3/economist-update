@@ -1,7 +1,7 @@
 from datetime import datetime
 import re
 from typing import Union
-from businessConfidenceAggregate.domain.requiredFields.business_confidence import Indicator
+from src.businessConfidenceAggregate.domain.requiredFields.business_confidence import Indicator
 from src.businessConfidenceAggregate.domain.requiredFields.business_confidence import Quarter
 from src.businessConfidenceAggregate.domain.entities.create_tasks import createTaskDB
 from src.businessConfidenceAggregate.domain.errors.create_error import createError

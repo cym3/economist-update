@@ -1,5 +1,5 @@
 from pathlib import Path
-from currentCurrencyTrades.domain.requiredFields.currencies import Indicator
+from src.currentCurrencyTrades.domain.requiredFields.currencies import Indicator
 from src.currentCurrencyTrades.infra.fetch.fetch import fetchTrades
 from src.currentCurrencyTrades.infra.download.pdf_page import downloadPdfPage
 
@@ -11,7 +11,7 @@ def tradesInfra(indicator: Indicator):
 
   if file_url is not None:
 
-    path = downloadPdfPage(url=file_url, path=path)
+    path = downloadPdfPage(url=file_url, path=path, indicator=indicator)
 
     return path
 

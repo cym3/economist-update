@@ -1,6 +1,6 @@
 from pathlib import Path
 from datetime import datetime
-from businessConfidenceBySector.domain.requiredFields.business_confidence import Indicator
+from src.businessConfidenceBySector.domain.requiredFields.business_confidence import Indicator
 from src.core.mail.sand_mail import sandMail
 from src.utils.create_excel import createExcelFile
 from src.utils.tasks import tasks_header

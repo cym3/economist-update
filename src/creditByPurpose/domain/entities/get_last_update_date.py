@@ -1,4 +1,4 @@
-from creditByPurpose.domain.requiredFields.credit import Indicator
+from src.creditByPurpose.domain.requiredFields.credit import Indicator
 from src.creditByPurpose.domain.entities.create_tasks import createTaskDB
 from src.creditByPurpose.domain.errors.create_error import createError
 from src.core.db.connect_db import economist_db

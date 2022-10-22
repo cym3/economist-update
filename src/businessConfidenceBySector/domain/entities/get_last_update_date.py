@@ -1,4 +1,4 @@
-from businessConfidenceBySector.domain.requiredFields.business_confidence import Indicator
+from src.businessConfidenceBySector.domain.requiredFields.business_confidence import Indicator
 from src.businessConfidenceBySector.domain.entities.create_tasks import createTaskDB
 from src.businessConfidenceBySector.domain.errors.create_error import createError
 from src.core.db.connect_db import economist_db

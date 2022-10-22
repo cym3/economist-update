@@ -1,6 +1,6 @@
 from pathlib import Path
 from datetime import datetime
-from economicActivityAggregate.domain.requiredFields.economic_activity import Indicator
+from src.economicActivityAggregate.domain.requiredFields.economic_activity import Indicator
 from src.core.mail.sand_mail import sandMail
 from src.utils.create_excel import createExcelFile
 from src.utils.tasks import tasks_header

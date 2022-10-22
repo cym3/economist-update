@@ -1,4 +1,4 @@
-from cpi.domain.requiredFields.cpi import Indicator
+from src.cpi.domain.requiredFields.cpi import Indicator
 from src.cpi.domain.entities.create_tasks import createTaskDB
 from src.cpi.domain.errors.create_error import createError
 from src.core.db.connect_db import economist_db

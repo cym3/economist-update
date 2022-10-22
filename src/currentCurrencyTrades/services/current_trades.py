@@ -23,7 +23,8 @@ def currencyTradesService(currencies: list[Currency], tables: list, indicator: I
                 tableRow=tableRow,
                 date=date,
                 divider=1,
-                isoCode=currency['iso']['code']
+                isoCode=currency['iso']['code'],
+                indicator=indicator
             )
 
             newCurrenciesTrades.append(formattedTrades)

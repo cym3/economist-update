@@ -1,5 +1,5 @@
 import re
-from currentCurrencyTrades.domain.requiredFields.currencies import Indicator
+from src.currentCurrencyTrades.domain.requiredFields.currencies import Indicator
 from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
 from src.currentCurrencyTrades.domain.errors.create_error import createError
 

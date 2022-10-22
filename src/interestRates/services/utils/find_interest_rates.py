@@ -1,5 +1,5 @@
 import pandas as pd
-from interestRates.domain.requiredFields.interest_rates import Indicator
+from src.interestRates.domain.requiredFields.interest_rates import Indicator
 from src.interestRates.domain.entities.create_tasks import createTaskDB
 from src.interestRates.domain.errors.create_error import createError
 

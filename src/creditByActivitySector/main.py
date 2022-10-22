@@ -12,7 +12,7 @@ def creditByActivitySectorUseCase():
     for indicator in indicators:
         db_name = indicator['db_name']
 
-        old_date = getLastUpdateDateDB(db_name, indicator)
+        old_date = getLastUpdateDateDB(indicator)
 
         documentPath = creditByActivitySectorInfra(date=old_date, indicator=indicator)
 
@@ -29,7 +29,6 @@ def creditByActivitySectorUseCase():
 
             saveCreditByActivitySectorDB(
                 creditByActivitySector=credit,
-                db_name=db_name,
                 indicator=indicator
             )
             print(db_name)

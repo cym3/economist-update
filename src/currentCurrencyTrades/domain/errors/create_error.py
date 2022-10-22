@@ -1,6 +1,6 @@
 from pathlib import Path
 from datetime import datetime
-from currentCurrencyTrades.domain.requiredFields.currencies import Indicator
+from src.currentCurrencyTrades.domain.requiredFields.currencies import Indicator
 from src.core.mail.sand_mail import sandMail
 from src.utils.create_excel import createExcelFile
 from src.utils.tasks import tasks_header

@@ -14,7 +14,7 @@ def economicActivityAggregateUseCase():
     for indicator in indicators:
         db_name = indicator['db_name']
 
-        last_update_date_on_db = getLastUpdateDateDB(db_name, indicator)
+        last_update_date_on_db = getLastUpdateDateDB(indicator)
 
         file_path = economicActivityInfra(date=last_update_date_on_db, indicator=indicator)
 
@@ -34,7 +34,6 @@ def economicActivityAggregateUseCase():
 
                 saveEconomicActivityDB(
                     economicActivities=economicActivity,
-                    db_name=db_name,
                     indicator=indicator
                 )
                 print(db_name)
