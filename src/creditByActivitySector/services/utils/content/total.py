@@ -16,7 +16,7 @@ def totalFormatter(
     row_is_found = False
 
     for row in table:
-      row_name = f'{row[1]}'
+      row_name = ''.join(f'{row[1]}'.split(' '))
       match_score = partial_ratio(name, row_name)
 
       if (match_score > 90):

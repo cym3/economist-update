@@ -4,7 +4,7 @@ from src.creditByPurpose.services.utils.months import months
 from src.creditByPurpose.domain.requiredFields.credit import DateCredit
 from rapidfuzz.fuzz import partial_ratio
 
-def isNewFile(date: DateCredit, remove_name: str):
+def isNewFile(date: DateCredit, remote_name: str):
   old_Date = datetime(date['year'], date['month'], 1)
   new_Date = old_Date + relativedelta(months=+1)
 
@@ -13,7 +13,7 @@ def isNewFile(date: DateCredit, remove_name: str):
 
   local_new_name = f'crédito por finalidade - {new_month} de {new_year}'
 
-  match_score = partial_ratio(local_new_name, remove_name)
+  match_score = partial_ratio(local_new_name, remote_name)
   if (match_score > 90):
     return True
 

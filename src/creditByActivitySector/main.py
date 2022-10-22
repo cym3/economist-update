@@ -20,7 +20,7 @@ def creditByActivitySectorUseCase():
         }
 
         documentPath = creditByActivitySectorInfra(date=old_date)
-        
+
         if documentPath:
             response = readXlsx(documentPath=documentPath)
 

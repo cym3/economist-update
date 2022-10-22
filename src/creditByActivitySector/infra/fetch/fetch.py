@@ -40,7 +40,7 @@ def fetchCreditByActivitySector(date: DateCredit, folder_path: Path):
     for root, dirs, files in os.walk(file_folder):
       for file in files:
         match_score = partial_ratio(pattern, file)
-        if (match_score > 90):
+        if (match_score > 95):
           documentPath = folder_path.joinpath(file)
 
     is_new = isNewFile(date, name)

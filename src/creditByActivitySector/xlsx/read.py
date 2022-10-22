@@ -7,7 +7,9 @@ def readXlsx(documentPath: str):
 
   try:
     lx = pd.ExcelFile(documentPath)
-    sheet_name = lx.sheet_names[0]
+    sheet_name = lx.sheet_names[2]
+
+    print(sheet_name)
 
     df = pd.read_excel(documentPath, sheet_name=sheet_name)
     sheet = df.values.tolist()
