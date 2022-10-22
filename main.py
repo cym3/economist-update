@@ -1,5 +1,7 @@
 import schedule
 import time
+from src.creditByActivitySector.main import creditByActivitySectorUseCase
+from src.creditByPurpose.main import creditByPurposeUseCase
 from src.economicActivityAggregate.main import economicActivityAggregateUseCase
 from src.businessConfidenceAggregate.main import businessConfidenceAggregateUseCase
 from src.businessConfidenceBySector.main import businessConfidenceBySectorUseCase
@@ -13,9 +15,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 schedule.every().day.at("02:00").do(economicActivityAggregateUseCase)
-schedule.every().day.at("02:05").do(businessConfidenceAggregateUseCase)
-schedule.every().day.at("02:10").do(businessConfidenceBySectorUseCase)
-
+schedule.every().day.at("02:03").do(businessConfidenceAggregateUseCase)
+schedule.every().day.at("02:06").do(businessConfidenceBySectorUseCase)
+schedule.every().day.at("02:12").do(creditByActivitySectorUseCase)
+schedule.every().day.at("02:15").do(creditByPurposeUseCase)
 
 schedule.every().day.at("03:00").do(cpiUseCase)
 schedule.every().day.at("04:00").do(sandMyMail)
