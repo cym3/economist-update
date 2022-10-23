@@ -59,9 +59,9 @@ def tradeFormatter(
     print(err)
     errorMessage = f'{db_name}: has a format error on {name}'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
   return {
     'id': '6306c1b54145e6a1fc2b9ed4',

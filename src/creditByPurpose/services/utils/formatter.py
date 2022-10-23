@@ -11,12 +11,13 @@ from src.creditByPurpose.services.utils.content.total import totalFormatter
 from src.creditByPurpose.services.utils.content.tourism import tourismFormatter
 from src.creditByPurpose.services.utils.content.trades import tradesFormatter
 from src.creditByPurpose.services.utils.content.transport_and_communication import transportAndCommunicationFormatter
-from src.creditByPurpose.domain.requiredFields.credit import DateCredit
+from src.creditByPurpose.domain.requiredFields.credit import DateCredit, Indicator
 from src.creditByPurpose.services.utils.content.agriculture import agricultureFormatter
 
 def formatter(
   table: list[list[float]],
-  new_date: DateCredit
+  new_date: DateCredit,
+  indicator: Indicator
 ):
   agriculture = agricultureFormatter(table, new_date, indicator)
   construction = constructionFormatter(table, new_date, indicator)

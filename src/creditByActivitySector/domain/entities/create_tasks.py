@@ -5,6 +5,7 @@ from src.creditByActivitySector.domain.errors.create_error import createError
 from src.creditByActivitySector.domain.requiredFields.credit import Indicator
 
 def createTaskDB (isDone: bool, indicator: Indicator, error: Union[str, None] = '',):
+  db_name = indicator['db_name']
   now = datetime.now()
 
   task = {
@@ -24,7 +25,7 @@ def createTaskDB (isDone: bool, indicator: Indicator, error: Union[str, None] = 
     
   except Exception as err:
     print(err)
-    errorMessage = 'Was not able to save the task of By Sector Business Confidence indicator.'
-    createError(errorMessage)
+    errorMessage = f'Was not able to save the task of {db_name}.'
+    createError(errorMessage, indicator)
 
   return 'Done'

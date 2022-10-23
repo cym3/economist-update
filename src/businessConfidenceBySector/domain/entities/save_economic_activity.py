@@ -37,8 +37,8 @@ def saveBusinessConfidenceDB(businessConfidence: list[BusinessConfidence], indic
     print(err)
     errorMessage = f'Was not able to save {db_name}'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
   return 'Done'

@@ -43,9 +43,9 @@ def demandExpectationsFormatter(
     print(err)
     errorMessage = f'{db_name}: has a format error on {name}'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
   return {
     'id': '6332ee55feef414249d8dc2f',

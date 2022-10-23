@@ -40,6 +40,6 @@ def saveBusinessConfidenceDB(businessConfidence: list[BusinessConfidence], indic
 
     createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
   return 'Done'

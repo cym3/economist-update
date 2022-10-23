@@ -27,6 +27,6 @@ def fileValidator(textExtractResponse: dict, indicator: Indicator):
 
     createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
   return valide_page

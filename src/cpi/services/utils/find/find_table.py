@@ -51,8 +51,8 @@ def findTable(path: str, indicator: Indicator):
     print(err)
     errorMessage = f'The {name} CPI has a format error'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
   return table

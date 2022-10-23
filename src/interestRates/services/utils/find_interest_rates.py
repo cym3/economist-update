@@ -17,6 +17,6 @@ def findInterestRates(html: str, indicator: Indicator):
     errorMessage = f'The {db_name} has a format error'
 
     createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
   return table

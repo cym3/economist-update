@@ -50,6 +50,6 @@ def saveCreditByPurposeDB(creditByPurpose: list[CreditByPurpose], indicator: str
 
     createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
   return 'Done'

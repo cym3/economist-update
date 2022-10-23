@@ -5,6 +5,7 @@ from src.currentCurrencyTrades.domain.errors.create_error import createError
 from src.currentCurrencyTrades.domain.requiredFields.currencies import Indicator
 
 def createTaskDB (isDone: bool, indicator: Indicator, error: Union[str, None] = '',):
+  db_name = indicator['db_name']
   now = datetime.now()
 
   task = {
@@ -23,8 +24,8 @@ def createTaskDB (isDone: bool, indicator: Indicator, error: Union[str, None] = 
     collection.insert_one(task)
     
   except Exception as err:
-    errorMessage = 'Was not able to save the task of exchange rates.'
-    createError(errorMessage)
+    errorMessage = f'Was not able to save the task of {db_name}'
+    createError(errorMessage, indicator)
     print(err)
 
   return 'Done'

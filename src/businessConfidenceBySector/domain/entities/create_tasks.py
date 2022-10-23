@@ -25,6 +25,6 @@ def createTaskDB (isDone: bool, indicator: Indicator, error: Union[str, None] = 
   except Exception as err:
     print(err)
     errorMessage = 'Was not able to save the task of By Sector Business Confidence indicator.'
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
   return 'Done'

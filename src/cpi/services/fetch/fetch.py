@@ -72,7 +72,7 @@ def fetchCpi(date: DateCpi, indicator: Indicator):
 
     createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
 
   if file_path is not None:

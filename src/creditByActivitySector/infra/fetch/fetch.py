@@ -56,6 +56,6 @@ def fetchCreditByActivitySector(date: DateCredit, folder_path: Path, indicator: 
 
     createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
   return str(documentPath)

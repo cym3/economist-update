@@ -60,8 +60,8 @@ def getNewDate(table: list, date: DateCredit, indicator: Indicator):
     print(err)
     errorMessage = f'Date in the {db_name} table could not be processed. It could be a problem format from header table row or column.'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False,  indicator=indicator, error=errorMessage)
 
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
   return date

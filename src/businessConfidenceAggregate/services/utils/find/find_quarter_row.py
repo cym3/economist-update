@@ -40,8 +40,8 @@ def getNewQuarter(table: list, first_row_index: int, indicator: Indicator):
     print(err)
     errorMessage = f'Quarter in the {db_name} table could not be processed. It could be a problem format from header table row or column.'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
   return new_quarter

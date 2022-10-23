@@ -14,7 +14,8 @@ def creditByPurposeService(table: list, date: DateCredit, indicator: Indicator):
 
     formatted = formatter(
         table=table,
-        new_date=new_date
+        new_date=new_date,
+        indicator=indicator
     )
 
     return formatted

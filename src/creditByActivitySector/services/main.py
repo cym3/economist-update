@@ -14,7 +14,8 @@ def creditByActivitySectorService(table: list, date: DateCredit, indicator: Indi
 
     formatted = formatter(
         table=table,
-        new_date=new_date
+        new_date=new_date,
+        indicator=indicator
     )
 
     return formatted

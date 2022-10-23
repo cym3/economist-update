@@ -21,6 +21,6 @@ def readXlsx(documentPath: str, indicator: Indicator):
 
     createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
   return table

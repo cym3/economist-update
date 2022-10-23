@@ -59,9 +59,9 @@ def energyWaterAndSanFormatter(
     print(err)
     errorMessage = f'{db_name}: has a format error on {name}'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
-    createError(errorMessage)
+    createError(errorMessage,indicator)
 
   return {
     'id': '632efbfafe566554468a12c6',

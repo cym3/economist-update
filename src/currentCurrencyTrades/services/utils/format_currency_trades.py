@@ -36,6 +36,6 @@ def formatCurrencyTrades(
 
     createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
   return formatted

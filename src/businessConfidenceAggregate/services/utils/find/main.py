@@ -29,6 +29,6 @@ def findNewQuarter(table: list, indicator: Indicator):
 
     createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
   return { 'table': new_table, 'new_quarter': new_quarter }

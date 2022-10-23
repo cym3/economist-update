@@ -27,8 +27,8 @@ def fileValidator(textExtractResponse: dict, indicator: Indicator):
     print(err)
     errorMessage = f'Invalid pdf page, the data contained by pdf dois not look like {db_name} data.'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
   return valide_page
