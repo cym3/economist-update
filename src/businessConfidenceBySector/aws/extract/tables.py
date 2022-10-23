@@ -1,9 +1,11 @@
+from pathlib import Path
 import boto3
 from src.businessConfidenceBySector.domain.requiredFields.business_confidence import Indicator
 from src.businessConfidenceBySector.domain.entities.create_tasks import createTaskDB
 from src.businessConfidenceBySector.domain.errors.create_error import createError
 
-def extractTable(documentPath: str, indicator: Indicator):
+def extractTable(path: Path, indicator: Indicator):
+  documentPath = str(path)
   response = None
 
   try:

@@ -5,7 +5,7 @@ from src.businessConfidenceAggregate.infra.download.pdf_page import downloadPdfP
 
 def businessConfidenceInfra(quarter: Quarter, indicator: Indicator):   
   name = indicator['db_name']
-  path = str(Path(__file__).parents[1].joinpath(f'assets/{name}.pdf')) 
+  path = Path(__file__).parents[1].joinpath(f'assets/{name}.pdf') 
    
   file_url = fetchBusinessConfidence(quarter, indicator)
 

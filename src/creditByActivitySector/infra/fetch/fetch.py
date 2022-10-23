@@ -58,4 +58,4 @@ def fetchCreditByActivitySector(date: DateCredit, folder_path: Path, indicator: 
 
     createError(errorMessage, indicator)
 
-  return str(documentPath)
+  return documentPath

@@ -11,10 +11,11 @@ def currentCurrencyTradesUseCase():
     currenciesTrades = []
     
     for indicator in indicators:
-        file_path = tradesInfra(indicator=indicator)
+        path = tradesInfra(indicator=indicator)
 
-        if file_path:
-            response = extractTable(documentPath=file_path, indicator=indicator)
+        if path:
+            response = extractTable(path=path, indicator=indicator)
+            path.unlink()
 
             is_valid_page = fileValidator(response, indicator)
 

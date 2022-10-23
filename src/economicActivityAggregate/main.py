@@ -16,10 +16,11 @@ def economicActivityAggregateUseCase():
 
         last_update_date_on_db = getLastUpdateDateDB(indicator)
 
-        file_path = economicActivityInfra(date=last_update_date_on_db, indicator=indicator)
+        path = economicActivityInfra(date=last_update_date_on_db, indicator=indicator)
 
-        if file_path:
-            response = extractTable(documentPath=file_path, indicator=indicator)
+        if path:
+            response = extractTable(path=path, indicator=indicator)
+            path.unlink()
 
             is_valid_page = fileValidator(response, indicator)
 

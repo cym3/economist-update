@@ -1,9 +1,11 @@
+from pathlib import Path
 import pandas as pd
 from src.creditByPurpose.domain.requiredFields.credit import Indicator
 from src.creditByPurpose.domain.entities.create_tasks import createTaskDB
 from src.creditByPurpose.domain.errors.create_error import createError
 
-def readXlsx(documentPath: str, indicator: Indicator):
+def readXlsx(path: Path, indicator: Indicator):
+  documentPath = str(path)
   table = []
 
   try:

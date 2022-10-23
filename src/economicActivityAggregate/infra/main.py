@@ -5,7 +5,7 @@ from src.economicActivityAggregate.infra.download.pdf_page import downloadPdfPag
 
 def economicActivityInfra(date: DateEconomicActivity, indicator: Indicator):   
   name = indicator['db_name']
-  path = str(Path(__file__).parents[1].joinpath(f'assets/{name}.pdf')) 
+  path = Path(__file__).parents[1].joinpath(f'assets/{name}.pdf')
    
   file_url = fetchEconomicActivity(date, indicator)
 

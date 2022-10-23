@@ -5,7 +5,7 @@ from src.currentCurrencyTrades.infra.download.pdf_page import downloadPdfPage
 
 def tradesInfra(indicator: Indicator):   
   db_name = indicator['db_name']
-  path = str(Path(__file__).parents[1].joinpath(f'assets/{db_name}.pdf')) 
+  path = Path(__file__).parents[1].joinpath(f'assets/{db_name}.pdf')
    
   file_url = fetchTrades()
 

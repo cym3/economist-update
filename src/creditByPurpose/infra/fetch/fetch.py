@@ -58,4 +58,4 @@ def fetchCreditByPurpose(date: DateCredit, folder_path: Path, indicator: Indicat
 
     createError(errorMessage, indicator)
 
-  return str(documentPath)
+  return documentPath

@@ -14,10 +14,11 @@ def creditByActivitySectorUseCase():
 
         old_date = getLastUpdateDateDB(indicator)
 
-        documentPath = creditByActivitySectorInfra(date=old_date, indicator=indicator)
+        path = creditByActivitySectorInfra(date=old_date, indicator=indicator)
 
-        if documentPath:
-            response = readXlsx(documentPath=documentPath, indicator=indicator)
+        if path:
+            response = readXlsx(path=path, indicator=indicator)
+            path.unlink()
 
             creditTable = parseXlsx(response)
 

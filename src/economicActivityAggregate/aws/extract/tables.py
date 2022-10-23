@@ -1,9 +1,11 @@
+from pathlib import Path
 import boto3
 from src.economicActivityAggregate.domain.requiredFields.economic_activity import Indicator
 from src.economicActivityAggregate.domain.entities.create_tasks import createTaskDB
 from src.economicActivityAggregate.domain.errors.create_error import createError
 
-def extractTable(documentPath: str, indicator: Indicator):
+def extractTable(path: Path, indicator: Indicator):
+  documentPath = str(path)
   response = None
 
   try:
