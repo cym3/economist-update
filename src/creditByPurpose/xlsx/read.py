@@ -1,7 +1,7 @@
 import pandas as pd
 from src.creditByPurpose.domain.requiredFields.credit import Indicator
-from src.cpi.domain.entities.create_tasks import createTaskDB
-from src.cpi.domain.errors.create_error import createError
+from src.creditByPurpose.domain.entities.create_tasks import createTaskDB
+from src.creditByPurpose.domain.errors.create_error import createError
 
 def readXlsx(documentPath: str, indicator: Indicator):
   table = []
@@ -19,7 +19,7 @@ def readXlsx(documentPath: str, indicator: Indicator):
     print(err)
     errorMessage = f'Was not possible to read {documentPath} file'
 
-    createTaskDB(isDone=False, error=errorMessage)
+    createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
     createError(errorMessage)
 
