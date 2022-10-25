@@ -4,38 +4,49 @@ from src.cpi.domain.errors.create_error import createError
 from src.core.db.connect_db import economist_db
 from pydantic import BaseModel
 
+class Value(BaseModel):
+  date: DateCpi
+  value: float
+
 class Product(BaseModel):
   name: str
-  value: float
+  values: list[Value]
 
 class CPI(BaseModel):
   products: list[Product]
-  total: float
-  date: DateCpi
+  total: Product
 
 def saveCpiDB (CPIs: CPI, indicator: Indicator):
   db_name = indicator['db_name']
+
   try:
     database = economist_db()
     collection = database[db_name]
 
     products = CPIs['products']
-    total = CPIs['total']
-    date = CPIs['date']
+    total = CPIs['total']['values']
 
-    collection.update_one(
-      { 'type': 'by-region' },
-      { '$push': { 'values':  { 'date': date, 'value': total } }}
-    )
+    for val in total:
+      date = val['date']
+      value = val['value']
+      
+      collection.update_one(
+        { 'type': 'by-region' },
+        { '$push': { 'values':  { 'date': date, 'value': value } }}
+      )
 
     for product in products:
       product_name = product['name']
-      value = product['value']
+      values = product['values']
 
-      collection.update_one(
-        { 'type': 'by-product', 'name': product_name },
-        { '$push': { 'values':  { 'date': date, 'value': value } }}
-      )
+      for val in values:
+        date = val['date']
+        value = val['value']
+
+        collection.update_one(
+          { 'type': 'by-product', 'name': product_name },
+          { '$push': { 'values':  { 'date': date, 'value': value } }}
+        )
     
     createTaskDB(isDone=True, indicator=indicator)
 

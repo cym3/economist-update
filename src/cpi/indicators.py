@@ -1,6 +1,14 @@
 indicators = [
   {
     'name': 'IPC',
+    'web_name': 'inhambane',
+    'description': 'IPC da Região de Inhambane',
+    'page_identifiers': [''],
+    'db_name': 'cpi-inhambane',
+    'jobCode': 'cpi-inhambane'
+  },
+  {
+    'name': 'IPC',
     'web_name': 'nacional',
     'description': 'IPC de Moçãmbique',
     'page_identifiers': [''],
@@ -62,14 +70,6 @@ indicators = [
     'page_identifiers': [''],
     'db_name': 'cpi-xai_xai',
     'jobCode': 'cpi-xai_xai'
-  },
-  {
-    'name': 'IPC',
-    'web_name': 'inhambane',
-    'description': 'IPC da Região de Inhambane',
-    'page_identifiers': [''],
-    'db_name': 'cpi-inhambane',
-    'jobCode': 'cpi-inhambane'
   },
   {
     'name': 'IPC',

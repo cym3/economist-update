@@ -4,15 +4,13 @@ from src.cpi.services.utils.find.find_table import findTable
 from src.cpi.services.fetch.fetch import fetchCpi
 
 def cpiService(date: DateCpi, indicator: Indicator):    
-    fetch_result = fetchCpi(date, indicator)
+    path = fetchCpi(date, indicator)
 
-    if fetch_result is not None:
-        path = fetch_result['path']
-        date = fetch_result['date']
+    if path is not None:
 
         table = findTable(path, indicator)
 
-        formatted = formatCpi(table, date=date)
+        formatted = formatCpi(table=table, date=date, indicator=indicator)
 
         return formatted
 

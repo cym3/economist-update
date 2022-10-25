@@ -15,9 +15,9 @@ def fetchCpi(date: DateCpi, indicator: Indicator):
   region = indicator['web_name']
   url = f'http://www.ine.gov.mz/estatisticas/estatisticas-economicas/indice-de-preco-no-consumidor/quadros/{region}'
 
-  last_update_year = date['year']
-  last_update_month = date['month']
-  years = [last_update_year, last_update_year + 1]
+  old_year = date['year']
+  old_month = date['month']
+  years = [old_year, old_year + 1]
 
   file_path: Union[str, None] = None
 
@@ -44,8 +44,6 @@ def fetchCpi(date: DateCpi, indicator: Indicator):
 
       index += 1
 
-    index = 0
-
     for y in years:
       strs_y = [x for x in str(y)]
       min_year = f'{strs_y[2]}{strs_y[3]}'
@@ -55,16 +53,13 @@ def fetchCpi(date: DateCpi, indicator: Indicator):
       if (yearMatch is not None):
         year = y
 
-      index += 1
+    old_date = datetime(old_year, old_month, 1)
+    new_date = datetime(year, month, 1)
 
-    last_update = datetime(last_update_year, last_update_month, 1)
-    new_update = datetime(year, month, 1)
-
-    if new_update > last_update:
+    if new_date > old_date:
       href = link.get_attribute('href')
 
       file_path = href.replace('/view', '', 1)
-      date = { 'year': year, 'month': month }
 
   except Exception as err:
     print(err)
@@ -74,6 +69,5 @@ def fetchCpi(date: DateCpi, indicator: Indicator):
 
     createError(errorMessage, indicator)
 
-
   if file_path is not None:
-    return {'path': file_path, 'date': date }
+    return file_path

@@ -3,9 +3,21 @@ import pandas as pd
 from src.cpi.domain.requiredFields.cpi import Indicator
 from src.cpi.domain.entities.create_tasks import createTaskDB
 from src.cpi.domain.errors.create_error import createError
+from rapidfuzz.fuzz import partial_ratio
+
+name = 'Divisão e Grupos'
 
 def find_first_row(sheet: list):
   index = 0
+
+  for row in sheet:
+    row_name = f'{row[0]}'
+    match_score = partial_ratio(name, row_name)
+
+    if (match_score > 90):
+      return index
+
+    index += 1
 
   for row in sheet:
     el = str(row[1]).lower()
