@@ -14,7 +14,7 @@ def downloadPdfPage(url: str, path: Path, indicator: Indicator):
   try:
     response = requests.get(url)
 
-    with open(documentPath, 'wb') as f:
+    with open(documentPath, 'w') as f:
       f.write(response.content)
 
     pdf_writer = PdfFileWriter()
