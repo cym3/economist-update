@@ -3,7 +3,7 @@ from src.currentCurrencyTrades.domain.requiredFields.currencies import Indicator
 from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
 from src.currentCurrencyTrades.domain.errors.create_error import createError
 from PyPDF2 import PdfReader, PdfFileWriter
-import requests
+import wget
 
 page_number = 0
 
@@ -12,10 +12,8 @@ def downloadPdfPage(url: str, path: Path, indicator: Indicator):
   documentPath = str(path)
 
   try:
-    response = requests.get(url)
-
-    with open(documentPath, 'w') as f:
-      f.write(response.content)
+    response = wget.download(url, documentPath)
+    print(response)
 
     pdf_writer = PdfFileWriter()
     pdf = PdfReader(documentPath)
