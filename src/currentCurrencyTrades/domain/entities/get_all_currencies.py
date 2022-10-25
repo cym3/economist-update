@@ -4,11 +4,12 @@ from src.currentCurrencyTrades.domain.errors.create_error import createError
 from src.core.db.connect_db import economist_db
 
 def getAllCurrenciesDB (indicator: Indicator):
+  db_name = indicator['db_name']
   currencies = []
 
   try: 
     database = economist_db()
-    collection = database['exchange-rates']
+    collection = database[db_name]
 
     currencies = collection.find()
 
