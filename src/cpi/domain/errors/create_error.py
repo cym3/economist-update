@@ -11,7 +11,9 @@ def createError(massage: str, indicator: Indicator):
     description = indicator['description']
     title = f'Atualização {name}: Relatório da Ultima actividade'
     
-    path = Path(__file__).parents[2].joinpath(f'assets/report.xlsx')
+    folder_path = Path(__file__).parents[2].joinpath('assets')
+    folder_path.mkdir(parents=True, exist_ok=True)
+    path = folder_path.joinpath('report.xlsx')
     documentPath = str(path)
 
     now = datetime.now()

@@ -4,8 +4,10 @@ from src.businessConfidenceBySector.infra.fetch.fetch import fetchBusinessConfid
 from src.businessConfidenceBySector.infra.download.pdf_page import downloadPdfPage
 
 def businessConfidenceInfra(quarter: Quarter, indicator: Indicator):   
-  name = indicator['db_name']
-  path = Path(__file__).parents[1].joinpath(f'assets/{name}.pdf')
+  db_name = indicator['db_name']
+  folder_path = Path(__file__).parents[1].joinpath('assets')
+  folder_path.mkdir(parents=True, exist_ok=True)
+  path = folder_path.joinpath(f'{db_name}.pdf')
    
   file_url = fetchBusinessConfidence(quarter, indicator)
 

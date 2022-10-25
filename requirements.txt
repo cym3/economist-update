@@ -22,7 +22,6 @@ lxml
 pypdf2
 boto3[crt]
 amazon-textract-response-parser
-wget
 
 # Excell
 xlsxwriter

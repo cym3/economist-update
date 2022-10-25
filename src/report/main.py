@@ -6,9 +6,12 @@ from src.report.domain.entities.get_tasks import getTasksDB
 from src.utils.tasks import tasks_header
 from src.utils.create_excel import createExcelFile
 
-path = str(Path(__file__).parent.joinpath(f'assets/report.xlsx'))
-
 def reportUseCase():
+    folder_path = Path(__file__).parent.joinpath('assets')
+    folder_path.mkdir(parents=True, exist_ok=True)
+    path = folder_path.joinpath('report.xlsx')
+    documentPath = str(path)
+
     now = datetime.now()
     date = now.strftime('%Y-%m-%d %H:%M:%S')
 
@@ -17,7 +20,7 @@ def reportUseCase():
 
     title = f'Relatório das Ultimas 24 horas {date}'
 
-    createExcelFile(body=tasksReport, title=title, header=tasks_header, path=path)
+    createExcelFile(body=tasksReport, title=title, header=tasks_header, path=documentPath)
 
     massage = f"""
         {date}
@@ -29,6 +32,8 @@ def reportUseCase():
         Até amanhã à mesma hora.
     """
 
-    sandMail(title=title, message=massage, attachmentPath=path)
+    sandMail(title=title, message=massage, attachmentPath=documentPath)
+
+    path.unlink()
 
     return tasksReport
