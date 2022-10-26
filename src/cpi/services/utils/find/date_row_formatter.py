@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Union
 from dateutil.relativedelta import relativedelta
 import re
 from src.cpi.domain.requiredFields.cpi import DateCpi
@@ -32,10 +33,18 @@ def get_month(date_str: list):
 
 def datesRowFormatter(dates_row: list[str], date: DateCpi):
   dates_row = filter_row(dates_row)
-  date_str = dates_row[0].lower()
 
-  start_year = get_year(date_str, date)
-  start_month = get_month(date_str)
+  start_date: Union[datetime, str] = dates_row[0]
+
+  start_year = 0
+  start_month = 0
+
+  if isinstance(start_date, datetime):
+    start_year = start_date.year
+    start_month = start_date.month
+  else:
+    start_year = get_year(start_date, date)
+    start_month = get_month(start_date)
 
   new_dates = []
 

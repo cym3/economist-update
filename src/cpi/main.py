@@ -5,6 +5,7 @@ from src.cpi.indicators import indicators
 
 def cpiUseCase():
     for indicator in indicators:
+        db_name = indicator['db_name']
         last_update_date = getLastUpdateDateDB(indicator)
 
         CPI = cpiService(date=last_update_date, indicator=indicator)
@@ -14,6 +15,6 @@ def cpiUseCase():
             print(CPI)
 
         else:
-            print('No new IPC to update')
+            print(f'No new {db_name} to update')
 
     return 'Done'
