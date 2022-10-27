@@ -4,8 +4,8 @@ from src.interestRates.services.fetch.fetch_rates import fetchRates
 from src.interestRates.services.utils.find_interest_rates import findInterestRates
 
 def interestRatesService(date: str, indicator: Indicator):
-  html = fetchRates(date)
-  table = findInterestRates(html)
+  html = fetchRates(date, indicator)
+  table = findInterestRates(html, indicator)
 
   interestRates = formatInterestRates(table=table, date=date, indicator=indicator)
 

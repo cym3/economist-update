@@ -31,7 +31,7 @@ def fetchBusinessConfidence(quarter: Quarter, indicator: Indicator):
     links = driver.find_elements(by='xpath', value='//*[@id="content-core"]/table/tbody/tr/td[1]/a')
 
     link = links[0]
-    name = link.text.lowr()
+    name = link.text.lower()
     # Check if is Indicadores de Confiança e de Clima Económico (ICCE) I Trimestre 2022
     match1 = re.search('indicador', name)
     match2 = re.search('confiança', name)
