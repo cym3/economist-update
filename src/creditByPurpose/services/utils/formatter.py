@@ -24,7 +24,7 @@ def formatter(
   electricity_gas_and_water = electricityGasAndWaterFormatter(table, new_date, indicator)
   extractive_industry = extractiveIndustryFormatter(table, new_date, indicator)
   fishery = fisheryFormatter(table, new_date, indicator)
-  livestock = livestockFormatter(table, new_date)
+  livestock = livestockFormatter(table, new_date, indicator)
   manufacturing_industry = manufacturingIndustryFormatter(table, new_date, indicator)
   monetary_and_financial_institutions = monetaryAndFinancialInstitutionsFormatter(table, new_date, indicator)
   other_sectores = otherSectoresFormatter(table, new_date, indicator)
