@@ -20,7 +20,7 @@ def fetchCreditByActivitySector(date: DateCredit, folder_path: Path, indicator: 
   file_folder = str(folder_path)
   documentPath: Union[Path, None] = None
 
-  prefs = { 'download.default_directory' : file_folder }
+  prefs = { 'download.default_directory': file_folder }
 
   try:
     options = Options()

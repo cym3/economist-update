@@ -18,7 +18,7 @@ from src.cpi.services.utils.content.other_goods_and_services import find_other_g
 
 def formatCpi(table: list[list[Union[float, int]]], date: DateCpi, indicator: Indicator):
   dates_row = findDateRow(table, indicator)
-  dates_row = datesRowFormatter(dates_row, date)
+  dates_row = datesRowFormatter(dates_row, date, indicator)
 
   total = findTotal(table, dates_row, date)
   
