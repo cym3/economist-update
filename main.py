@@ -30,7 +30,7 @@ schedule.every().day.at("16:00").do(currentCurrencyTradesUseCase)
 
 
 
-# schedule.every(5).seconds.do(cpiUseCase)
+schedule.every(5).seconds.do(cpiUseCase)
 
 while True:
     schedule.run_pending()

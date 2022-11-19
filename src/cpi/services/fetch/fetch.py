@@ -7,7 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
-from src.cpi.services.utils.months import months
+from src.cpi.services.utils.months import min_months
 from src.cpi.domain.requiredFields.cpi import DateCpi, Indicator
 
 
@@ -36,7 +36,7 @@ def fetchCpi(date: DateCpi, indicator: Indicator):
     month = 0
 
     index = 0
-    for m in months:
+    for m in min_months:
       monthMatch = re.search(m, name)
 
       if (monthMatch is not None):
