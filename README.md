@@ -14,7 +14,7 @@ Yes, That's why we are building MozEconomia a platform to host all Mozambican fi
 
 
 ## Features
-Automated system to update MozEconomia database automatically, data from: 
+Python Automated system to update MozEconomia database automatically, data from: 
 ```hs
   - Money Market
   - Credit Market
