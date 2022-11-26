@@ -1,5 +1,6 @@
 import schedule
 import time
+from src.moneyCirculation.main import moneyCirculationUseCase
 from src.creditByActivitySector.main import creditByActivitySectorUseCase
 from src.creditByPurpose.main import creditByPurposeUseCase
 from src.economicActivityAggregate.main import economicActivityAggregateUseCase
@@ -19,6 +20,7 @@ schedule.every().day.at("02:03").do(businessConfidenceAggregateUseCase)
 schedule.every().day.at("02:06").do(businessConfidenceBySectorUseCase)
 schedule.every().day.at("02:12").do(creditByActivitySectorUseCase)
 schedule.every().day.at("02:15").do(creditByPurposeUseCase)
+schedule.every().day.at("02:20").do(moneyCirculationUseCase)
 
 schedule.every().day.at("03:00").do(cpiUseCase)
 schedule.every().day.at("04:00").do(sandMyMail)
