@@ -1,13 +1,13 @@
 from datetime import datetime
-from src.creditByActivitySector.domain.requiredFields.credit import DateCredit
-from src.creditByActivitySector.domain.entities.create_tasks import createTaskDB
-from src.creditByActivitySector.domain.errors.create_error import createError
-from src.creditByActivitySector.domain.requiredFields.credit import Indicator
+from src.moneyCirculation.domain.requiredFields.main import DateMoneyCirculation
+from src.moneyCirculation.domain.entities.create_tasks import createTaskDB
+from src.moneyCirculation.domain.errors.create_error import createError
+from src.moneyCirculation.domain.requiredFields.main import Indicator
 
 def findDateRow(table: list[list]):
-  return table[2]
+  return table[1]
 
-def getNewDate(table: list, date: DateCredit, indicator: Indicator):
+def getNewDate(table: list, date: DateMoneyCirculation, indicator: Indicator):
   db_name = indicator['db_name']
 
   try:

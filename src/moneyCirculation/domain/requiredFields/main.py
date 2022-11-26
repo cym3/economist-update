@@ -10,7 +10,7 @@ class Value(BaseModel):
   value: int
 
 class MoneyCirculation(BaseModel):
-  _id: str
+  id: str
   name: str
   volumes: list[Value]
   values: list[Value]

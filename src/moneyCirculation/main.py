@@ -7,7 +7,7 @@ from src.moneyCirculation.domain.entities.get_last_update_date import getLastUpd
 from src.moneyCirculation.indicators import indicators
 
 def moneyCirculationUseCase():
-    credit = []
+    money = []
     
     for indicator in indicators:
         db_name = indicator['db_name']
@@ -22,21 +22,21 @@ def moneyCirculationUseCase():
             response = readXlsx(path=path, indicator=indicator)
             path.unlink()
 
-            creditTable = parseXlsx(response)
+            moneyTable = parseXlsx(response)
 
-            # credit = moneyCirculationService(
-            #     table=creditTable,
-            #     date=old_date,
-            #     indicator=indicator
-            # )
+            money = moneyCirculationService(
+                table=moneyTable,
+                date=old_date,
+                indicator=indicator
+            )
 
-            # saveMoneyCirculationDB(
-            #     moneyCirculation=credit,
-            #     indicator=indicator
-            # )
-            # print(db_name)
+            saveMoneyCirculationDB(
+                moneyCirculation=money,
+                indicator=indicator
+            )
+            print(db_name)
 
         else:
             print(f'No new {db_name} to update')
 
-    return credit
+    return money

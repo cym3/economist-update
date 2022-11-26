@@ -1,9 +1,9 @@
 from datetime import datetime
-from src.moneyCirculation.domain.requiredFields.main import MoneyCirculation, Indicator
+from src.moneyCirculation.domain.requiredFields.main import DateMoneyCirculation, Indicator
 from src.moneyCirculation.services.utils.formatter import formatter
 from src.moneyCirculation.services.utils.find.find_date import getNewDate
 
-def moneyCirculationService(table: list, date: MoneyCirculation, indicator: Indicator):
+def moneyCirculationService(table: list, date: DateMoneyCirculation, indicator: Indicator):
     new_date = getNewDate(table, date, indicator)
 
     old_Date = datetime(date['year'], date['month'], 1)
