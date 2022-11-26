@@ -12,8 +12,7 @@ def moneyPrintingUseCase():
     for indicator in indicators:
         db_name = indicator['db_name']
 
-        # old_date = getLastUpdateDateDB(indicator)
-        old_date = { 'year': 2022, 'month': 9 }
+        old_date = getLastUpdateDateDB(indicator)
 
         path = moneyPrintingInfra(date=old_date, indicator=indicator)
 
