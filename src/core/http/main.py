@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from src.core.http.router.money import MoneyRouter
 from src.core.http.router.currency_trades import currencyTradesRouter
 from src.core.http.router.report import reportRouter
 from src.core.http.router.interest_rates import interestRatesRouter
@@ -32,3 +33,4 @@ app.include_router(cpiRouter)
 app.include_router(creditRouter)
 app.include_router(economicActivityRouter)
 app.include_router(businessConfidenceRouter)
+app.include_router(MoneyRouter)
