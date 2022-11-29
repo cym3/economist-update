@@ -12,7 +12,7 @@ def currencyTradesService(currencies: list[Currency], tables: list, indicator: I
     trades_by_1 = tables[0]
     trades_by_1000 = tables[1]
 
-    newCurrenciesTrades = []
+    updatedCurrencies = []
     
     for currency in currencies:
         countryName: str = currency['country']
@@ -27,7 +27,7 @@ def currencyTradesService(currencies: list[Currency], tables: list, indicator: I
                 indicator=indicator
             )
 
-            newCurrenciesTrades.append(formattedTrades)
+            updatedCurrencies.append(formattedTrades)
 
         if tableRow is None:
             tableRow = findCurrencyTrades(countryName=countryName, currenciesTrades=trades_by_1000)
@@ -41,7 +41,7 @@ def currencyTradesService(currencies: list[Currency], tables: list, indicator: I
                     indicator=indicator
                 )
 
-                newCurrenciesTrades.append(formattedTrades)
+                updatedCurrencies.append(formattedTrades)
 
             if tableRow is None:
                 createTaskDB(isDone=False, indicator=indicator,)
@@ -49,4 +49,4 @@ def currencyTradesService(currencies: list[Currency], tables: list, indicator: I
 
                 createError(errorMessage)
 
-    return newCurrenciesTrades
+    return updatedCurrencies
