@@ -1,5 +1,6 @@
 import schedule
 import time
+from src.currentCryptoTrades.main import currentCryptoTradesUseCase
 from src.moneyPrinting.main import moneyPrintingUseCase
 from src.moneyCirculation.main import moneyCirculationUseCase
 from src.creditByActivitySector.main import creditByActivitySectorUseCase
@@ -32,6 +33,7 @@ schedule.every().day.at("08:00").do(interestRatesUseCase)
 schedule.every().day.at("08:00").do(currentCurrencyTradesUseCase)
 schedule.every().day.at("16:00").do(currentCurrencyTradesUseCase)
 
+schedule.every(15).minutes.do(currentCryptoTradesUseCase)
 
 
 # schedule.every(5).seconds.do(cpiUseCase)
