@@ -14,6 +14,6 @@ def currentCryptoTradesUseCase():
 
         currenciesTrades = currencyTradesService(crypto_currencies, trade, indicator)
 
-        # saveCurrentTradesDB(currenciesTrades, indicator)
+        saveCurrentTradesDB(currenciesTrades, indicator)
 
     return currenciesTrades

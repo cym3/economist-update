@@ -17,11 +17,13 @@ def currencyTradesService(currencies: list[Currency], trade: dict, indicator: In
       'current_percent_change': trade['current_percent_change'][f'{isoCode}-USD'],
       'market_cap': trade['market_cap'][f'{isoCode}-USD'],
       'current_volume': trade['current_volume'][f'{isoCode}-USD'],
+      'date': date
     }
 
-    print(new_updates)
+    currency['currentTrades'] = new_updates
+    currency['_id'] = ''
 
-    updatedCryptoCurrencies.append(new_updates)
+    updatedCryptoCurrencies.append(currency)
     
   return updatedCryptoCurrencies
     

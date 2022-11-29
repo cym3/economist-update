@@ -17,11 +17,13 @@ def saveCurrentTradesDB (currencyTrades: list[CurrencyTrade], indicator: Indicat
     collection = database[db_name]
 
     for currency in currencyTrades:
+      isoCode = currency['iso']['code']
+      
       collection.update_one(
         {
-          'iso.code': currency['isoCode']
+          'iso.code': isoCode
         },
-        { '$set': { 'currentTrades': currency['trade'] }}
+        { '$set': { 'currentTrades': currency['currentTrades'] }}
     )
     
     createTaskDB(isDone=True, indicator=indicator)
