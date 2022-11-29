@@ -5,7 +5,7 @@ from src.currentCryptoTrades.domain.requiredFields.currencies import Indicator
 from yahoofinancials import YahooFinancials
 
 
-def findCurrencyTrades(currencies: list[Currency], indicator: Indicator):
+def currentCryptoTradesInfra(currencies: list[Currency], indicator: Indicator):
   new_updates = {}
   
   try: 

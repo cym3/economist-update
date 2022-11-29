@@ -11,7 +11,10 @@ def getAllCurrenciesDB (indicator: Indicator):
     database = economist_db()
     collection = database[db_name]
 
-    currencies = collection.find({})
+    found = collection.find({})
+
+    for el in found:
+      currencies.append(el)
 
   except Exception as err:
     print(err)
