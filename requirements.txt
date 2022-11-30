@@ -30,3 +30,6 @@ xlrd
 #Web scrapping
 selenium
 webdriver-manager
+
+# External API
+yahoofinancials
