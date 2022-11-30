@@ -2,7 +2,7 @@ from src.currentCurrencyTrades.infra.main import tradesInfra
 from src.currentCurrencyTrades.aws.parse.tables import tablesParser
 from src.currentCurrencyTrades.aws.extract.tables import extractTable
 from src.currentCurrencyTrades.domain.requiredFields.page_validator import fileValidator
-from src.currentCurrencyTrades.services.current_trades import currencyTradesService
+from src.currentCurrencyTrades.services.main import currencyTradesService
 from src.currentCurrencyTrades.domain.entities.save_current_trades import saveCurrentTradesDB
 from src.currentCurrencyTrades.domain.entities.get_all_currencies import getAllCurrenciesDB
 from src.currentCurrencyTrades.indicators import indicators
