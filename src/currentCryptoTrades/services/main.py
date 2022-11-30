@@ -12,11 +12,11 @@ def currencyTradesService(currencies: list[Currency], trade: dict, indicator: In
     isoCode = currency['iso']['code']
 
     new_updates = {
-      'current_change': trade['current_change'][f'{isoCode}-USD'],
-      'current_price': trade['current_price'][f'{isoCode}-USD'],
-      'current_percent_change': trade['current_percent_change'][f'{isoCode}-USD'],
-      'market_cap': trade['market_cap'][f'{isoCode}-USD'],
-      'current_volume': trade['current_volume'][f'{isoCode}-USD'],
+      'currentChange': trade['current_change'][f'{isoCode}-USD'],
+      'currentPrice': trade['current_price'][f'{isoCode}-USD'],
+      'currentPercentChange': trade['current_percent_change'][f'{isoCode}-USD'],
+      'marketCap': trade['market_cap'][f'{isoCode}-USD'],
+      'currentVolume': trade['current_volume'][f'{isoCode}-USD'],
       'date': date
     }
 
