@@ -8,7 +8,6 @@ from src.core.http.router.cpi import cpiRouter
 from src.core.http.router.economic_activity import economicActivityRouter
 from src.core.http.router.business_confidence import businessConfidenceRouter
 from src.core.http.router.credit import creditRouter
-from src.core.http.router.crypto_trades import cryptoTradesRouter
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -35,4 +34,3 @@ app.include_router(creditRouter)
 app.include_router(economicActivityRouter)
 app.include_router(businessConfidenceRouter)
 app.include_router(MoneyRouter)
-app.include_router(cryptoTradesRouter)
