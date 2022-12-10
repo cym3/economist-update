@@ -13,7 +13,7 @@ def isNewFile(date: DateCredit, remote_name: str):
 
   local_new_name = f'crédito por finalidade - {new_month} de {new_year}'
 
-  match_score = partial_ratio(local_new_name, remote_name)
+  match_score = partial_ratio(local_new_name, remote_name.lower())
   if (match_score > 97):
     return True
 

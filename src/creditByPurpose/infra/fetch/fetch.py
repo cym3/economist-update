@@ -1,5 +1,4 @@
 import os
-import re
 import time
 from typing import Union
 from src.creditByPurpose.infra.fetch.is_new_file import isNewFile
@@ -36,7 +35,7 @@ def fetchCreditByPurpose(date: DateCredit, folder_path: Path, indicator: Indicat
     time.sleep(5)    
     driver.close()
 
-    pattern = 'Finalidade.xlsx'
+    pattern = 'pt_71_Crédito por Finalidade'
 
     for root, dirs, files in os.walk(file_folder):
       for file in files:

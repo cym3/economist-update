@@ -32,7 +32,7 @@ schedule.every().day.at("08:00").do(interestRatesUseCase)
 schedule.every().day.at("08:00").do(currentCurrencyTradesUseCase)
 schedule.every().day.at("16:00").do(currentCurrencyTradesUseCase)
 
-# schedule.every(5).seconds.do(cpiUseCase)
+schedule.every(5).seconds.do(creditByPurposeUseCase)
 
 while True:
     schedule.run_pending()
