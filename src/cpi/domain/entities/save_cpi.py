@@ -8,43 +8,28 @@ class Value(BaseModel):
   date: DateCpi
   value: float
 
-class Product(BaseModel):
-  name: str
+class CPI(BaseModel):
+  id: str
   values: list[Value]
 
-class CPI(BaseModel):
-  products: list[Product]
-  total: Product
 
-def saveCpiDB (CPIs: CPI, indicator: Indicator):
+def saveCpiDB (CPIs: list[CPI], indicator: Indicator):
   db_name = indicator['db_name']
 
   try:
     database = economist_db()
     collection = database[db_name]
 
-    products = CPIs['products']
-    total = CPIs['total']['values']
-
-    for val in total:
-      date = val['date']
-      value = val['value']
-      
-      collection.update_one(
-        { 'type': 'by-region' },
-        { '$push': { 'values':  { 'date': date, 'value': value } }}
-      )
-
-    for product in products:
-      product_name = product['name']
-      values = product['values']
+    for cpi in CPIs:
+      id = cpi['id']
+      values = cpi['values']
 
       for val in values:
         date = val['date']
         value = val['value']
 
         collection.update_one(
-          { 'type': 'by-product', 'name': product_name },
+          { '_id': id },
           { '$push': { 'values':  { 'date': date, 'value': value } }}
         )
     

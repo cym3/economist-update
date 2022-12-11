@@ -42,6 +42,6 @@ def find_education(
     index += 1
 
   return {
-    "name": "Educação",
+    "id": "631a471d5d359b88a2bfb5b3",
     "values": values
   }

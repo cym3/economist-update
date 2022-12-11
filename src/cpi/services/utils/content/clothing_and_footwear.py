@@ -42,6 +42,6 @@ def find_clothing_and_footwear(
     index += 1
 
   return {
-    "name": "Vestuários e Calçados",
+    "id": "631a471d5d359b88a2bfb5ac",
     "values": values
   }

@@ -46,20 +46,18 @@ def formatCpi(table: list[list[Union[float, int]]], date: DateCpi, indicator: In
     
   other_goods_and_services = find_other_goods_and_services(table, dates_row, date)
 
-  return {
-    'products': [
-      non_alcoholic_food,
-      alcoholic_tobacco_and_narcotics,
-      clothing_and_footwear,
-      housing_water_electricity_gas_fuels,
-      furniture_decoration_items_household_equipment,
-      health,
-      transport,
-      communications,
-      leisure_recreation_culture,
-      education,
-      restaurants_hotels_cafes,
-      other_goods_and_services
-    ],
-    'total': total
-  }
+  return [
+    non_alcoholic_food,
+    alcoholic_tobacco_and_narcotics,
+    clothing_and_footwear,
+    housing_water_electricity_gas_fuels,
+    furniture_decoration_items_household_equipment,
+    health,
+    transport,
+    communications,
+    leisure_recreation_culture,
+    education,
+    restaurants_hotels_cafes,
+    other_goods_and_services,
+    total
+  ]

@@ -45,6 +45,6 @@ def find_housing_water_electricity_gas_fuels(
     index += 1
 
   return {
-    "name": "Habitação, Água, Electricidade, Gás e Outros Combustíveis",
+    "id": "631a471d5d359b88a2bfb5ad",
     "values": values
   }

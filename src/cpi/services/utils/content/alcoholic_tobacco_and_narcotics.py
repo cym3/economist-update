@@ -44,6 +44,6 @@ def find_alcoholic_tobacco_and_narcotics(
     index += 1
 
   return {
-    "name": "Bebidas Alcoólicas, Tabaco e Narcóticos",
+    "id": "631a471d5d359b88a2bfb5ab",
     "values": values
   }

@@ -40,7 +40,7 @@ def findTotal(
     index += 1
 
   return {
-    "name": "Total",
+    "id": "631a471d5d359b88a2bfb5a9",
     "values": values
   }
 

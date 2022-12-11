@@ -46,6 +46,6 @@ def find_furniture_decoration_items_household_equipment(
     index += 1
 
   return {
-    "name": "Mobiliário, Artigos de Decoração, Equipamento Doméstico e Manutenção da Habitação",
+    "id": "631a471d5d359b88a2bfb5ae",
     "values": values
   }

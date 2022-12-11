@@ -44,6 +44,6 @@ def find_other_goods_and_services(
     index += 1
 
   return {
-    "name": "Bens e Serviços Diversos",
+    "id": "631a471d5d359b88a2bfb5b5",
     "values": values
   }

@@ -44,6 +44,6 @@ def find_restaurants_hotels_cafes(
     index += 1
 
   return {
-    "name": "Restaurantes, Hotéis, Cafés e Similares",
+    "id": "631a471d5d359b88a2bfb5b4",
     "values": values
   }
