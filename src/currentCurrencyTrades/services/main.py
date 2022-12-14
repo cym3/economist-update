@@ -15,7 +15,7 @@ def currencyTradesService(currencies: list[Currency], tables: list, indicator: I
     updatedCurrencies = []
     
     for currency in currencies:
-        countryName: str = currency['country']
+        countryName: str = currency['country']['pt']
         tableRow = findCurrencyTrades(countryName=countryName, currenciesTrades=trades_by_1)
 
         if tableRow is not None:
