@@ -41,6 +41,6 @@ def saveEconomicActivityDB(economicActivities: list[EconomicActivity], indicator
 
     createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
   return 'Done'

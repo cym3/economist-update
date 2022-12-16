@@ -11,7 +11,7 @@ def getLastUpdateDateDB(indicator: Indicator):
     database = economist_db()
     collection = database[db_name]
 
-    eai = collection.find_one({'type': 'Agregado' })
+    eai = collection.find_one()
     last = eai['values'][-1]
 
     date = last['date']
@@ -22,6 +22,6 @@ def getLastUpdateDateDB(indicator: Indicator):
 
     createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
-    createError(errorMessage)
+    createError(errorMessage, indicator)
 
   return date
