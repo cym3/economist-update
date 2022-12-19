@@ -56,7 +56,7 @@ def fetchBusinessConfidence(quarter: Quarter, indicator: Indicator):
     newQuarter: Union[Quarter, None] = None
 
     for q in quarters:
-      sign = q['sign'].lower()
+      sign = q['sign']['pt'].lower()
       quarterMatch = re.search(f'{sign} trimestre', name)
 
       if (quarterMatch is not None):

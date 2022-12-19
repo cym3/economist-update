@@ -7,7 +7,7 @@ from src.businessConfidenceAggregate.domain.requiredFields.business_confidence i
 
 def findSignQuarter(quarter_sign: str):
   for quarter in quarters:
-    sign = quarter['sign']
+    sign = quarter['sign']['pt']
 
     if quarter_sign == sign:
       return quarter

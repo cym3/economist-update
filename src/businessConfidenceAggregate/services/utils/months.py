@@ -15,22 +15,34 @@ months = [
 
 quarters = [
   {
-    'sign': "I",
+    'sign': {
+      'pt': 'I',
+      'en': 'Q1'
+    },
     'fromMonth': 1,
     'toMonth': 3
   },
   {
-    'sign': "II",
+    'sign': {
+      'pt': 'II',
+      'en': 'Q1'
+    },
     'fromMonth': 4,
     'toMonth': 6
   },
   {
-    'sign': "III",
+    'sign': {
+      'pt': 'III',
+      'en': 'Q1'
+    },
     'fromMonth': 7,
     'toMonth': 9
   },
   {
-    'sign': "IV",
+    'sign': {
+      'pt': 'IV',
+      'en': 'Q1'
+    },
     'fromMonth': 10,
     'toMonth': 12
   }
