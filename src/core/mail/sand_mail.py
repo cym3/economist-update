@@ -10,7 +10,7 @@ from typing import Union
 
 mail_from = 'mozeconomia@gmail.com'
 mail_to = 'arlindojosboa@gmail.com'
-mail_cc = 'edmilsontembe.et@gmail.com, acuceno@gmail.com, nhantumboevanilson@gmail.com, team@mozeconomia.co.mz'
+mail_cc = 'edmilsontembe.et@gmail.com, nhantumboevanilson@gmail.com, team@mozeconomia.co.mz'
 
 def sandMail(title: str, message: str, attachmentPath: Union[str, None] = None):  
   mail_content = message

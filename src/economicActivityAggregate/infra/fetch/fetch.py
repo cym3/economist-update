@@ -67,10 +67,10 @@ def fetchEconomicActivity(date: DateEconomicActivity, indicator: Indicator):
 
       index += 1
 
-    last_update = datetime(last_update_year, last_update_month, 1)
+    last_update_on_db = datetime(last_update_year, last_update_month, 1)
     new_update = datetime(year, month, 1)
 
-    if new_update > last_update:
+    if new_update > last_update_on_db:
       href = link.get_attribute('href')
 
       file_url = href.replace('/view', '', 1)
