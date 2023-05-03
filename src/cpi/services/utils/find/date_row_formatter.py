@@ -1,4 +1,4 @@
-from datetime import datetime
+from src.utils.date.index import CreateDateUTC
 from typing import Union
 from dateutil.relativedelta import relativedelta
 import re
@@ -7,6 +7,7 @@ from src.cpi.domain.errors.create_error import createError
 from src.cpi.domain.requiredFields.cpi import DateCpi, Indicator
 from src.cpi.services.utils.find.filter_row import filter_row
 from src.cpi.services.utils.months import min_months
+from datetime import datetime
 
 def get_year(date_str: str, date: DateCpi):
   old_year: int = date['year']
@@ -54,7 +55,7 @@ def datesRowFormatter(dates_row: list[str], date: DateCpi, indicator: Indicator)
 
     index = 0
     for el in dates_row:
-      now = datetime(start_year, start_month, 1)
+      now = CreateDateUTC(start_year, start_month, 1).date
       new_date = now + relativedelta(months=index)
 
       new_dates.append(new_date)

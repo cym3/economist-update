@@ -1,5 +1,5 @@
 from pathlib import Path
-from datetime import datetime
+from src.utils.date.index import CreateDateUTC
 from src.economicActivityAggregate.domain.requiredFields.economic_activity import Indicator
 from src.core.mail.sand_mail import sandMail
 from src.utils.create_excel import createExcelFile
@@ -16,8 +16,7 @@ def createError(massage: str, indicator: Indicator):
     path = folder_path.joinpath('report.xlsx')
     documentPath = str(path)
 
-    now = datetime.now()
-    date = now.strftime('%Y-%m-%d %H:%M:%S')
+    date = CreateDateUTC().strftime
 
 
     body = [

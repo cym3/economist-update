@@ -1,11 +1,11 @@
-from datetime import datetime
+from src.utils.date.index import CreateDateUTC
 from dateutil.relativedelta import relativedelta
 from src.moneyCirculation.services.utils.months import months
 from src.moneyCirculation.domain.requiredFields.main import DateMoneyCirculation
 from rapidfuzz.fuzz import partial_ratio
 
 def isNewFile(date: DateMoneyCirculation, remote_name: str):
-  old_Date = datetime(date['year'], date['month'], 1)
+  old_Date = CreateDateUTC(date['year'], date['month'], 1)
   new_Date = old_Date + relativedelta(months=+1)
 
   new_year = new_Date.year

@@ -1,4 +1,4 @@
-from datetime import datetime
+from src.utils.date.index import CreateDateUTC
 import re
 from typing import Union
 from src.economicActivityAggregate.domain.entities.create_tasks import createTaskDB
@@ -67,8 +67,8 @@ def fetchEconomicActivity(date: DateEconomicActivity, indicator: Indicator):
 
       index += 1
 
-    last_update_on_db = datetime(last_update_year, last_update_month, 1)
-    new_update = datetime(year, month, 1)
+    last_update_on_db = CreateDateUTC(last_update_year, last_update_month, 1).date
+    new_update = CreateDateUTC(year, month, 1).date
 
     if new_update > last_update_on_db:
       href = link.get_attribute('href')

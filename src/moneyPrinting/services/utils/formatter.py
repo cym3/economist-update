@@ -1,4 +1,3 @@
-from datetime import datetime
 from src.moneyPrinting.domain.requiredFields.main import Indicator
 from src.moneyPrinting.services.utils.content.banknotes import banknotesFormatter
 from src.moneyPrinting.services.utils.content.coins import coinsFormatter

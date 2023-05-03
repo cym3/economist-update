@@ -1,5 +1,6 @@
 from typing import Union
 from datetime import datetime
+from src.utils.date.index import CreateDateUTC
 from src.cpi.domain.requiredFields.cpi import DateCpi
 from src.cpi.services.utils.find.filter_row import filter_row
 
@@ -8,7 +9,7 @@ def findTotal(
   dates_row: list[datetime],
   date: DateCpi
 ):
-  old_date = datetime(date['year'], date['month'], 1)
+  old_date = CreateDateUTC(date['year'], date['month'], 1).date
 
   def find():
     for row in table:

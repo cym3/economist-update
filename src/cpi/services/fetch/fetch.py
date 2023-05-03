@@ -1,4 +1,4 @@
-from datetime import datetime
+from src.utils.date.index import CreateDateUTC
 import re
 from typing import Union
 from src.cpi.domain.entities.create_tasks import createTaskDB
@@ -59,8 +59,8 @@ def fetchCpi(date: DateCpi, indicator: Indicator):
       if (yearMatch is not None):
         year = y
 
-    old_date = datetime(old_year, old_month, 1)
-    new_date = datetime(year, month, 1)
+    old_date = CreateDateUTC(old_year, old_month, 1).date
+    new_date = CreateDateUTC(year, month, 1).date
 
     if new_date > old_date:
       href = link.get_attribute('href')

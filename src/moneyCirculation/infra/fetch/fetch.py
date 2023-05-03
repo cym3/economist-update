@@ -1,5 +1,4 @@
 import os
-import re
 import time
 from typing import Union
 from src.moneyCirculation.infra.fetch.is_new_file import isNewFile

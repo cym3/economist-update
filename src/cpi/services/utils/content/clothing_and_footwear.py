@@ -3,13 +3,14 @@ from datetime import datetime
 from src.cpi.domain.requiredFields.cpi import DateCpi
 from src.cpi.services.utils.find.filter_row import filter_row
 import re
+from src.utils.date.index import CreateDateUTC
 
 def find_clothing_and_footwear(
   table: list[list[Union[float, int]]],
   dates_row: list[datetime],
   date: DateCpi
 ):
-  old_date = datetime(date['year'], date['month'], 1)
+  old_date = CreateDateUTC(date['year'], date['month'], 1).date
   def find():
     for row in table:
       el = str(row[1]).lower()

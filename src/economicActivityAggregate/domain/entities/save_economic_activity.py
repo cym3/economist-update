@@ -1,4 +1,3 @@
-from mimetypes import init
 from src.economicActivityAggregate.domain.requiredFields.economic_activity import DateEconomicActivity, Indicator
 from src.economicActivityAggregate.domain.entities.create_tasks import createTaskDB
 from src.economicActivityAggregate.domain.errors.create_error import createError

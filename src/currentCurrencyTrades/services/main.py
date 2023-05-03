@@ -2,10 +2,10 @@ from src.currentCurrencyTrades.domain.requiredFields.page_validator import Excha
 from src.currentCurrencyTrades.services.utils.format_currency_rate import formatCurrencyRate
 from src.currentCurrencyTrades.services.utils.find_currency_rate import findCurrencyRate
 from src.currentCurrencyTrades.domain.requiredFields.currencies import Currency, Indicator
-from src.utils.date.index import createDateUTC
+from src.utils.date.index import CreateDateUTC
 
 def currencyTradesService(currencies: list[Currency], trades: ExchangeRates, indicator: Indicator):
-    now = createDateUTC()
+    now = CreateDateUTC().strftime
 
     updatedCurrencies = []
 

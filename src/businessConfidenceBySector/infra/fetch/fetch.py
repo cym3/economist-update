@@ -1,4 +1,4 @@
-from datetime import datetime
+from src.utils.date.index import CreateDateUTC
 import re
 from typing import Union
 from src.businessConfidenceBySector.domain.requiredFields.business_confidence import Indicator, Quarter
@@ -63,10 +63,10 @@ def fetchBusinessConfidence(quarter: Quarter, indicator: Indicator):
         q['year'] = year
         newQuarter = q
 
-    last_update = datetime(last_update_year, last_update_month, 1)
+    last_update = CreateDateUTC(last_update_year, last_update_month, 1).date
     year = newQuarter['year']
     month = newQuarter['fromMonth']
-    new_update = datetime(year, month, 1)
+    new_update = CreateDateUTC(year, month, 1).date
 
     if new_update > last_update:
       href = link.get_attribute('href')

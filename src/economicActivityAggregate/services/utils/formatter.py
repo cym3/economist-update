@@ -1,4 +1,5 @@
 from datetime import datetime
+from src.utils.date.index import CreateDateUTC
 from src.economicActivityAggregate.domain.requiredFields.economic_activity import DateEconomicActivity, Indicator
 from src.economicActivityAggregate.services.utils.content.industry import industryFormatter
 from src.economicActivityAggregate.services.utils.content.transport import transportFormatter
@@ -14,7 +15,7 @@ def formatter(
   date: DateEconomicActivity,
   indicator: Indicator
 ):
-  last_date_on_db = datetime(date['year'], date['month'], 1)
+  last_date_on_db = CreateDateUTC(date['year'], date['month'], 1).date
   last_date_on_table = dates_row[-1]
 
   if last_date_on_table <= last_date_on_db:

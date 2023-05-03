@@ -1,4 +1,4 @@
-from datetime import datetime
+from src.utils.date.index import CreateDateUTC
 from pathlib import Path
 from src.core.mail.sand_mail import sandMail
 from src.report.services.report import reportService
@@ -12,8 +12,7 @@ def reportUseCase():
     path = folder_path.joinpath('report.xlsx')
     documentPath = str(path)
 
-    now = datetime.now()
-    date = now.strftime('%Y-%m-%d %H:%M:%S')
+    date = CreateDateUTC().strftime
 
     tasks = getTasksDB()
     tasksReport = reportService(tasks)

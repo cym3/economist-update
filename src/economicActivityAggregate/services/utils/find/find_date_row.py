@@ -1,4 +1,4 @@
-from datetime import datetime
+from src.utils.date.index import CreateDateUTC
 from dateutil.relativedelta import relativedelta
 import re
 from src.economicActivityAggregate.services.utils.find.filter_row import filter_row
@@ -35,7 +35,7 @@ def findDatesRow(table: list, first_row_index: int):
 
   index = 0
   for m in months_row:
-    now = datetime(end_year, end_month, 1)
+    now = CreateDateUTC(end_year, end_month, 1).date
     new_date = now - relativedelta(months=index)
 
     dates_row.insert(0, new_date)
