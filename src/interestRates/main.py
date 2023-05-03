@@ -20,7 +20,6 @@ def interestRatesUseCase():
         interestRates = []
 
         while today != new_date:
-            print(new_date)
             date = date + timedelta(days=1)
             new_date = date.strftime('%Y-%m-%d')
 

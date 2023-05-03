@@ -1,27 +1,51 @@
-import re
+from pydantic import BaseModel
 from src.currentCurrencyTrades.domain.requiredFields.currencies import Indicator
 from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
 from src.currentCurrencyTrades.domain.errors.create_error import createError
-from src.currentCurrencyTrades.aws.parse.text import textParser
-from rapidfuzz.fuzz import partial_ratio
+from jsonschema import validate
 
-page_identifiers: list[str] = ['1. POR UNIDADE DE MOEDA ESTRANGEIRA', '2. METICAIS POR 1000 UNIDADES DE MOEDA ESTRANGEIRA']
+class Rate(BaseModel):
+  currency: str
+  location: str
+  name: str
+  date: str
+  buy: int
+  sell: int
 
-def fileValidator(textExtractResponse: dict, indicator: Indicator):
+class ExchangeRates(BaseModel):
+  baseCurrency: str
+  location: str
+  name: str
+  type: str
+  rates: list[Rate]
+
+schema = {
+    "type": "object",
+    "properties": {
+      "baseCurrency": {"type": "string"},
+      "name": {"type": "string"},
+      "location": {"type": "string"},
+      "type": {"type": "string"},
+      "rates": {
+        "type": "array",
+        "items": {
+        "currency": "string",
+        "location": "string",
+        "name": "string",
+        "date": "string",
+        "buy": "number",
+        "sell": "number"
+      }
+    }
+  },
+  "required": ["name", "baseCurrency", "location", "type", "rates"],
+}
+
+def dataValidator(data: ExchangeRates, indicator: Indicator):
   db_name = indicator['db_name']
+
   try: 
-    valide_page = True
-    texts = textParser(textExtractResponse)
-    text = ' '.join(texts)
-
-    for identifier in page_identifiers:
-      match_score = partial_ratio(text, identifier)
-
-      if (match_score < 85):
-        valide_page = False
-
-    if valide_page is False:
-      raise Exception(f'Invalid pdf page, the data contained by pdf dois not look like {db_name} data.')
+    validate(instance=data, schema=schema)
   
   except Exception as err:
     print(err)
@@ -31,4 +55,4 @@ def fileValidator(textExtractResponse: dict, indicator: Indicator):
 
     createError(errorMessage, indicator)
 
-  return valide_page
+  return data

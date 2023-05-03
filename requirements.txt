@@ -32,5 +32,8 @@ selenium
 webdriver-manager
 html5lib
 
+# Validate data
+jsonschema
+
 # External API
 yahoofinancials

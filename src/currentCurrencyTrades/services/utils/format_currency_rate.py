@@ -1,31 +1,32 @@
-import re
+from src.currentCurrencyTrades.domain.requiredFields.page_validator import Rate
 from src.currentCurrencyTrades.domain.requiredFields.currencies import Indicator
 from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
 from src.currentCurrencyTrades.domain.errors.create_error import createError
 
-def formatCurrencyTrades(
-  tableRow: list[str],
+def findDivider(isoCode: str): 
+  if isoCode == 'INR' or isoCode == 'IQD' or isoCode == 'JPY' or isoCode == 'MWK' or isoCode == 'TZS' or isoCode == 'ZWL':
+    return 1000
+  return 1
+
+def formatCurrencyRate(
+  rate: Rate,
   date: str,
-  divider: int,
   isoCode: str,
   indicator: Indicator
 ):
-  regex = r'\d+'
   formatted = {}
   db_name = indicator['db_name']
   
   try:
-    buy = re.findall(regex, tableRow[2])
-    buy = '.'.join(buy)
-
-    sale =  re.findall(regex, tableRow[3])
-    sale = '.'.join(sale)
+    buy = float(rate['buy'])
+    sale = float(rate['sell'])
+    divider = findDivider(isoCode)
 
     formatted = {
       'isoCode': isoCode,
       'trade': {
-        'buy': float(buy) / divider,
-        'sale': float(sale) / divider,
+        'buy': buy / divider,
+        'sale': sale / divider,
         'date': date
       }
     }
