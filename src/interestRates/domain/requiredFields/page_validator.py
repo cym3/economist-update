@@ -1,33 +1,47 @@
-import re
-from interestRates.domain.requiredFields.interest_rates import Indicator
+from pydantic import BaseModel
+from src.currentCurrencyTrades.domain.requiredFields.currencies import Indicator
 from src.currentCurrencyTrades.domain.entities.create_tasks import createTaskDB
 from src.currentCurrencyTrades.domain.errors.create_error import createError
-from src.currentCurrencyTrades.aws.parse.text import textParser
-from rapidfuzz.fuzz import partial_ratio
+from jsonschema import validate
 
-page_identifiers: list[str] = ['1. POR UNIDADE DE MOEDA ESTRANGEIRA', '2. METICAIS POR 1000 UNIDADES DE MOEDA ESTRANGEIRA']
+class Rate(BaseModel):
+  name: str
+  value: str
 
-def fileValidator(textExtractResponse: dict, name: str, indicator: Indicator):
+class InterestRates(BaseModel):
+  currency: str
+  name: str
+  location: str
+  rates: list[Rate]
+
+schema = {
+    "type": "object",
+    "properties": {
+      "currency": {"type": "string"},
+      "name": {"type": "string"},
+      "location": {"type": "string"},
+      "values": {"type": "array"},
+      "rates": {
+        "type": "array",
+        "items": {
+        "name": "string",
+        "value": "string",
+      }
+    }
+  },
+  "required": ["name", "currency", "location", "rates"],
+}
+
+def dataValidator(data: InterestRates, indicator: Indicator):
+  db_name = indicator['db_name']
+
   try: 
-    valide_page = True
-    texts = textParser(textExtractResponse)
-    text = ' '.join(texts)
-
-    for identifier in page_identifiers:
-      match_score = partial_ratio(text, identifier)
-
-      if (match_score < 85):
-        valide_page = False
-
-    if valide_page is False:
-      raise Exception(f'Invalid pdf page, the data contained by pdf dois not look like {name} data.')
+    validate(instance=data, schema=schema)
   
   except Exception as err:
     print(err)
-    errorMessage = f'Invalid pdf page, the data contained by pdf dois not look like {name} data.'
+    errorMessage = f'{db_name}: invalid data.'
 
     createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 
     createError(errorMessage, indicator)
-
-  return valide_page

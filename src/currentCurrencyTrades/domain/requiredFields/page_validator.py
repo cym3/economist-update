@@ -49,7 +49,7 @@ def dataValidator(data: ExchangeRates, indicator: Indicator):
   
   except Exception as err:
     print(err)
-    errorMessage = f'Invalid pdf page, the data contained by pdf dois not look like {db_name} data.'
+    errorMessage = f'{db_name}: invalid data.'
 
     createTaskDB(isDone=False, indicator=indicator, error=errorMessage)
 

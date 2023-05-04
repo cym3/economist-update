@@ -5,7 +5,7 @@ from src.core.db.connect_db import economist_db
 from pydantic import BaseModel
 
 class InterestRates(BaseModel):
-  name: str
+  id: str
   value: float
   date: str
 
@@ -17,12 +17,12 @@ def saveInterestRatesDB (data: list[InterestRates], indicator: Indicator):
     collection = database[db_name]
 
     for d in data:
-      name = d['name']
+      id = d['id']
       value = d['value']
       date = d['date']
 
       collection.update_one(
-        { 'name': name },
+        { '_id': id },
         { '$push': { 'values':  { 'date': date, 'value': value } }}
       )
     
