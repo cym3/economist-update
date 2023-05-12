@@ -18,9 +18,11 @@ def creditByActivitySectorUseCase():
 
         if path:
             response = readXlsx(path=path, indicator=indicator)
-            path.unlink()
+            # path.unlink()
 
             creditTable = parseXlsx(response)
+
+            print(creditTable)
 
             credit = creditByActivitySectorService(
                 table=creditTable,
